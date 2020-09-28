@@ -28,22 +28,33 @@
                   feedback-link="http://bbva-techuniversity.appspot.com/">
     
       <google-codelab-step label="Overview" duration="45">
-        <h4 is-upgraded>APIEX04 - GET (con y sin parámetros) </h4>
-<p> Crea una clase controller que responda a peticiones GET sin y con parámetros.  &#34;`java package com.techu.holamundo;  import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestParam; import org.springframework.web.bind.annotation.RestController;  @RestController public class ResourceController {  </p>
-<pre><code>@GetMapping(&#34;/saludos&#34;)
+        <h3 is-upgraded>APIEX04 - GET (con y sin parámetros) </h3>
+<p> Crea una clase controller que responda a peticiones GET sin y con parámetros.  
+  <pre><code>java package com.techu.holamundo; 
+    <br>import org.springframework.web.bind.annotation.GetMapping; 
+    <br>import org.springframework.web.bind.annotation.RequestParam; 
+    <br>import org.springframework.web.bind.annotation.RestController;  <br>
+    @RestController public class ResourceController {  </p>
+@GetMapping(&#34;/saludos&#34;)
 public String saludar(@RequestParam(value=&#34;nombre&#34;,
                                    defaultValue=&#34;Tech U!&#34;)
                      String name){
     return String.format(&#34;Hola %s ;)&#34;, name);
 }
-</code></pre>
-<p> } &#34;`  </p>
+} </code></pre>
+</p>
 <ul>
 <li><strong>@GetMapping</strong> esta anotación indica el método que indica lo que hará la petición GET en  la ruta /saludos. Es una abreviación de <strong>@RequestMapping(method = RequestMethod.GET)</strong> para decorar el método <strong>saludar</strong>. </li>
-<li><strong>@RequestParam</strong> indicará que <strong>nombre</strong> es un parámetro que estamos esperando recibir en la petición y además le daremos un valor por defecto. Los parámetros que anotemos con @RequestParam son requeridos spor defecto.  Por último ejecutamos la aplicación y en el navegador probamos la dos rutas:  Sin parámetros: 	http://localhost:8080/saludos  <img alt="Sin parámetro" src="img\ac5cb7a03006a5f0.png">  Con parámetro: 	http://localhost:8080/saludos?nombre=Ezequiel  <img alt="Con parámetro" src="img\f6c6397c1f049dd6.png">  RETOS:  </li>
-<li>Annotation&#39;s attributes: name, value, required, y defaultValue. </li>
-<li>Probar con más de un parámetro  REFERENCIAS:  https://www.baeldung.com/spring-request-param</li>
+<li><strong>@RequestParam</strong> indicará que <strong>nombre</strong> es un parámetro que estamos esperando recibir en la petición y además le daremos un valor por defecto. Los parámetros que anotemos con @RequestParam son requeridos por defecto.</li>
 </ul>
+  <p>  Por último ejecutamos la aplicación y en el navegador probamos la dos rutas:  
+Sin parámetros: 	http://localhost:8080/saludos  <img alt="Sin parámetro" src="img\ac5cb7a03006a5f0.png">
+Con parámetro: 	http://localhost:8080/saludos?nombre=Ezequiel
+    <br><img alt="Con parámetro" src="img\f6c6397c1f049dd6.png">
+
+<br>
+Referencias: <a href="https://www.baeldung.com/spring-request-param" target="_blank">Parámetros Spring Boot</a>
+</p>
 
 
       </google-codelab-step>
