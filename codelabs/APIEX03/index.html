@@ -1,0 +1,52 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX03 - Implementar Hola Mundo API REST</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX03"
+                  title="APIEX03 - Implementar Hola Mundo API REST"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="45">
+        <h4 is-upgraded>APIEX03 - Implementar Hola Mundo API REST </h4>
+<p> Construiremos el &#34;Hola Mundo&#34; de un servicio web con Spring Boot que acepte peticiones en http://localhost:8080/saludo.  Para facilitarnos las cosas añadimos la dependencia <strong>Spring Web</strong> la cual nos creará un proyecto web básico.  A continuación añadimos el código Java de la clase HolaMundoController la cual será el controlador REST que acepte las peticiones:  &#34;`java package com.techu.holamundo;  import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  @RestController public class HolaMundoController {  </p>
+<pre><code>@RequestMapping(&#34;/saludo&#34;)
+public String saludar() {
+    return &#34;Hola Tech U!&#34;;
+}
+</code></pre>
+<p> } &#34;<br><br><code>La anotación @RequestMapping se ha simplificado po</code>r:<br><br>@RequestMapping(method = RequestMethod.GET, path = &#34;/saludo&#34;)<br><br><code>Explicación del código: The class is flagged </code>as a@RestController<code>, meaning it is ready for use by Spring MVC to handle web requests.</code>@RequestMapping<code>maps</code>/<code>to the</code>index()<code>method. When invoked from a browser or by using curl on the command line, the method returns pure text. That is because</code>@RestController<code>combines</code>@Controller<code>and</code>@ResponseBody`, two annotations that results in web requests returning data rather than a view.  Por último ejecutamos la aplicación y en el comprobamos la petición en el navegador.  REFERENCIAS:  https://spring.io/guides/gs/spring-boot/  https://github.com/spring-guides/gs-spring-boot/tree/master/initial/src/main/java/com/example/springboot  RETO:   <em>The created Spring Boot application has one endpoint available at </em><a href="http://localhost:8080/saludo" target="_blank"><em>/saludo</em></a><em>. However, if you open the root context of your application at http://localhost:8080/, you will get an error because there is no root resource defined. Let&#39;s add a static HTML home page with links to your endpoint:</em> https://www.jetbrains.com/help/idea/your-first-spring-application.html#add-home-page</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+    <script src="//support.google.com/inapp/api.js"></script><script src="/practitioner/scripts/done.js"></script>
+
+</body>
+</html>

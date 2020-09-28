@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T14:40:55+02:00",
+  "id": "HTEX03",
+  "duration": 60,
+  "title": "HTEX03 - Recogida de datos de formulario",
+  "authors": "TechU",
+  "summary": "Recogida de datos de formulario",
+  "source": ".\\HTEX03-Recogida de datos de formulario.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "html"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "HTEX03"
+}

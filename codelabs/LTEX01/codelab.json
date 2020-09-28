@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T14:43:47+02:00",
+  "id": "LTEX01",
+  "duration": 5,
+  "title": "LTEX01 - Validación Node.js, npm",
+  "authors": "TechU",
+  "summary": "validación Node.js, npm",
+  "source": ".\\LTEX01-Validación Node.js, npm.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX01"
+}

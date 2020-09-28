@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T14:44:17+02:00",
+  "id": "LTEX02",
+  "duration": 30,
+  "title": "LTEX02 - Instalación del proyecto base",
+  "authors": "TechU",
+  "summary": "Instalación del proyecto base",
+  "source": ".\\LTEX02-Instalación del proyecto base.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX02"
+}

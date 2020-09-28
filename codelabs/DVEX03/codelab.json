@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T12:29:48+02:00",
+  "id": "DVEX03",
+  "duration": 10,
+  "title": "DVEX03 - Clonar repositorio Git esqueleto y mover a repositorio propio",
+  "authors": "TechU",
+  "summary": "Clonar repositorio Git esqueleto y mover a repositorio propio",
+  "source": ".\\DVEX03-Clonar repositorio Git esqueleto y mover a repositorio propio.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back",
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "DVEX03"
+}

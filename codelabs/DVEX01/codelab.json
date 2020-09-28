@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T12:25:56+02:00",
+  "id": "DVEX01",
+  "duration": 10,
+  "title": "DVEX01 - Crear cuenta Bitbucket y repositorio remoto",
+  "authors": "TechU",
+  "summary": "Crear cuenta Bitbucket y repositorio remoto",
+  "source": ".\\DVEX01-Crear cuenta Bitbucket y repositorio remoto.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back",
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "DVEX01"
+}

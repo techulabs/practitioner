@@ -1,0 +1,47 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>DVEX02 - Crear repositorio Git local y subirlo a BitBucket</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="DVEX02"
+                  title="DVEX02 - Crear repositorio Git local y subirlo a BitBucket"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="10">
+        <h3 is-upgraded>DVEX02 - Crear repositorio Git local y subirlo a BitBucket </h3>
+<p> Cuando tengamos preparado el repositorio <strong>remoto</strong>,  crearemos nuestro repositorio <strong>local</strong> que luego enviaremos al remoto.  NOTA - Los comandos están pensados para ejecutarse con Git Bash.  Para ello vamos a nuestro directorio de proyectos, creamos un nuevo  directorio para alojar el repositorio, por ejemplo testreplocal, entramos al directorio e inicializamos el repositorio con el siguiente comando:  <br><code>git init</code><br>  Lo que, si no hay error, tendría que inicializar el repositorio, apareciéndonos  un mensaje de confirmación.  Para verificarlo y comprobar el estado del repositorio lo haremos con el comando:  <br><code>git status</code><br>  A continuación añadiremos contenido al directorio de nuestro repositorio.  Según lo vayamos haciendo podemos ir comprobando con git status que  Git va detectando lo que estamos añadiendo.  Empezaremos añadiendo un archivo nuevo, lo creamos con el comando:  <br><code>touch inicial.txt</code><br>  Creamos un nuevo directorio:  <br><code>mkdir otrosarchivos</code><br>  Entramos en el:  <br><code>cd otrosarchivos</code><br>  Y dentro creamos otro archivo:  <br><code>touch otrofichero</code><br>  Volvemos al directorio principal:  <br><code>cd ..</code><br>  Y añadimos nuestros cambios a staging en Git:  <br><code>git add .</code><br>  Confirmamos con git status que los cambios que están preparados para guardar  son correctos y nos preparamos para hacer nuestro primer commit.  Configuramos los datos de nombre e email asociados al commit. Estos datos  se mostrarán junto con los cambios que hagamos en la información del commit.  Para ello ponemos los comandos:  <br><code>git config --global user.email correo@correo.com</code><br>  Donde &#34;correo@correo.com&#34; sería la dirección de correo que queramos que aparezca  en nuestro commit.  Y   <br><code>git config --global user.name Nombre</code><br>  Donde Nombre sería el nombre que queramos que aparezca en nuestro commit.  Ahora hacemos el commit en si con el comando:  <br><code>git commit -m &#34;Versión inicia</code>l&#34;<br>  Nos tendría que aparecer un mensaje indicando que el commit ha funcionado.  Comprobamos con <strong>git status</strong> el estado del repositorio.  Ahora vamos a modificar el archivo inicial.txt con un editor, salvar el cambio  y comprobar con <strong>git status</strong> que Git detecta el cambio.  Una vez tengamos el cambio lo añadimos a staging:  <br><code>git add .</code><br>  Comprobamos con git status que el cambio preparado para guardar es correcto y  hacemos el commit:  <br><code>git commit -m &#34;Inicial modificado&#34;</code><br>  Para finalizar, subiremos estos cambios que están en nuestro repositorio local  al repositorio remoto en Bitbucket.  Para ello nos vamos primero a BitBucket y entramos en la página principal  de nuestro repositorio. Podemos navegar por ejemplo haciendo click arriba a la  izquierda en el logo de Bitbucket y seleccionar nuestro repositorio en la  página que aparece. Una vez ahí, veremos que en la página aparece el texto: &#34;Get your local Git repository on Bitbucket&#34;.  Tal y como indica ahí, si no lo estamos ya, nos colocamos primero en el  directorio principal de nuestro repositorio.  Para ver mejor lo que haremos a continuación, primero introduciremos el comando:  <br><code>git remote -v</code><br>  Este comando sirve para ver la configuración remota de nuestro repositorio, pero  no nos saldrá nada, puesto que aun no hemos configurado este punto.  A continuación tenemos que ejecutar el comando que aparece en el paso 2 de la página de BitBucket, que será tal que:  <br><code>git remote add origin URLDELREPOSITORIO.git</code><br>  Y si ejecutamos de nuevo git remote -v veremos que hay configuraciones registradas.  Si esta parte ha funcionado, introduciremos el comando para subir el repositorio:  <br><code>git push -u origin master</code><br>  Nos pedirá nuestras credenciales de BitBucket y, si las introducimos correctamente y va bien el proceso hará la subida al repositorio remoto.  Comprobamos con git status el estado del repositorio local y en la página del  repositorio remoto en Bitbucket podremos ver y explorar los cambios.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+    <script src="//support.google.com/inapp/api.js"></script><script src="/practitioner/scripts/done.js"></script>
+  <script src="../../scripts/done.js"></script>
+
+</body>
+</html>

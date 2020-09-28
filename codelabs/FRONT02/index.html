@@ -1,0 +1,806 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>FRONT02 - Eventos en Persona App - Añadir una persona al listado</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="FRONT02"
+                  title="FRONT02 - Eventos en Persona App - Añadir una persona al listado"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="10">
+        <h2 is-upgraded>FRONT02 - Eventos en Persona App - Añadir una persona al listado - 90 min </h2>
+<p> Vamos a implementar la adición de una nueva persona al listado. Para  conseguirlo, dividiremos el proceso en varias partes.  El primer paso será añadir una barra lateral a nuestro diseño, en la  que pondremos el botón de añadir la persona.  Empezamos creando el nuevo componente persona-sidebar de la forma habitual.  persona-sidebar.js  
+<pre><code>import { LitElement, html } from ‘lit-element&#39;;  
+class PersonaSidebar extends LitElement {
+	static get properties() {
+		return {			
+	};
+}
+
+	constructor() {
+		super();			
+	}
+
+	render() {
+		return html`		
+			&lt;!-- Enlace Bootstrap --&gt;
+			&lt;aside&gt;
+				&lt;section&gt;				
+					&lt;div class=&#34;mt-5&#34;&gt;
+						&lt;button class=&#34;w-100 btn bg-success&#34; style=&#34;font-size: 50px&#34;&gt;&lt;strong&gt;+&lt;/strong&gt;&lt;/button&gt;
+					&lt;div&gt;				
+				&lt;/section&gt;
+			&lt;/aside&gt;
+		`;
+	}    
+}  
+customElements.define(‘persona-sidebar&#39;, PersonaSidebar) </pre></code>
+</p></google-codelab-step>
+
+<google-codelab-step label="Componente principal" duration="15">
+Posicionamos la barra en el lateral izquierdo, modificamos la estructura de toda la app en el componente principal.</p>
+<p>persona-app.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39; 
+import ‘../persona-header/persona-header.js&#39;; 
+import ‘../persona-main/persona-main.js&#39;;
+import ‘../persona-footer/persona-footer.js&#39;;
+import ‘../persona-sidebar/persona-sidebar.js&#39;; 
+class PersonaApp extends LitElement {
+	static get properties() {
+		return {			
+		};
+	}
+
+	constructor() {
+		super();			
+	}
+
+	render() {
+		return html`
+			&lt;!-- Enlace Bootstrap --&gt;
+			&lt;persona-header&gt;&lt;/persona-header&gt;
+			&lt;div class=&#34;row&#34;&gt;
+				&lt;persona-sidebar class=&#34;col-2&#34;&gt;&lt;/persona-sidebar&gt;
+				&lt;persona-main class=&#34;col-10&#34;&gt;&lt;/persona-main&gt;
+			&lt;/div&gt;			
+			&lt;persona-footer&gt;&lt;/persona-footer&gt;
+		`;
+		}   
+	} 
+customElements.define(‘persona-app&#39;, PersonaApp);
+</code></pre>
+</google-codelab-step>
+<google-codelab-step label="Formulario" duration="20">
+Para almacenar una nueva persona, necesitamos primero un formulario en el que introducir los datos.<br><br>Creamos este nuevo componente: persona-form.
+<p>persona-form.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39;;  
+class PersonaForm extends LitElement {
+	static get properties() {
+		return {			
+		};
+	}
+
+	constructor() {
+		super();				
+	}
+
+	render() {
+		return html`	
+			&lt;!-- Enlace Bootstrap --&gt;		
+			&lt;div&gt;
+				&lt;form&gt;
+					&lt;div class=&#34;form-group&#34;&gt;
+						&lt;label&gt;Nombre Completo&lt;/label&gt;
+						&lt;input type=&#34;text&#34; id=&#34;personFormName&#34; class=&#34;form-control&#34; placeholder=&#34;Nombre Completo&#34;/&gt;
+					&lt;div&gt;
+					&lt;div class=&#34;form-group&#34;&gt;
+						&lt;label&gt;Perfil&lt;/label&gt;
+						&lt;textarea class=&#34;form-control&#34; placeholder=&#34;Perfil&#34; rows=&#34;5&#34;&gt;&lt;/textarea&gt;
+					&lt;div&gt;
+					&lt;div class=&#34;form-group&#34;&gt;
+						&lt;label&gt;Años en la empresa&lt;/label&gt;
+						&lt;input type=&#34;text&#34; class=&#34;form-control&#34; placeholder=&#34;Años en la empresa&#34;/&gt;
+					&lt;div&gt;
+					&lt;button class=&#34;btn btn-primary&#34;&gt;&lt;strong&gt;Atrás&lt;/strong&gt;&lt;/button&gt;
+					&lt;button class=&#34;btn btn-success&#34;&gt;&lt;strong&gt;Guardar&lt;/strong&gt;&lt;/button&gt;
+				&lt;/form&gt;
+			&lt;/div&gt;
+		`;
+	}    
+}  
+customElements.define(‘persona-form&#39;, PersonaForm)    
+</code></pre>
+<p>Lo importamos y añadimos al componente principal y comprobamos que funciona.</p>
+<p>persona-main.js
+<pre><code>render() {
+return html`
+	&lt;!-- Enlace Bootstrap --&gt;		
+	&lt;h2 class=&#34;text-center&#34;&gt;Personas&lt;/h2&gt;
+	&lt;div class=&#34;row&#34; id=&#34;peopleList&#34;&gt;			
+		&lt;div class=&#34;row row-cols-1 row-cols-sm-4&#34;&gt;
+			${this.people.map(
+				person =&gt; 
+				html`&lt;persona-ficha-listado 
+						name=&#34;${person.name}&#34; 
+						yearsInCompany=&#34;${person.yearsInCompany}&#34; 
+						profile=&#34;${person.profile}&#34; 
+						.photo=&#34;${person.photo}&#34;
+						@delete-person=&#34;${this.deletePerson}&#34;&gt;
+					&lt;/persona-ficha-listado&gt;`
+			)}
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&#34;row&#34;&gt;
+		&lt;persona-form id=&#34;personForm&#34;&gt;
+		&lt;/persona-form&gt;
+	&lt;/div&gt;
+	`;
+}
+</code></pre>
+</p>
+</google-codelab-step>
+<google-codelab-step label="Mostrar / ocultar" duration="20">
+<p> Ahora vamos a hacer que solo se vea el formulario o el listado de personas  según la situación:  
+	<ul>
+		<li>Por defecto se mostrará el listado de personas.</li>
+		<li>Cuando se pulse el botón de añadir una persona, se mostrará el formulario y se ocultará el listado.</li>
+		<li>Cuando en el formulario se pulse el botón de guardar o atrás, se volverá a mostrar el listado.</li>
+	</ul>
+<p> Empezamos ocultando el formulario de la persona añadiéndole la clase d-none.  </p>
+<p>Añadimos también clases para ponerle un borde de color. </p>
+<p>persona-main.js </p> 
+<pre><code>render() {
+return html`
+	&lt;!-- Enlace Bootstrap --&gt;
+	&lt;h2 class=&#34;text-center&#34;&gt;Personas&lt;/h2&gt;
+	&lt;div class=&#34;row&#34; id=&#34;peopleList&#34;&gt;			
+		&lt;div class=&#34;row row-cols-1 row-cols-sm-4&#34;&gt;
+			${this.people.map(
+				person =&gt; 
+				html`&lt;persona-ficha-listado 
+						name=&#34;${person.name}&#34; 
+						yearsInCompany=&#34;${person.yearsInCompany}&#34; 
+						profile=&#34;${person.profile}&#34; 
+						.photo=&#34;${person.photo}&#34;
+						@delete-person=&#34;${this.deletePerson}&#34;&gt;
+					&lt;/persona-ficha-listado&gt;`
+			)}
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&#34;row&#34;&gt;
+		&lt;persona-form id=&#34;personForm&#34; class=&#34;d-none border rounded border-primary&#34;&gt;
+		&lt;/persona-form&gt;
+	&lt;/div&gt;
+	`;
+}
+</code></pre>
+<p>En la barra lateral, capturamos el evento click en el botón de crear una persona.</p>
+<p>persona-sidebar.js</p>
+<pre><code>render() {
+return html`	
+	&lt;!-- Enlace Bootstrap --&gt;
+	&lt;aside&gt;
+		&lt;section&gt;				
+			&lt;div class=&#34;mt-5&#34;&gt;
+				&lt;button @click=&#34;${this.newPerson}&#34; class=&#34;w-100 btn bg-success&#34; style=&#34;font-size: 50px&#34;&gt;&lt;strong&gt;+&lt;/strong&gt;&lt;/button&gt;
+			&lt;div&gt;				
+		&lt;/section&gt;
+	&lt;/aside&gt;		
+	`;
+}
+</code></pre>
+<p>Y añadimos la función manejadora que lanzará el evento.</p>
+<p>persona-sidebar.js</p>
+<pre><code>newPerson(e) {
+	console.log(&#34;newPerson en persona-sidebar&#34;);
+	console.log(&#34;Se va a crear una nueva persona&#34;);
+  
+	this.dispatchEvent(new CustomEvent(&#34;new-person&#34;, {})); 
+}
+</code></pre>
+<p>Este evento será recogido en el componente que contiene al sidebar, que es el principal de la aplicación: persona-app.</p>
+<p>persona-app.js</p>
+<pre><code>render() {
+	return html`
+	&lt;!-- Enlace Bootstrap --&gt;
+	&lt;persona-header&gt;&lt;/persona-header&gt;
+	&lt;div class=&#34;row&#34;&gt;
+		&lt;persona-sidebar class=&#34;col-2&#34; @new-person=&#34;${this.newPerson}&#34;&gt;&lt;/persona-sidebar&gt;
+		&lt;persona-main class=&#34;col-10&#34;&gt;&lt;/persona-main&gt;
+	&lt;/div&gt;			
+	&lt;persona-footer&gt;&lt;/persona-footer&gt;
+	`;
+}
+</code></pre>
+<p>Ahora, para conseguir el objetivo:  
+	<ul>
+		<li>Añadiremos una propiedad Boolean showPersonForm a persona-main, que por defecto tendrá valor false.</li>
+		<li>Usando la función updated, estaremos controlando el valor de showPersonForm: cuando sea false, mostraremos el listado de personas; cuando sea true, el formulario.</li>
+		<li>El mostrar/ocultar estará gestionado por funciones en persona-main.  Empezamos añadiendo showPersonForm. </li> 
+	</ul>
+<p>persona-main.js</p>  
+<pre><code>static get properties() {
+	return {			
+		people: {type: Array},
+		showPersonForm: {type: Boolean}
+	};
+}
+</code></pre>
+<p>Y en el constructor la ponemos a false por defecto.</p>
+<p>persona-main.js
+<pre><code>constructor() { 
+	super();
+
+	// People array.
+	
+	this.showPersonForm = false;
+}
+</code></pre> 
+<p>Añadimos la función updated.</p>
+<p>persona-main.js</p>
+<pre><code>updated(changedProperties) { 
+	console.log(&#34;updated&#34;);	
+	if (changedProperties.has(&#34;showPersonForm&#34;)) {
+		console.log(&#34;Ha cambiado el valor de la propiedad showPersonForm en persona-main&#34;);
+		if (this.showPersonForm === true) {
+			this.showPersonFormData();
+		} else {
+			this.showPersonList();
+		}
+	}
+}
+</code></pre>
+<p>Y las dos funciones asociadas.</p>
+<p>persona-main.js</p>
+<pre><code>showPersonList() {
+console.log(&#34;showPersonList&#34;);
+console.log(&#34;Mostrando listado de personas&#34;);
+this.shadowRoot.getElementById(&#34;peopleList&#34;).classList.remove(&#34;d-none&#34;);
+this.shadowRoot.getElementById(&#34;personForm&#34;).classList.add(&#34;d-none&#34;);	
+}  
+showPersonFormData() {
+console.log(&#34;showPersonFormData&#34;);
+console.log(&#34;Mostrando formulario de persona&#34;);
+this.shadowRoot.getElementById(&#34;personForm&#34;).classList.remove(&#34;d-none&#34;);	  
+this.shadowRoot.getElementById(&#34;peopleList&#34;).classList.add(&#34;d-none&#34;);	
+} 	  
+</code></pre>
+<p>Por último, añadimos la función manejadora del evento click en el componente principal, que pondrá en marcha el cambio en persona-main.
+<p>persona-app.js</p>
+<pre><code>newPerson(e) {
+	console.log(&#34;newPerson en PersonaApp&#34;);	
+	this.shadowRoot.querySelector(&#34;persona-main&#34;).showPersonForm = true;
+}
+</code></pre>	  	
+<p>Continuamos: añadimos funcionalidad al botón atrás del formulario, capturamos el evento click.</p>
+<p> persona-form.js
+<pre><code>render() {
+return html`	
+	&lt;!-- Enlace Bootstrap --&gt;		
+	&lt;div&gt;
+		&lt;form&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Nombre Completo&lt;/label&gt;
+				&lt;input type=&#34;text&#34; id=&#34;personFormName&#34; class=&#34;form-control&#34; placeholder=&#34;Nombre Completo&#34;/&gt;
+			&lt;div&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Perfil&lt;/label&gt;
+				&lt;textarea class=&#34;form-control&#34; placeholder=&#34;Perfil&#34; rows=&#34;5&#34;&gt;&lt;/textarea&gt;
+			&lt;div&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Años en la empresa&lt;/label&gt;
+				&lt;input type=&#34;text&#34; class=&#34;form-control&#34; placeholder=&#34;Años en la empresa&#34;/&gt;
+			&lt;div&gt;
+			&lt;button @click=&#34;${this.goBack}&#34; class=&#34;btn btn-primary&#34;&gt;&lt;strong&gt;Atrás&lt;/strong&gt;&lt;/button&gt;
+			&lt;button class=&#34;btn btn-success&#34;&gt;&lt;strong&gt;Guardar&lt;/strong&gt;&lt;/button&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;			
+`;
+}
+
+</code></pre>
+<p>La función manejadora lanzará un evento para informar de que se quiere cerrar el formulario.</p>
+<p> persona-form.js
+<pre><code>goBack(e) {
+	console.log(&#34;goBack&#34;);	  
+	e.preventDefault();	
+	this.dispatchEvent(new CustomEvent(&#34;persona-form-close&#34;,{}));	
+}
+</code></pre>
+<p>El evento persona-form-close será recogido en el componente principal.</p>
+<p>persona-main.js</p>
+<pre><code>&lt;persona-form id=&#34;personForm&#34; class=&#34;d-none border rounded border-primary&#34;
+	@persona-form-close=&#34;${this.personFormClose}&#34;&gt;
+&lt;/persona-form&gt;
+</code></pre>
+<p>Y la función manejadora actualizará la propiedad, lo que desencadenará a través de updated que se actualice la plantilla.</p>
+<p> persona-main.js
+<pre><code>personFormClose() {
+	console.log(&#34;personFormClose&#34;);
+	console.log(&#34;Se ha cerrado el formulario de la persona&#34;);
+	this.showPersonForm = false;
+}
+</code></pre>
+</p></google-codelab-step>
+<google-codelab-step label="Guardado" duration="15">
+<p>Ahora vamos a continuar con el proceso de guardado de una persona nueva.  La clave estará en capturar el evento click del botón guardar y, a partir de ahí, iniciar el proceso de guardado.</p>
+<p>Además tendremos que recoger los datos del formulario y con ellos,  crear una persona nueva que se pintará en el listado.  Capturamos el evento click del botón guardar.  
+<p>persona-form.js</p>
+<pre><code>render() {
+return html`	
+	&lt;!-- Enlace Bootstrap --&gt;		
+	&lt;div&gt;
+		&lt;form&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Nombre Completo&lt;/label&gt;
+				&lt;input type=&#34;text&#34; id=&#34;personFormName&#34; class=&#34;form-control&#34; placeholder=&#34;Nombre Completo&#34;/&gt;
+			&lt;div&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Perfil&lt;/label&gt;
+				&lt;textarea class=&#34;form-control&#34; placeholder=&#34;Perfil&#34; rows=&#34;5&#34;&gt;&lt;/textarea&gt;
+			&lt;div&gt;
+			&lt;div class=&#34;form-group&#34;&gt;
+				&lt;label&gt;Años en la empresa&lt;/label&gt;
+				&lt;input type=&#34;text&#34; class=&#34;form-control&#34; placeholder=&#34;Años en la empresa&#34;/&gt;			
+			&lt;div&gt;
+			&lt;button @click=&#34;${this.goBack}&#34; class=&#34;btn btn-primary&#34;&gt;&lt;strong&gt;Atrás&lt;/strong&gt;&lt;/button&gt;
+			&lt;button @click=&#34;${this.storePerson}&#34; class=&#34;btn btn-success&#34;&gt;&lt;strong&gt;Guardar&lt;/strong&gt;&lt;/button&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;			
+	`;
+}
+</code></pre>
+<p>Ahora vamos a recoger y enviar la información de la persona.  Lo haremos en un objeto y la enviaremos en un evento (asumiremos siempre la misma imagen por defecto).</p>
+<p> Empezamos añadiendo la propiedad person en el formulario.  </p>
+<p>persona-form.js</p>
+<pre><code>static get properties() {
+	return {			
+		person: {type: Object}
+	};
+}
+</code></pre>
+<p>Inicializamos el objeto persona en el constructor.</p>
+<p>persona-form.js</p>
+<pre><code>constructor() { 
+	super();		
+	this.person = {};
+}
+</code></pre>	
+<p>Cuando se actualicen los valores de los inputs de texto, actualizaremos el objeto persona con el nuevo valor, para ello hacemos los data binding necesarios.</p>
+<p> La plantilla quedaría. </p>
+<p>person-form.js</p>
+<pre><code>render() {
+return html`	
+	&lt;!-- Enlace Bootstrap --&gt;		
+		&lt;div&gt;
+			&lt;form&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Nombre Completo&lt;/label&gt;
+					&lt;input type=&#34;text&#34; @input=&#34;${this.updateName}&#34; id=&#34;personFormName&#34; class=&#34;form-control&#34; placeholder=&#34;Nombre Completo&#34;/&gt;
+				&lt;div&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Perfil&lt;/label&gt;
+					&lt;textarea @input=&#34;${this.updateProfile}&#34; class=&#34;form-control&#34; placeholder=&#34;Perfil&#34; rows=&#34;5&#34;&gt;&lt;/textarea&gt;
+				&lt;div&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Años en la empresa&lt;/label&gt;
+					&lt;input type=&#34;text&#34; @input=&#34;${this.updateYearsInCompany}&#34; class=&#34;form-control&#34; placeholder=&#34;Años en la empresa&#34;/&gt;
+				&lt;div&gt;
+				&lt;button @click=&#34;${this.goBack}&#34; class=&#34;btn btn-primary&#34;&gt;&lt;strong&gt;Atrás&lt;/strong&gt;&lt;/button&gt;
+				&lt;button @click=&#34;${this.storePerson}&#34; class=&#34;btn btn-success&#34;&gt;&lt;strong&gt;Guardar&lt;/strong&gt;&lt;/button&gt;
+			&lt;/form&gt;
+		&lt;/div&gt;			
+	`;
+}       	
+</code></pre>
+<p>Añadimos las funciones manejadoras que actualizan el valor de las propiedades.</p>
+<p>persona-form.</p>
+<pre><code>updateName(e) {
+	console.log(&#34;updateName&#34;);
+	console.log(&#34;Actualizando la propiedad name con el valor &#34; + e.target.value);
+	this.person.name = e.target.value;
+}
+	updateProfile(e) {
+		console.log(&#34;updateProfile&#34;);
+		console.log(&#34;Actualizando la propiedad profile con el valor &#34; + e.target.value);
+		this.person.profile = e.target.value;
+	}
+	updateYearsInCompany(e) {
+		console.log(&#34;updateYearsInCompany&#34;);
+		console.log(&#34;Actualizando la propiedad yearsInCompany con el valor &#34; + e.target.value);
+		this.person.yearsInCompany = e.target.value;
+	}
+}
+</code></pre>
+<p>Y la función manejadora del click en el botón guardar, que prepara un objeto para enviar junto con el evento.</p>
+<p> persona-form.js </p>
+<pre><code>storePerson(e) {
+	console.log(&#34;storePerson&#34;);
+	e.preventDefault();
+	
+	this.person.photo = {
+		&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+		&#34;alt&#34;: &#34;Persona&#34;
+	};
+		
+	console.log(&#34;La propiedad name vale &#34; + this.person.name);
+	console.log(&#34;La propiedad profile vale &#34; + this.person.profile);
+	console.log(&#34;La propiedad yearsInCompany vale &#34; + this.person.yearsInCompany);	
+		
+	this.dispatchEvent(new CustomEvent(&#34;persona-form-store&#34;,{
+		detail: {
+			person:  {
+					name: this.person.name,
+					profile: this.person.profile,
+					yearsInCompany: this.person.yearsInCompany,
+					photo: this.person.photo
+				}
+			}
+		})
+	);
+}
+</code></pre>
+<p>Recogemos el evento de creación de la persona en persona-main.</p>
+<p>persona-main.js</p>
+<pre><code>&lt;persona-form id=&#34;personForm&#34; class=&#34;d-none border rounded border-primary&#34;
+	@persona-form-close=&#34;${this.personFormClose}&#34;
+	@persona-form-store=&#34;${this.personFormStore}&#34; &gt;
+&lt;/persona-form&gt;
+</code></pre>
+<p>Y la función manejadora del evento, que guardará la nueva persona.</p>
+<p>persona-main.js</p>
+<pre><code>personFormStore(e) {
+	console.log(&#34;personFormStore&#34;);
+	console.log(&#34;Se va a almacenar una persona&#34;);	
+  			  		
+	this.people.push(e.detail.person);
+  
+	console.log(&#34;Persona almacenada&#34;);	
+	this.showPersonForm = false;
+}
+</code></pre>
+</p></google-codelab-step>
+<google-codelab-step label="Estado final" duration="10">
+<p>Los componentes quedarían:</p>
+<p>persona-app.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39;; 
+	import ‘../persona-header/persona-header.js&#39;; 
+	import ‘../persona-main/persona-main.js&#39;; 
+	import ‘../persona-footer/persona-footer.js&#39;; 
+	import ‘../persona-sidebar/persona-sidebar.js&#39;;  
+class PersonaApp extends LitElement {
+	static get properties() {
+		return {			
+		};
+	}
+
+	constructor() {
+		super();			
+	}
+
+	render() {
+		return html`
+			&lt;!-- Enlace Bootstrap --&gt;		
+			&lt;persona-header&gt;&lt;/persona-header&gt;
+			&lt;div class=&#34;row&#34;&gt;
+				&lt;persona-sidebar class=&#34;col-2&#34; @new-person=&#34;${this.newPerson}&#34;&gt;&lt;/persona-sidebar&gt;
+				&lt;persona-main class=&#34;col-10&#34;&gt;&lt;/persona-main&gt;
+			&lt;/div&gt;			
+			&lt;persona-footer&gt;&lt;/persona-footer&gt;
+		`;
+	}    
+
+	newPerson(e) {
+		console.log(&#34;newPerson en PersonaApp&#34;);	
+		this.shadowRoot.querySelector(&#34;persona-main&#34;).showPersonForm = true; 	  	
+	}
+}
+customElements.define(‘persona-app&#39;, PersonaApp) 
+</code></pre>
+<p>persona-main.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39;; 
+	import ‘../persona-ficha-listado/persona-ficha-listado.js&#39;; 
+	import ‘../persona-form/persona-form.js&#39;;  
+class PersonaMain extends LitElement {
+	static get properties() {
+		return {			
+			people: {type: Array},
+			showPersonForm: {type: Boolean}
+		};
+	}			
+
+	constructor() {
+		super();
+			
+		this.people = [
+			{
+				name: &#34;Ellen Ripley&#34;,
+				yearsInCompany: 10,
+				profile: &#34;Lorem ipsum dolor sit amet.&#34;,
+				photo: {
+					&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+					&#34;alt&#34;: &#34;Ellen Ripley&#34;
+				},
+				canTeach: false				
+			}, {
+				name: &#34;Bruce Banner&#34;,		
+				yearsInCompany: 2,
+				profile: &#34;Lorem ipsum.&#34;,
+				photo: {
+					&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+					&#34;alt&#34;: &#34;Bruce Banner&#34;
+				},
+				canTeach: true
+			}, {
+				name: &#34;Éowyn&#34;,
+				yearsInCompany: 5,
+				profile: &#34;Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.&#34;,
+				photo: {
+					&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+					&#34;alt&#34;: &#34;Éowyn&#34;
+				},
+				canTeach: true
+			}, {
+				name: &#34;Turanga Leela&#34;,
+				yearsInCompany: 9,
+				profile: &#34;Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod.&#34;,
+				photo: {
+					&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+					&#34;alt&#34;: &#34;Turanga Leela&#34;
+				},
+				canTeach: true
+			}, {
+				name: &#34;Tyrion Lannister&#34;,
+				yearsInCompany: 1,
+				profile: &#34;Lorem ipsum.&#34;,
+				photo: {
+					&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+					&#34;alt&#34;: &#34;Tyrion Lannister&#34;
+				},
+				canTeach: false
+			}
+		];
+	this.showPersonForm = false;
+}
+		
+render() {
+	return html`
+		&lt;!-- Enlace Bootstrap --&gt;		
+		&lt;h2 class=&#34;text-center&#34;&gt;Personas&lt;/h2&gt;
+		&lt;div class=&#34;row&#34; id=&#34;peopleList&#34;&gt;			
+			&lt;div class=&#34;row row-cols-1 row-cols-sm-4&#34;&gt;
+				${this.people.map(
+					person =&gt; 
+					html`&lt;persona-ficha-listado 
+							name=&#34;${person.name}&#34; 
+							yearsInCompany=&#34;${person.yearsInCompany}&#34; 
+							profile=&#34;${person.profile}&#34; 
+							.photo=&#34;${person.photo}&#34;
+							@delete-person=&#34;${this.deletePerson}&#34;&gt;
+						&lt;/persona-ficha-listado&gt;`
+				)}
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class=&#34;row&#34;&gt;
+			&lt;persona-form id=&#34;personForm&#34; class=&#34;d-none border rounded border-primary&#34;
+				@persona-form-close=&#34;${this.personFormClose}&#34;
+				@persona-form-store=&#34;${this.personFormStore}&#34; &gt;
+			&lt;/persona-form&gt;
+		&lt;/div&gt;
+	`;
+}
+
+updated(changedProperties) {
+	console.log(&#34;updated&#34;);	
+	if (changedProperties.has(&#34;showPersonForm&#34;)) {
+		console.log(&#34;Ha cambiado el valor de la propiedad showPersonForm en persona-main&#34;);
+		if (this.showPersonForm === true) {
+			this.showPersonFormData();
+		} else {
+			this.showPersonList();
+		}
+	}
+}
+
+deletePerson(e) {
+	console.log(&#34;deletePerson en persona-main&#34;);
+	console.log(&#34;Se va a borrar la persona de nombre &#34; + e.detail.name);
+  
+	this.people = this.people.filter(
+		person =&gt; person.name != e.detail.name
+	);
+}
+
+showPersonList() {
+	console.log(&#34;showPersonList&#34;);
+	console.log(&#34;Mostrando listado de personas&#34;);
+	this.shadowRoot.getElementById(&#34;peopleList&#34;).classList.remove(&#34;d-none&#34;);
+	this.shadowRoot.getElementById(&#34;personForm&#34;).classList.add(&#34;d-none&#34;);	  
+}
+
+showPersonFormData() {
+	console.log(&#34;showPersonFormData&#34;);
+	console.log(&#34;Mostrando formulario de persona&#34;);
+	this.shadowRoot.getElementById(&#34;personForm&#34;).classList.remove(&#34;d-none&#34;);	  
+	this.shadowRoot.getElementById(&#34;peopleList&#34;).classList.add(&#34;d-none&#34;);	 	  
+}
+
+personFormClose() {
+	console.log(&#34;personFormClose&#34;);
+	console.log(&#34;Se ha cerrado el formulario de la persona&#34;);
+  
+	this.showPersonForm = false;	
+}
+
+personFormStore(e) {
+	console.log(&#34;personFormStore&#34;);
+	console.log(&#34;Se va a almacenar una persona&#34;);	
+  			  		
+	this.people.push(e.detail.person);
+  
+	console.log(&#34;Persona almacenada&#34;);	
+	this.showPersonForm = false;
+	}
+}
+customElements.define(‘persona-main&#39;, PersonaMain) 
+</code></pre>
+<p>persona-form.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39;;  
+	class PersonaForm extends LitElement {
+static get properties() {
+	return {			
+		person: {type: Object}
+	};
+}
+
+constructor() {
+	super();		
+
+	this.person = {};		
+}
+
+render() {
+	return html`	
+		&lt;!-- Enlace Bootstrap --&gt;		
+		&lt;div&gt;
+			&lt;form&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Nombre Completo&lt;/label&gt;
+					&lt;input type=&#34;text&#34; @input=&#34;${this.updateName}&#34; id=&#34;personFormName&#34; class=&#34;form-control&#34; placeholder=&#34;Nombre Completo&#34;/&gt;
+				&lt;div&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Perfil&lt;/label&gt;
+					&lt;textarea @input=&#34;${this.updateProfile}&#34; class=&#34;form-control&#34; placeholder=&#34;Perfil&#34; rows=&#34;5&#34;&gt;&lt;/textarea&gt;
+				&lt;div&gt;
+				&lt;div class=&#34;form-group&#34;&gt;
+					&lt;label&gt;Años en la empresa&lt;/label&gt;
+					&lt;input type=&#34;text&#34; @input=&#34;${this.updateYearsInCompany}&#34; class=&#34;form-control&#34; placeholder=&#34;Años en la empresa&#34;/&gt;
+				&lt;div&gt;
+				&lt;button @click=&#34;${this.goBack}&#34; class=&#34;btn btn-primary&#34;&gt;&lt;strong&gt;Atrás&lt;/strong&gt;&lt;/button&gt;
+				&lt;button @click=&#34;${this.storePerson}&#34; class=&#34;btn btn-success&#34;&gt;&lt;strong&gt;Guardar&lt;/strong&gt;&lt;/button&gt;
+			&lt;/form&gt;
+		&lt;/div&gt;			
+	`;
+}       	
+
+goBack(e) {
+	console.log(&#34;goBack&#34;);	  
+	e.preventDefault();	
+	this.dispatchEvent(new CustomEvent(&#34;persona-form-close&#34;,{}));
+}
+
+updateName(e) {
+	console.log(&#34;updateName&#34;);
+	console.log(&#34;Actualizando la propiedad name con el valor &#34; + e.target.value);
+	this.person.name = e.target.value;
+}
+
+updateProfile(e) {
+	console.log(&#34;updateProfile&#34;);
+	console.log(&#34;Actualizando la propiedad profile con el valor &#34; + e.target.value);
+	this.person.profile = e.target.value;
+}
+
+updateYearsInCompany(e) {
+	console.log(&#34;updateYearsInCompany&#34;);
+	console.log(&#34;Actualizando la propiedad yearsInCompany con el valor &#34; + e.target.value);
+	this.person.yearsInCompany = e.target.value;
+}
+
+storePerson(e) {
+	console.log(&#34;storePerson&#34;);
+	e.preventDefault();
+	
+	this.person.photo = {
+		&#34;src&#34;: &#34;./img/persona.jpg&#34;,
+		&#34;alt&#34;: &#34;Persona&#34;
+	};
+		
+	console.log(&#34;La propiedad name vale &#34; + this.person.name);
+	console.log(&#34;La propiedad profile vale &#34; + this.person.profile);
+	console.log(&#34;La propiedad yearsInCompany vale &#34; + this.person.yearsInCompany);
+		
+	this.dispatchEvent(new CustomEvent(&#34;persona-form-store&#34;,{
+		detail: {
+			person:  {
+					name: this.person.name,
+					profile: this.person.profile,
+					yearsInCompany: this.person.yearsInCompany,
+					photo: this.person.photo
+				}
+			}
+		})
+	);
+}
+}
+customElements.define(‘persona-form&#39;, PersonaForm)
+</code></pre>
+<p>persona-sidebar.js</p>
+<pre><code>import { LitElement, html } from ‘lit-element&#39;;  
+	class PersonaSidebar extends LitElement {
+	static get properties() {
+		return {			
+		};
+	}
+
+	constructor() {
+		super();			
+	}
+
+	render() {
+		return html`		
+			&lt;!-- Enlace Bootstrap --&gt;		
+			&lt;aside&gt;
+				&lt;section&gt;				
+					&lt;div class=&#34;mt-5&#34;&gt;
+						&lt;button class=&#34;w-100 btn bg-success&#34; style=&#34;font-size: 50px&#34; @click=&#34;${this.newPerson}&#34;&gt;&lt;strong&gt;+&lt;/strong&gt;&lt;/button&gt;
+					&lt;div&gt;				
+				&lt;/section&gt;
+			&lt;/aside&gt;
+		`;
+	}    
+
+	newPerson(e) {
+		console.log(&#34;newPerson en persona-sidebar&#34;);
+		console.log(&#34;Se va a crear una nueva persona&#34;);
+  
+		this.dispatchEvent(new CustomEvent(&#34;new-person&#34;, {})); 	
+	}
+}
+customElements.define(‘persona-sidebar&#39;, PersonaSidebar)
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+  <script src="../../scripts/done.js"></script>
+
+</body>
+</html>

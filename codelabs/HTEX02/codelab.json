@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T14:40:18+02:00",
+  "id": "HTEX02",
+  "duration": 15,
+  "title": "HTEX02 - Adición de estilos a formulario elaborado en HTEX01",
+  "authors": "TechU",
+  "summary": "Adición de estilos a formulario elaborado en HTEX01",
+  "source": ".\\HTEX02-Adición de estilos a formulario elaborado en HTEX01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "html"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "HTEX02"
+}

@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-28T09:02:48+02:00",
+  "id": "FRONT00",
+  "duration": 20,
+  "title": "FRONT00 - Preparación de los ejercicios entregables",
+  "authors": "TechU",
+  "summary": "Preparación de los ejercicios entregables",
+  "source": ".\\FRONT00-Preparación de los ejercicios entregables.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "FRONT00"
+}

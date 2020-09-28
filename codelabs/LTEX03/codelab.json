@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T14:44:56+02:00",
+  "id": "LTEX03",
+  "duration": 40,
+  "title": "LTEX03 - Creación del primer componente Hola Mundo",
+  "authors": "TechU",
+  "summary": "Creación del primer componente Hola Mundo",
+  "source": ".\\LTEX03-Creación del primer componente Hola Mundo.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX03"
+}

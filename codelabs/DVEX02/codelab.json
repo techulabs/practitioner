@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T12:30:56+02:00",
+  "id": "DVEX02",
+  "duration": 10,
+  "title": "DVEX02 - Crear repositorio Git local y subirlo a BitBucket",
+  "authors": "TechU",
+  "summary": "Crear repositorio Git local y subirlo a BitBucket",
+  "source": ".\\DVEX02-Crear repositorio Git local y subirlo a BitBucket.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back",
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "DVEX02"
+}

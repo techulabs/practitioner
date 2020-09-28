@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-13T15:44:59+02:00",
+  "id": "APIEX02",
+  "duration": 15,
+  "title": "APIEX02 - Hola Mundo Spring Boot",
+  "authors": "TechU",
+  "summary": "Hola Mundo Spring Boot",
+  "source": ".\\APIEX02-Hola Mundo Spring Boot.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX02"
+}

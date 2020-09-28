@@ -1,0 +1,55 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>LTEX03 - Creación del primer componente Hola Mundo</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="LTEX03"
+                  title="LTEX03 - Creación del primer componente Hola Mundo"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="40">
+        <h2 is-upgraded>LTEX03 - Creación del primer componente Hola Mundo - 40 min </h2>
+<p> Desde nuestro directorio de proyectos del curso, entramos en  </p>
+<pre><code>el directorio de nuestra app.
+</code></pre>
+<p><code><br>cd base-litelement</code><br>  Y vamos al directorio con el componente creado automáticamente.  <br><code>cd src</code> <br>  Ahí crearemos un directorio nuevo para nuestro componente  <br><code>mkdir hola-mundo</code> <br>  Entramos al directorio  <br><code>cd hola-mundo</code><br>  Y creamos el archivo del componente  <br><code>touch hola-mundo.js</code><br>  El código del componente será:  hola-mundo.js  &#34;`javascript import { LitElement, html } from ‘lit-element&#39;;  class HolaMundo extends LitElement {   render() { </p>
+<pre><code>return html`
+	&lt;div&gt;Hola Mundo!&lt;/div&gt;
+`;
+</code></pre>
+<p>} }  customElements.define(‘hola-mundo&#39;, HolaMundo) <br><br><code>En el directorio principal de la app, veremos un archivo index.html. Ese <br>será el archivo que se cargue cuando lancemos nuestra app y ahí será <br>donde añadiremos nuestro componente.<br><br>in</code>dex.html<br><br>html &lt;!doctype html&gt;       &lt;/p&gt;  &lt;pre&gt;&lt;code&gt;html, body {   margin: 0;   padding: 0;   font-family: sans-serif;   background-color: #ededed; } &lt;/code&gt;&lt;/pre&gt;  &lt;p&gt;base-litelement<br><br><code>Ahora en la consola ponemos:</code><br><br> npm run start  &#34;`  Lo que iniciará un servidor de pruebas y lanzará el navegador, en el que veremos  nuestra app y el componente hola-mundo.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+    <script src="//support.google.com/inapp/api.js"></script><script src="/practitioner/scripts/done.js"></script>
+  <script src="../../scripts/done.js"></script>
+
+</body>
+</html>
