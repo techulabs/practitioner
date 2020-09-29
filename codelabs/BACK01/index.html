@@ -1,0 +1,200 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>BACK01 - Integración operaciones CRUD en MongoDB - API REST</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="BACK01"
+                  title="BACK01 - Integración operaciones CRUD en MongoDB - API REST"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="75">
+        <h2 is-upgraded>BACK01 - Integración operaciones CRUD en MongoDB - API REST - 75 min </h2>
+<p><strong>BACK01 - Integración operaciones CRUD en MongoDB - API REST</strong>  En este codelab integraremos Mongo DB para realizar las operaciones CRUD asociadas a las peticiones REST implementadas en los codelabs anteriores. Aprenderemos a crear un microservicio spring boot que utilizará <strong>Spring Data MongoDB</strong> (ver artefacto <strong>spring-boot-starter-data-mongodb</strong> en el pom.xml del paso 1) para crear una aplicación que almacenará y recuperará datos de MongoDB, una de las bases de datos <strong>NoSQL</strong> orientada a <em>documentos</em> más populares<em>.</em>   Requisitos previos: Tener instalado Mongo DB.   Tenemos que añadir los <strong>parámetros de conexión a Mongo DB</strong>. Para ello insertar las lineas de abajo en el archivo de <strong>properties</strong> del proyecto. Está ubicado en: src/main/resources/<em>application.properties</em>:  &#34;`java server.port = 8081 spring.data.mongodb.host=localhost spring.data.mongodb.port=27017 </p>
+<p>spring.data.mongodb.username=admin </p>
+<p>spring.data.mongodb.password=admin </p>
+<p>spring.data.mongodb.database=productos_db <br><br><code>Para simplificar el ejercicio se han comentado los parámetros de autenticación (precedidos por #) así que podremos conectarnos sin credenciales (solo para el ejemplo, no recomendado).<br><br>1/ La configuración del fichero **pom.xml** del proyecto es la si</code>guiente:<br><br>xml &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; </p>
+<pre><code>xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;parent&gt;
+	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+	&lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+	&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+&lt;/parent&gt;
+&lt;groupId&gt;com.techu.apirest&lt;/groupId&gt;
+&lt;artifactId&gt;demo&lt;/artifactId&gt;
+&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+&lt;name&gt;demo&lt;/name&gt;
+&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+</code></pre>
+<pre><code>&lt;properties&gt;
+	&lt;java.version&gt;14&lt;/java.version&gt;
+&lt;/properties&gt;
+
+&lt;dependencies&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+		&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+		&lt;scope&gt;test&lt;/scope&gt;
+		&lt;exclusions&gt;
+			&lt;exclusion&gt;
+				&lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
+				&lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
+			&lt;/exclusion&gt;
+		&lt;/exclusions&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.jetbrains&lt;/groupId&gt;
+		&lt;artifactId&gt;annotations&lt;/artifactId&gt;
+		&lt;version&gt;RELEASE&lt;/version&gt;
+		&lt;scope&gt;compile&lt;/scope&gt;
+	&lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;build&gt;
+	&lt;plugins&gt;
+		&lt;plugin&gt;
+			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+			&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+		&lt;/plugin&gt;
+	&lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p><code><br><br>2/ Ahora crearemos un POJO  muy sencillo para representar un **ProductoModel** que será el que almacenemos en *MongoDB*  y que asociaremos con el recurso **productos*</code>*.<br><br>java package com.techu.apirest.model;  import org.jetbrains.annotations.NotNull; import org.springframework.data.annotation.Id; import org.springframework.data.mongodb.core.mapping.Document;  @Document(collection=&#34;productos&#34;) public class ProductoModel {  </p>
+<pre><code>@Id
+private String id;
+@NotNull
+private String descripcion;
+private Double precio;
+
+public ProductoModel() {}
+
+public ProductoModel(String id, String descripcion, Double precio) {
+    this.id = id;
+    this.descripcion = descripcion;
+    this.precio = precio;
+}
+
+public String getId() {
+    return id;
+}
+
+public void setId(String id) {
+    this.id = id;
+}
+
+public String getDescripcion() {
+    return descripcion;
+}
+
+public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+}
+
+public Double getPrecio() {
+    return precio;
+}
+
+public void setPrecio(Double precio) {
+    this.precio = precio;
+}
+</code></pre>
+<p>} <br><br><code>3/ Ahora crearemos el **interface MongoRepository** del repositorio que permita realizar las operaciones CRUD sobre el objeto de la clase**ProductoModel**.</code><br><br>java package com.techu.apirest.repository;  import com.techu.apirest.model.ProductoModel; import org.springframework.data.mongodb.repository.MongoRepository; import org.springframework.stereotype.Repository;  @Repository public interface ProductoRepository extends MongoRepository { } <br><br><code>Este repositorio es una interfaz que permite realizar varias operaciones que involucran a los objetos de la clase `Producto`. Obtiene estas operaciones extendiendo `ProductoRepository` de `MongoRepository`.<br><br>https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html<br><br>4/ Lo siguiente que haremos será implementar el servicio **ProductoService** que se conecte al repositorio de productos del paso anterio</code>r:<br><br>java package com.techu.apirest.service;  import com.techu.apirest.model.ProductoModel; import com.techu.apirest.repository.ProductoRepository; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Service;  import java.util.List; import java.util.Optional;  @Service public class ProductoService {  </p>
+<pre><code>@Autowired
+ProductoRepository productoRepository;
+
+public List&lt;ProductoModel&gt; findAll() {
+    return productoRepository.findAll();
+}
+
+public Optional&lt;ProductoModel&gt; findById(String  id) {
+    return productoRepository.findById(id);
+}
+
+public ProductoModel save(ProductoModel entity) {
+    return productoRepository.save(entity);
+}
+
+public boolean delete(ProductoModel entity) {
+    try {
+        productoRepository.delete(entity);
+        return true;
+    } catch(Exception ex) {
+        return false;
+    }
+}
+</code></pre>
+<p> } <br><br><code>5/ A continuación la implementación del **ProductoControlle</code>r**:<br><br>java package com.techu.apirest.controller;  import com.techu.apirest.model.ProductoModel; import com.techu.apirest.service.ProductoService; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.web.bind.annotation.*;  import java.util.List; import java.util.Optional;  @RestController @RequestMapping(&#34;/apitechu/v2&#34;) public class ProductoController {  </p>
+<pre><code>@Autowired
+ProductoService productoService;
+
+@GetMapping(&#34;/productos&#34;)
+public List&lt;ProductoModel&gt; getProductos() {
+    return productoService.findAll();
+}
+
+@GetMapping(&#34;/productos/{id}&#34; )
+public Optional&lt;ProductoModel&gt; getProductoId(@PathVariable String id){
+    return productoService.findById(id);
+}
+
+@PostMapping(&#34;/productos&#34;)
+public ProductoModel postProductos(@RequestBody ProductoModel newProducto){
+    productoService.save(newProducto);
+    return newProducto;
+}
+
+@PutMapping(&#34;/productos&#34;)
+public void putProductos(@RequestBody ProductoModel productoToUpdate){
+    productoService.save(productoToUpdate);
+}
+
+@DeleteMapping(&#34;/productos&#34;)
+public boolean deleteProductos(@RequestBody ProductoModel productoToDelete){
+    return productoService.delete(productoToDelete);
+}
+</code></pre>
+<p> } &#34;`  6/ Por último ejecutar la aplicación y probar en postman las operaciones CRUD implementadas. Mediante un cliente MongoDB (Robo 3T por ejemplo) confirmar las pruebas en la base de datos productos_db:  server.port = 8081 spring.data.mongodb.host=localhost spring.data.mongodb.port=27017  Referencias:  http://www.robertocrespo.net/kaizen/implementar-microservicios-spring-boot-iii-acceso-datos-mongodb-data/  https://spring.io/guides/gs/accessing-mongodb-data-rest/#scratch  https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html  https://www.adictosaltrabajo.com/2015/03/02/optional-java-8/</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+  <script src="../../scripts/done.js"></script>
+
+</body>
+</html>

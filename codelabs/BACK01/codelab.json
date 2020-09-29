@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-29T09:25:40+02:00",
+  "id": "BACK01",
+  "duration": 75,
+  "title": "BACK01 - Integración operaciones CRUD en MongoDB - API REST",
+  "authors": "TechU",
+  "summary": "Integración operaciones CRUD en MongoDB - API REST",
+  "source": ".\\CDEX04 - Integración operaciones CRUD en MongoDB - API REST.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "BACK01"
+}
