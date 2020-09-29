@@ -41,9 +41,9 @@
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34;/&gt;
-    &lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34;/&gt;
+  &lt;br /&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 <p>En este punto podemos comprobar que, si le damos al botón enviar, se envía el formulario, tenga o no valor el input de texto.</p>
@@ -52,9 +52,9 @@
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required /&gt;
-    &lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required /&gt;
+  &lt;br /&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 <p>El atributo <strong>placeholder</strong> nos ayuda a identificar qué ha de contener un input de texto.</p>
@@ -62,9 +62,9 @@
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
-    &lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
+  &lt;br /&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 <p>Hay tipos de input más específicos, como por ejemplo email, que añaden una validación previa al envío, comprobando que el contenido cumpla un patrón predeterminado.</p>
@@ -72,25 +72,25 @@
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
-    &lt;br /&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
+  &lt;br /&gt;
 	&lt;input id=&#34;formEmail&#34; type=&#34;email&#34; placeholder=&#34;email&#34; /&gt;
 	&lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p>>Existe también el input de tipo <strong>number</strong> que cuenta con atributos específicos, min y max, para delimitar los números permitidos.</p>
+<p>Existe también el input de tipo <strong>number</strong> que cuenta con atributos específicos, min y max, para delimitar los números permitidos.</p>
 <pre><code>&lt;!doctype html&gt;
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
-    &lt;br /&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
+  &lt;br /&gt;
 	&lt;input id=&#34;formEmail&#34; type=&#34;email&#34; placeholder=&#34;email&#34; /&gt;
 	&lt;br /&gt;
 	&lt;input id=&#34;formAge&#34; min=&#34;18&#34; max=&#34;99&#34; type=&#34;number&#34;/&gt;
 	&lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 <p>También podemos añadir etiquetas a los input para mejorar su usabilidad.</p>
@@ -99,15 +99,15 @@
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
 	&lt;label&gt;Nombre&lt;/label&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
-    &lt;br /&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
+  &lt;br /&gt;
 	&lt;label&gt;Email&lt;/label&gt;
 	&lt;input id=&#34;formEmail&#34; type=&#34;email&#34; placeholder=&#34;email&#34; /&gt;
 	&lt;br /&gt;
 	&lt;label&gt;Edad&lt;/label&gt;
 	&lt;input id=&#34;formAge&#34; min=&#34;18&#34; max=&#34;99&#34; type=&#34;number&#34;/&gt;
 	&lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 <p>Existen más tipos de input, como por ejemplo <strong>date</strong> y <strong>color</strong></p>
@@ -115,9 +115,9 @@
 &lt;title&gt;This is a test&lt;/title&gt;
 &lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
-	&lt;label&gt;Nombre&lt;/label&gt;
-    &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
-    &lt;br /&gt;
+  &lt;label&gt;Nombre&lt;/label&gt;
+  &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
+  &lt;br /&gt;
 	&lt;label&gt;Email&lt;/label&gt;
 	&lt;input id=&#34;formEmail&#34; type=&#34;email&#34; placeholder=&#34;email&#34; /&gt;
 	&lt;br /&gt;
@@ -128,7 +128,7 @@
 	&lt;br /&gt;
 	&lt;input id=&#34;formColor&#34; type=&#34;color&#34;/&gt;
 	&lt;br /&gt;
-    &lt;button&gt;Enviar&lt;/button&gt;
+  &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
 
