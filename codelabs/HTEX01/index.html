@@ -28,44 +28,49 @@
                   feedback-link="http://bbva-techuniversity.appspot.com/">
     
       <google-codelab-step label="Overview" duration="30">
-        <h2 is-upgraded>HTEX01 - Formulario con etiquetas HTML5 - placeholder, required - 30 min </h2>
-<p> Vamos a crear una página básica HTML en la que probaremos etiquetas y atributos  de interés.  El ejercicio se puede hacer en la página https://jsfiddle.net/ .  Empezaremos creando la página HTML tal que:  &#34;`html &lt;!doctype html&gt;           </p>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+        <h2 is-upgraded>HTEX01 - Formulario con etiquetas HTML5 - placeholder, required</h2>
+<p> Vamos a crear una página básica HTML en la que probaremos etiquetas y atributos  de interés.  El ejercicio se puede hacer en la página <a href="https://jsfiddle.net/">JSFiddle</a></p>
+<p>Empezaremos creando la página HTML tal que:  </p>
+<pre><code>&lt;!doctype html&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 </code></pre>
-<p><code><br><br>Añadimos un título a la página. <br><br>Añadimos también un formulario y un input de texto, <br>al que añadimos una id para identificarlo.<br><br>Completamos el formulario añadiendo un botó</code>n para enviarlo.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>Añadimos un título a la página. </p>
+<p>Añadimos también un formulario y un input de texto, al que añadimos una id para identificarlo.</p>
+<p>Completamos el formulario añadiendo un botón para enviarlo.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34;/&gt;
     &lt;br /&gt;
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br>En este punto podemos comprobar que, si le damos al botón enviar, se <br>envía el formulario, tenga o no valor el input de texto.<br><br>Si añadimos al input del formulario el atributo **required**, no podremos <br>enviarlo a no ser que le demos un </code>valor.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>En este punto podemos comprobar que, si le damos al botón enviar, se envía el formulario, tenga o no valor el input de texto.</p>
+<p>Si añadimos al input del formulario el atributo <strong>required</strong>, no podremos enviarlo a no ser que le demos un valor.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required /&gt;
     &lt;br /&gt;
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br>El atributo **placeholder** nos ayuda a identificar qué ha de contener <br>un input de text</code>o.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>El atributo <strong>placeholder</strong> nos ayuda a identificar qué ha de contener un input de texto.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
     &lt;br /&gt;
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br>Hay tipos de input más específicos, como por ejemplo email, que añaden <br>una validación previa al envío, comprobando que el contenido cumpla un <br>patrón pre</code>determinado.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>Hay tipos de input más específicos, como por ejemplo email, que añaden una validación previa al envío, comprobando que el contenido cumpla un patrón predeterminado.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
     &lt;br /&gt;
@@ -74,10 +79,10 @@
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br>Existe también el input de tipo **number** que cuenta con atributos <br>específicos, min y max, para delimitar los números permi</code>tidos.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>>Existe también el input de tipo <strong>number</strong> que cuenta con atributos específicos, min y max, para delimitar los números permitidos.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
     &lt;br /&gt;
@@ -88,10 +93,10 @@
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br>También podemos añadir etiquetas a los input para mejorar su usabili</code>dad.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>También podemos añadir etiquetas a los input para mejorar su usabilidad.</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
 	&lt;label&gt;Nombre&lt;/label&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
@@ -105,10 +110,10 @@
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p><code><br><br><br>Existen más tipos de input, como por ejemplo **date** y **color*</code>*.<br><br>html &lt;!doctype html&gt;     </p>
-<pre><code>&lt;title&gt;This is a test&lt;/title&gt;
-</code></pre>
-<pre><code>&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
+<p>Existen más tipos de input, como por ejemplo <strong>date</strong> y <strong>color</strong></p>
+<pre><code>&lt;!doctype html&gt;
+&lt;title&gt;This is a test&lt;/title&gt;
+&lt;h1&gt;¡Hola Mundo!&lt;/h1&gt;
 &lt;form&gt;
 	&lt;label&gt;Nombre&lt;/label&gt;
     &lt;input id=&#34;formNombre&#34; type=&#34;text&#34; required placeholder=&#34;Nombre&#34; /&gt;
@@ -126,7 +131,6 @@
     &lt;button&gt;Enviar&lt;/button&gt;
 &lt;/form&gt;
 </code></pre>
-<p>  &#34;` </p>
 
 
       </google-codelab-step>
