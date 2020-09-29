@@ -100,7 +100,7 @@ xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.o
 </p>
       </google-codelab-step>
 <google-codelab-step label="POJO" duration="15">
-<p>2/ Ahora crearemos un POJO  muy sencillo para representar un <strong>ProductoModel</strong> que será el que almacenemos en MongoDB y que asociaremos con el recurso <strong>productos</strong>
+<p>2/ Ahora crearemos un POJO muy sencillo para representar un <strong>ProductoModel</strong> que será el que almacenemos en MongoDB y que asociaremos con el recurso <strong>productos</strong>
 <pre><code>package com.techu.apirest.model;  
     import org.jetbrains.annotations.NotNull; 
     import org.springframework.data.annotation.Id; 
@@ -153,7 +153,7 @@ public ProductoModel() {}
     import com.techu.apirest.model.ProductoModel; 
     import org.springframework.data.mongodb.repository.MongoRepository; 
     import org.springframework.stereotype.Repository;  
-@Repository public interface ProductoRepository extends MongoRepository { } 
+@Repository public interface ProductoRepository extends MongoRepository&lt;ProductoModel, String&gt; { } 
 </code></pre>
 <p>Este repositorio es una interfaz que permite realizar varias operaciones que involucran a los objetos de la clase `Producto`. Obtiene estas operaciones extendiendo `ProductoRepository` de `MongoRepository`.
 <a href="https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html">Mongo Repository</a></p>
@@ -165,7 +165,8 @@ public ProductoModel() {}
     import com.techu.apirest.repository.ProductoRepository; 
     import org.springframework.beans.factory.annotation.Autowired; 
     import org.springframework.stereotype.Service;  
-    import java.util.List; import java.util.Optional;  
+    import java.util.List; 
+    import java.util.Optional;  
 
 @Service public class ProductoService {
     @Autowired
