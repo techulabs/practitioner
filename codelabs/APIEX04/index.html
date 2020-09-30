@@ -30,17 +30,19 @@
       <google-codelab-step label="Overview" duration="45">
         <h2 is-upgraded>APIEX04 - GET (con y sin parámetros) </h2>
 <p> Crea una clase controller que responda a peticiones GET sin y con parámetros.  
-  <pre><code>package com.techu.holamundo; 
-    import org.springframework.web.bind.annotation.GetMapping; 
-    import org.springframework.web.bind.annotation.RequestParam; 
-    import org.springframework.web.bind.annotation.RestController;
-    @RestController public class ResourceController {
-      @GetMapping(&#34;/saludos&#34;)
-      public String saludar(@RequestParam(value=&#34;nombre&#34;, defaultValue=&#34;Tech U!&#34;)
-                            String name){
+  <pre><code>
+package com.techu.holamundo; 
+import org.springframework.web.bind.annotation.GetMapping; 
+import org.springframework.web.bind.annotation.RequestParam; 
+import org.springframework.web.bind.annotation.RestController;
+@RestController public class ResourceController {
+    @GetMapping(&#34;/saludos&#34;)
+    public String saludar(@RequestParam(value=&#34;nombre&#34;, defaultValue=&#34;Tech U!&#34;)
+                                        String name){
         return String.format(&#34;Hola %s ;)&#34;, name);
-      }
-} </code></pre>
+        }
+} 
+</code></pre>
 </p>
 <ul>
 <li><strong>@GetMapping</strong> esta anotación indica el método que indica lo que hará la petición GET en  la ruta /saludos. Es una abreviación de <strong>@RequestMapping(method = RequestMethod.GET)</strong> para decorar el método <strong>saludar</strong>. </li>
