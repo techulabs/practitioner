@@ -29,47 +29,51 @@
     
       <google-codelab-step label="Overview" duration="60">
         <h2 is-upgraded>HTEX03 - Recogida de datos de formulario: uso de localStorage y sessionStorage</h2>
-<p> En este ejercicio vamos a almacenar y recuperar datos introducidos en un formulario utilizando para ello LocalStorage y SessionStorage.  Ambas son parte de las APIs de Web Storage, que nos sirven para almacenar  datos en formato de pares clave/valor en el navegador.  La diferencia fundamental entre ambas es que en SessionStorage los datos  persisten en lo que dure la sesión en la que se han almacenado, mientras  que en LocalStorage persisten incluso al cerrar el navegador.  </p>
-<p>NOTA - Para ver los datos que almacenemos en los ejemplos, en Chrome tendremos que pulsar la tecla F12, en el menú que aparece seleccionar  &#34;Application&#34; y ahí veremos en la barra lateral la sección &#34;Storage&#34;,  que contiene Local Storage y Session Storage.  Partiremos de la página HTML diseñada en el ejercicio HTEX01 y podremos  usar también la página https://jsfiddle.net/ para resolver el ejercicio.  Empezaremos añadiendo una función Javascript que recogerá el nombre  que haya en el input formNombre del formulario. Además, almacenará  tanto en localStorage como en sessionStorage su valor asociado  a la &#34;key&#34; name. Esta &#34;key&#34; se usará luego para recuperar el valor.  Con &#34;event.preventDefault();&#34; evitaremos que se envíe el formulario.</p>
-<pre><code>function storeUserData()
-console.log(&#34;storeUserData&#34;);
-event.preventDefault();
-var name = document.getElementById(&#34;formNombre&#34;).value;
-localStorage.setItem(&#34;name&#34;, name);
-sessionStorage.setItem(&#34;name&#34;, name);
+<p> En este ejercicio vamos a almacenar y recuperar datos introducidos en un formulario utilizando para ello LocalStorage y SessionStorage.  Ambas son parte de las APIs de Web Storage, que nos sirven para almacenar  datos en formato de pares clave/valor en el navegador.  La diferencia fundamental entre ambas es que en SessionStorage los datos  persisten en lo que dure la sesión en la que se han almacenado, mientras que en localStorage persisten incluso al cerrar el navegador.  </p>
+<p>NOTA - Para ver los datos que almacenemos en los ejemplos, en Chrome tendremos que pulsar la tecla F12, en el menú que aparece seleccionar  &#34;Application&#34; y ahí veremos en la barra lateral la sección &#34;Storage&#34;,  que contiene Local Storage y Session Storage.  Partiremos de la página HTML diseñada en el ejercicio HTEX01 y podremos  usar también la página https://jsfiddle.net/ para resolver el ejercicio. Empezaremos añadiendo una función Javascript que recogerá el nombre  que haya en el input formNombre del formulario. Además, almacenará tanto en localStorage como en sessionStorage su valor asociado  a la &#34;key&#34; name. Esta &#34;key&#34; se usará luego para recuperar el valor. Con &#34;event.preventDefault();&#34; evitaremos que se envíe el formulario.</p>
+<pre><code>
+function storeUserData()
+    console.log(&#34;storeUserData&#34;);
+    event.preventDefault();
+    var name = document.getElementById(&#34;formNombre&#34;).value;
+    localStorage.setItem(&#34;name&#34;, name);
+    sessionStorage.setItem(&#34;name&#34;, name);
 }
 </code></pre>
 <p>Añadimos un botón al formulario para iniciar el proceso de guardado y a su evento click asociamos como función manejadora storeUserData.</p>
-<p>En este punto podremos comprobar en el navegador que se haya almacenado correctamente el valor. Además, si abrimos/cerramos el navegador y/o abrimos una nueva pestaña, podremos ver la diferencia en la persistencia de localStorage <br>y sessionStorage.</p>
+<p>En este punto podremos comprobar en el navegador que se haya almacenado correctamente el valor. Además, si abrimos/cerramos el navegador y/o abrimos una nueva pestaña, podremos ver la diferencia en la persistencia de localStorage y sessionStorage.</p>
 <p>A continuación vamos a hacer el proceso inverso: obtendremos desde localStorage el nombre almacenado y lo pintaremos en el input apropiado del formulario.</p>
-<pre><code>function getUserData() {
-console.log(&#34;getUserData&#34;);
-event.preventDefault();
-var nameInput = document.getElementById(&#34;formNombre&#34;);
-nameInput.value = localStorage.getItem(&#34;name&#34;);
+<pre><code>
+function getUserData() {
+    console.log(&#34;getUserData&#34;);
+    event.preventDefault();
+    var nameInput = document.getElementById(&#34;formNombre&#34;);
+    nameInput.value = localStorage.getItem(&#34;name&#34;);
 }
 </code></pre>
 <p>Añadimos un botón para recuperar el nombre asociando la función manejadora del evento click a getUserData.</p>
 <p>Recuperar</p>
 <p>También podemos guardar varios elementos del formulario al mismo tiempo. </p>
-<p></p>Para ello, podemos utilizar objetos Javascript y guardarlos en formato JSON. Así luego podremos hacer el proceso inverso: recuperar los datos almacenados en JSON y pasarlos a objetos Javascript, pudiendo asignarlos a los campos del formulario apropiados.</p>
+<p>Para ello, podemos utilizar objetos Javascript y guardarlos en formato JSON. Así luego podremos hacer el proceso inverso: recuperar los datos almacenados en JSON y pasarlos a objetos Javascript, pudiendo asignarlos a los campos del formulario apropiados.</p>
 <p>Refactorizamos la función storeUserData para que:
 <ul>
   <li>Recoja el nombre y el email del formulario.</li>
   <li>Usando un objeto, agrupe sus valores.</li>
   <li>Convierta el valor del objeto Javascript a JSON y lo almacene.</li>
 </ul>
-<pre><code>function storeUserData() {
-<pre><code>console.log(&#34;storeUserData&#34;);
-event.preventDefault();
+<pre><code>
+function storeUserData() {
+    console.log(&#34;storeUserData&#34;);
+    event.preventDefault();
 
-var name = document.getElementById(&#34;formNombre&#34;).value;
-var email = document.getElementById(&#34;formEmail&#34;).value;
-var userData = {
-	&#34;name&#34;: name,
-	&#34;email&#34;: email
-};
-localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
+    var name = document.getElementById(&#34;formNombre&#34;).value;
+    var email = document.getElementById(&#34;formEmail&#34;).value;
+    var userData = {
+        &#34;name&#34;: name,
+	      &#34;email&#34;: email
+    };
+
+    localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
 }
 </code></pre>
 <p>Refactorizamos también getUserData para que:
@@ -78,13 +82,14 @@ localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
   <li>Los convierta a una variable Javascript.</li>
   <li>Extraiga los datos y los asigne a los inputs apropiados del formulario.</li>
 </ul>
-<pre><code>function getUserData() {
-console.log(&#34;getUserData&#34;);
-event.preventDefault();
-var userData = JSON.parse(localStorage.getItem(&#34;userDataJSON&#34;));
+<pre><code>
+function getUserData() {
+    console.log(&#34;getUserData&#34;);
+    event.preventDefault();
+    var userData = JSON.parse(localStorage.getItem(&#34;userDataJSON&#34;));
 
-document.getElementById(&#34;formNombre&#34;).value = userData.name;
-document.getElementById(&#34;formEmail&#34;).value = userData.email;	
+    document.getElementById(&#34;formNombre&#34;).value = userData.name;
+    document.getElementById(&#34;formEmail&#34;).value = userData.email;	
 }
 </code></pre>
 <p>El HTML quedaría tal que:</p>
@@ -107,25 +112,27 @@ document.getElementById(&#34;formEmail&#34;).value = userData.email;
 &lt;/form&gt;
 </code></pre>
 <p>Y el Javascript tal que:</p>
-<pre><code>function storeUserData() {
-console.log(&#34;storeUserData&#34;);
-event.preventDefault();
+<pre><code>
+function storeUserData() {
+    console.log(&#34;storeUserData&#34;);
+    event.preventDefault();
 
-var name = document.getElementById(&#34;formNombre&#34;).value;
-var email = document.getElementById(&#34;formEmail&#34;).value;
-var userData = {
-	&#34;name&#34;: name,
-	&#34;email&#34;: email
-};
-localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
-}  
+    var name = document.getElementById(&#34;formNombre&#34;).value;
+    var email = document.getElementById(&#34;formEmail&#34;).value;
+    var userData = {
+	      &#34;name&#34;: name,
+	      &#34;email&#34;: email
+    };
+    localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
+}
+
 function getUserData() {
-console.log(&#34;getUserData&#34;);
-event.preventDefault();
-var userData = JSON.parse(localStorage.getItem(&#34;userDataJSON&#34;));
+    console.log(&#34;getUserData&#34;);
+    event.preventDefault();
+    var userData = JSON.parse(localStorage.getItem(&#34;userDataJSON&#34;));
 
-document.getElementById(&#34;formNombre&#34;).value = userData.name;
-document.getElementById(&#34;formEmail&#34;).value = userData.email;	
+    document.getElementById(&#34;formNombre&#34;).value = userData.name;
+    document.getElementById(&#34;formEmail&#34;).value = userData.email;	
 }
 </code></pre>
 
