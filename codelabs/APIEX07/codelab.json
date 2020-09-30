@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-30T17:00:20+02:00",
+  "id": "APIEX07",
+  "duration": 25,
+  "title": "APIEX07 - PUT (con y sin parámetros)",
+  "authors": "TechU",
+  "summary": "PUT (con y sin parámetros)",
+  "source": ".\\APIEX07 - PUT (con y sin parámetros).md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX07"
+}
