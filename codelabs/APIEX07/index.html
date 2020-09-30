@@ -30,10 +30,10 @@
       <google-codelab-step label="Overview" duration="25">
         <h2 is-upgraded>APIEX07 - PUT (con y sin parámetros)</h2>
       <p>Probar el siguiente bloque de código para hacer una petición PUT sin parámetros en la URL. Para añadir parámetros ver el codelab anterior APIEX04 - GET (con y sin parámetros).  </p>
-      <pre><code>@PutMapping(&#34;/productos/{id}&#34;) 
-        public Producto updateProducto(@PathVariable Integer id, @RequestBody Producto producto) {
-        return dataService.updateProducto(id-1, producto);
-        }
+      <pre><code>@PutMapping(&#34;/productos/{id}&#34;)
+public Producto updateProducto(@PathVariable Integer id, @RequestBody Producto producto) {
+  return dataService.updateProducto(id-1, producto);
+}
 </code></pre>
 
 
