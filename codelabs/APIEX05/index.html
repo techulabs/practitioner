@@ -36,7 +36,7 @@
 <pre><code>//@RequestMapping(method=RequestMethod.GET,path=&#34;/productos/{id}&#34;)
   @GetMapping(&#34;/productos/{id}&#34;)
   public Producto getProductoId(@PathVariable Integer id) {
-    return dataService.getProducto(id-1);
+    return dataService.getProducto(id);
   }
   </code></pre>
 <li>Comprobar diferencia entre <code>@RequestParam</code> y <code>@PathVariable</code>. 

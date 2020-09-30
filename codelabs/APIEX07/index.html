@@ -32,7 +32,7 @@
       <p>Probar el siguiente bloque de código para hacer una petición PUT sin parámetros en la URL. Para añadir parámetros ver el codelab anterior APIEX04 - GET (con y sin parámetros).  </p>
       <pre><code>@PutMapping(&#34;/productos/{id}&#34;)
 public Producto updateProducto(@PathVariable Integer id, @RequestBody Producto producto) {
-  return dataService.updateProducto(id-1, producto);
+  return dataService.updateProducto(id, producto);
 }
 </code></pre>
 
