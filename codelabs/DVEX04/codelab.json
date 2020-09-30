@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-30T15:32:03+02:00",
+  "id": "DVEX04",
+  "duration": 15,
+  "title": "DVEX04 - Testing JUnit",
+  "authors": "TechU",
+  "summary": "Testing JUnit",
+  "source": ".\\DVEX04 - Testing JUnit.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "DVEX04"
+}
