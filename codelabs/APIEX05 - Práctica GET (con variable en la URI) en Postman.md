@@ -1,3 +1,18 @@
+summary: Práctica GET (con variable en la URI) en Postman
+id: APIEX05
+categories: DevOps
+tags: back
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# APIEX05 - Práctica GET (con variable en la URI) en Postman
+<!-- ------------------------ -->
+## Overview 
+Duration: 25
+
+**APIEX05 - Práctica GET (con variable en la URI) en Postman**
+
 ##### APIEX05 - Práctica GET (con variable en la URI) en Postman
 
 Postman permite crear peticiones sobre APIs de una forma muy sencilla y poder, de esta manera, probar las APIs. 

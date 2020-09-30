@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-30T15:55:08+02:00",
+  "id": "APIEX05",
+  "duration": 25,
+  "title": "APIEX05 - Práctica GET (con variable en la URI) en Postman",
+  "authors": "TechU",
+  "summary": "Práctica GET (con variable en la URI) en Postman",
+  "source": ".\\APIEX05 - Práctica GET (con variable en la URI) en Postman.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX05"
+}

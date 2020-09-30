@@ -1,0 +1,58 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX05 - Práctica GET (con variable en la URI) en Postman</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX05"
+                  title="APIEX05 - Práctica GET (con variable en la URI) en Postman"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="25">
+<h2 is-upgraded>APIEX05 - Práctica GET (con variable en la URI) en Postman </h2>
+<p> Postman permite crear peticiones sobre APIs de una forma muy sencilla y poder, de esta manera, probar las APIs.   </p>
+<ol type="1">
+<li>Te proponemos que pruebes primero algunas peticiones de los ejercicios anteriores en Postman para familiarizarnos con esta herramienta.  </li>
+<li>Probar el siguiente bloque de código que permite enviar una variable en la URI mediante la anotación @PathVariable. El código completo puedes descargarlo desde este repositiorio Bitbucket:    </li>
+<pre><code>//@RequestMapping(method=RequestMethod.GET,path=&#34;/productos/{id}&#34;)
+  @GetMapping(&#34;/productos/{id}&#34;)
+  public Producto getProductoId(@PathVariable Integer id) {
+    return dataService.getProducto(id-1);
+  }
+  </code></pre>
+<li>Comprobar diferencia entre <code>@RequestParam</code> y <code>@PathVariable</code>. 
+</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
