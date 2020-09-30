@@ -69,8 +69,8 @@ function storeUserData() {
     var name = document.getElementById(&#34;formNombre&#34;).value;
     var email = document.getElementById(&#34;formEmail&#34;).value;
     var userData = {
-        &#34;name&#34;: name,
-	      &#34;email&#34;: email
+      &#34;name&#34;: name,
+      &#34;email&#34;: email
     };
 
     localStorage.setItem(&#34;userDataJSON&#34;, JSON.stringify(userData));
