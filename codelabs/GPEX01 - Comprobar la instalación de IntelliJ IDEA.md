@@ -1,3 +1,18 @@
+summary: Comprobar la instalación de IntelliJ IDEA
+id: GPEX01
+categories: DevOps
+tags: back
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# GPEX01 - Comprobar la instalación de IntelliJ IDEA
+<!-- ------------------------ -->
+## Overview 
+Duration: 20
+
+**GPEX01 - Comprobar la instalación de IntelliJ IDEA** 
+
 ##### **GPEX01** - Comprobar la instalación de IntelliJ IDEA
 
 En este codelab nos familiarizaremos con el entorno de trabajo de IntelliJ, un IDE especializado para desarrollo de aplicaciones empresariales basadas en Spring.

@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-30T16:18:36+02:00",
+  "id": "GPEX01",
+  "duration": 20,
+  "title": "GPEX01 - Comprobar la instalación de IntelliJ IDEA",
+  "authors": "TechU",
+  "summary": "Comprobar la instalación de IntelliJ IDEA",
+  "source": ".\\GPEX01 - Comprobar la instalación de IntelliJ IDEA.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "GPEX01"
+}
