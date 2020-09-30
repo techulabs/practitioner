@@ -31,10 +31,10 @@
         <h2 is-upgraded="true">APIEX09 - DELETE (con y sin parámetros)</h2>   
         <p>Probar el siguiente bloque de código para hacer la petición DELETE sin parámetros en la URL. Para añadir parámetros ver el codelab anterior APIEX04 - GET (con y sin parámetros). </p>
         <pre><code>
-        @DeleteMapping(&#34;/productos/{id}&#34;)  
-        public void deleteProducto(@PathVariable Integer id){
-            dataService.removeProducto(id);
-        }
+@DeleteMapping(&#34;/productos/{id}&#34;)  
+public void deleteProducto(@PathVariable Integer id){
+    dataService.removeProducto(id);
+}
         </code></pre>
 
 
