@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-09-30T16:03:23+02:00",
+  "id": "APIEX06",
+  "duration": 25,
+  "title": "APIEX06 - POST (con y sin parámetros)",
+  "authors": "TechU",
+  "summary": "POST (con y sin parámetros)",
+  "source": ".\\APIEX06 - POST (con y sin parámetros).md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX06"
+}
