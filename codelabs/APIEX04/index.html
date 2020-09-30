@@ -30,17 +30,16 @@
       <google-codelab-step label="Overview" duration="45">
         <h2 is-upgraded>APIEX04 - GET (con y sin parámetros) </h2>
 <p> Crea una clase controller que responda a peticiones GET sin y con parámetros.  
-  <pre><code>java package com.techu.holamundo; 
-    <br>import org.springframework.web.bind.annotation.GetMapping; 
-    <br>import org.springframework.web.bind.annotation.RequestParam; 
-    <br>import org.springframework.web.bind.annotation.RestController;  <br>
-    @RestController public class ResourceController {  </p>
-@GetMapping(&#34;/saludos&#34;)
-public String saludar(@RequestParam(value=&#34;nombre&#34;,
-                                   defaultValue=&#34;Tech U!&#34;)
-                     String name){
-    return String.format(&#34;Hola %s ;)&#34;, name);
-}
+  <pre><code>package com.techu.holamundo; 
+    import org.springframework.web.bind.annotation.GetMapping; 
+    import org.springframework.web.bind.annotation.RequestParam; 
+    import org.springframework.web.bind.annotation.RestController;
+    @RestController public class ResourceController {
+      @GetMapping(&#34;/saludos&#34;)
+      public String saludar(@RequestParam(value=&#34;nombre&#34;, defaultValue=&#34;Tech U!&#34;)
+                            String name){
+        return String.format(&#34;Hola %s ;)&#34;, name);
+      }
 } </code></pre>
 </p>
 <ul>
