@@ -9,9 +9,9 @@ Feedback Link: http://bbva-techuniversity.appspot.com/
 # BACK01 - Integración operaciones CRUD en MongoDB - API REST
 <!-- ------------------------ -->
 ## Overview 
-Duration: 75
+Duration: 100
 
-### BACK01 - Integración operaciones CRUD en MongoDB - API REST - 75 min
+### BACK01 - Integración operaciones CRUD en MongoDB - API REST - 100 min
 
 **BACK01 - Integración operaciones CRUD en MongoDB - API REST**
 
