@@ -46,7 +46,7 @@ version: v1
 
       </google-codelab-step>
     
-      <google-codelab-step label="2. Recursos" duration="15">
+      <google-codelab-step label="Recursos" duration="15">
         <p> Todo lo que insertemos en la raíz (o en la parte superior) de la especificación se aplica al resto de su API. Esto te resultará muy útil más adelante a medida que descubras patrones en la forma en que construyes tu API. La baseURI que elijas se utilizará con cada llamada realizada, así que asegurate de que sea lo más simple y concisa posible.</p>
         <pre><code>
 /users:
@@ -62,7 +62,7 @@ version: v1
 
       </google-codelab-step>
     
-      <google-codelab-step label="3. Métodos" duration="15">
+      <google-codelab-step label="Métodos" duration="15">
         <p> Aquí es donde se decide lo que quiere que el desarrollador pueda hacer con los recursos que ha puesto a disposición. Puedes añadir tantos métodos como desees a cada recurso de su API BookMobile, en cualquier nivel. Sin embargo, cada método HTTP solo se puede utilizar una vez por recurso.   En este ejemplo, queremos que los desarrolladores puedan trabajar a nivel de colección. Por ejemplo, sus consumidores de API pueden recuperar un libro de la colección (GET), agregar un libro (POST) o actualizar toda la biblioteca (PUT). No desea que puedan eliminar información al más alto nivel. Centrémonos en desarrollar el recurso / books.  Anida los métodos para permitir que los desarrolladores realicen estas acciones en sus recursos. Ten en cuenta que debe usar minúsculas para los métodos en su definición de API RAML: </p>
         <pre><code>
 /books:
@@ -74,7 +74,7 @@ version: v1
 
       </google-codelab-step>
     
-      <google-codelab-step label="4. URI Parameters" duration="20">
+      <google-codelab-step label="URI Parameters" duration="20">
         <p> Los recursos que definimos son colecciones de objetos relevantes más pequeños.  <em>bookTitle</em> es un parámetro de URI, denotado por llaves en RAML:  </p>
         <pre><code>
 /books:
@@ -99,7 +99,7 @@ version: v1
 
       </google-codelab-step>
     
-      <google-codelab-step label="5. Query parameters" duration="20">
+      <google-codelab-step label="Query parameters" duration="20">
         <p> Ahora, vamos a especificar los parámetros de consulta que van a permitir filtrar una colección. Empieza añadiendo algunos parámetros en el método GET para libros.   
         <pre><code>
 /books:   
@@ -170,7 +170,7 @@ version: v1
 
       </google-codelab-step>
     
-      <google-codelab-step label="6. Responses" duration="20">
+      <google-codelab-step label="Responses" duration="20">
         <p> Las respuestas deben contener uno más códigos de estado HTTP, y puede incluir descripciones, ejemplos o esquemas.  </p>
         <pre><code>
 /books:   
