@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-01T10:49:26+02:00",
+  "id": "APIEX10",
+  "duration": 60,
+  "title": "APIEX10 - Servicio REST con Spring y anotación @CrossOrigin",
+  "authors": "TechU",
+  "summary": "Servicio REST con Spring y anotación @CrossOrigin",
+  "source": ".\\APIEX10 - Servicio REST con Spring y anotación CrossOrigin.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX10"
+}

@@ -1,0 +1,99 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX10 - Servicio REST con Spring y anotación @CrossOrigin</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX10"
+                  title="APIEX10 - Servicio REST con Spring y anotación @CrossOrigin"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="60">
+        <h2 is-upgraded>APIEX10 - Servicio REST con Spring y anotación @CrossOrigin</h2> 
+        <p>Aquí vas a aprender paso a paso cómo solucionar el problema de Cross Origin Resource Sharing (CORS) que nos impide el acceso a un servicio REST.  </p>
+<ol type="1">
+<li>Una vez instaladas las dependencias de web (spring-boot-starter-web) el siguiente paso es construirnos un Controlador (HolaMundoController) de tipo REST en el endpoint <a href="http://localhost:8080/saludo">http://localhost:8080/saludo</a>  </p>
+  <code>
+    package com.techu.holamundo;
+    import org.springframework.web.bind.annotation.RequestMapping; 
+    import org.springframework.web.bind.annotation.RestController; 
+    @RestController 
+    public class HolaMundoController {  
+
+      @GetMapping(&#34;/saludo&#34;)
+      public String saludar() {
+        return &#34;Hola Tech U!&#34;;<br>	
+        }<br>
+
+    }<br></code>
+</li>
+<li>Arrancar la aplicación hola mundo Spring Boot y solicitar la URL en postman o cualquier navegador. Confirm que al servicio REST nos responde sin ningún problema .  </li>
+<li>Ahora bien, esto se debe a que realizamos una invocación directa y no vía JavaScript. Si intentamos solicitar la misma URL con JavaScript a través de una petición AJAX nos encontraremos con un problema de Cross Origin Resource Sharing (CORS) que nos impide el acceso. Carga en el navegador el siguiente script que hace una petición directa a nuestro servicio web:  </p>
+  <code>
+    &lt;html&gt;
+      &lt;head&gt;
+      &lt;script type=&#34;text/javascript&#34; src=&#34;jquery-3.3.1.min.js&#34;&gt;
+      &lt;/script&gt;<br>&lt;script type=&#34;text/javascript&#34;&gt;
+      $(document).ready(function() {
+        $.get(&#34;http://localhost:8080/saludo&#34;,function(datos) {
+          console.log(datos);<br>}) })
+      &lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/html&gt;
+  </code>
+</li>
+<li>Observa en el inspector del navegador el mensaje de error que lanza:  
+  <code>Access to XMLHttpRequest at &#39;http://localhost:8080/saludo&#39; from 1.html:1 origin &#39;null&#39; has been blocked by CORS policy: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource.</code>
+  <p>El recurso esta por defecto bloqueado para peticiones que no se hagan desde localhost, como es el caso de nuestra petición que se realiza desde un fichero directamente.   </li>
+<li>Para solventar este problema es suficiente con modificar el servicio de Spring y añadir la anotación <strong>@CrossOrigin</strong> para que nos permite el acceso desde otras ubicaciones. Sólo por simplificar, para este ejemplo se va a permitir acceder al recurso desde cualquier lugar.  </p>
+  <code>
+    package com.techu.holamundo;
+    import org.springframework.web.bind.annotation.RequestMapping; 
+    import org.springframework.web.bind.annotation.RestController; 
+    
+    @RestController 
+    @CrossOrigin(origins = &#34;*&#34;, methods= {RequestMethod.GET,RequestMethod.POST})
+    public class HolaMundoController {
+      
+      @GetMapping(&#34;/saludo&#34;)
+      public String saludar() {
+        return &#34;Hola Tech U!&#34;;
+      }
+    }
+  </code></li>
+<li>Volvemos a cargar el servidor y ahora si podremos acceder al recurso.   Siempre que tengamos recursos REST y queramos acceder a ellos debemos usar Spring REST CORS y abrir el acceso remoto sino por defecto los datos de nuestros servicios no estarán accesibles.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
