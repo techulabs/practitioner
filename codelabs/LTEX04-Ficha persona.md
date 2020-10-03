@@ -1,3 +1,16 @@
+summary: Ficha persona
+id: LTEX04
+categories: LitElement
+tags: front
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# LTEX04 - Ficha persona
+<!-- ------------------------ -->
+## Overview 
+Duration: 45
+
 ### LTEX04 - Ficha persona - 45 min
 
 Vamos a crear el primer componente de nuestra app: ficha-persona.

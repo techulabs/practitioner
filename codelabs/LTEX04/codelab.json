@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-03T21:26:57+02:00",
+  "id": "LTEX04",
+  "duration": 45,
+  "title": "LTEX04 - Ficha persona",
+  "authors": "TechU",
+  "summary": "Ficha persona",
+  "source": ".\\LTEX04-Ficha persona.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX04"
+}

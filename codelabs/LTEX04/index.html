@@ -1,0 +1,144 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>LTEX04 - Ficha persona</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="LTEX04"
+                  title="LTEX04 - Ficha persona"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="45">
+        <h2 is-upgraded>LTEX04 - Ficha persona - 45 min </h2>
+<p>Vamos a crear el primer componente de nuestra app: ficha-persona.  
+<p>Partiremos del componente hola-mundo creado previamente y:</p>
+<ul>
+<li>Duplicaremos el directorio del componente hola-mundo, renombrando el nuevo directorio a ficha-persona.</li>
+<li>Dentro del directorio ficha-persona, seguirá habiendo un archivo hola-mundo.js, renombraremos ese archivo a ficha-persona.js</li>
+<p> Editamos el archivo ficha-persona.js y: </p>
+<ul>
+	<li>Cambiamos el class HolaMundo por class FichaPersona.</li>
+	<li>Cambiamos el texto en el div por Ficha Persona.</li>
+	<li>Cambiamos el customElements.define(‘hola-mundo&#39;, HolaMundo) por customElements.define(&#39;ficha-persona&#39;, FichaPersona)</li>
+</ul>
+<p> En este momento el archivo ficha-persona.js será:  </p>
+<p>ficha-persona.js</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;;  
+
+class FichaPersona extends LitElement {   
+	render() { 
+		return html`
+			&lt;div&gt;Ficha Persona&lt;/div&gt;
+		`;
+	}
+}  
+
+customElements.define(‘ficha-persona&#39;, FichaPersona) </code></pre>
+<p>Lo importamos en el index.html y lo añadimos a la plantilla para comprobar que funcione.</p>
+<p>Una vez hecha la comprobación, añadimos las propiedades del componente.</p>
+<p>ficha-persona.js</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;;  
+
+class FichaPersona extends LitElement {
+
+	static get properties() {
+		return {
+			name: {type: String},			
+			yearsInCompany: {type: Number},			
+			photo: {type: Object}			
+		};
+	}			  
+
+// Rest of component&#39;s code
+}
+</code></pre>
+<p>Y la plantilla del componente, para recoger el valor de las propiedades (usar la ruta a la imagen que se considere oportuna para la persona).</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;;  
+
+class FichaPersona extends LitElement {    
+	
+	// Properties code up here	   
+	render() {
+	return html`
+		&lt;div&gt;
+			&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+			&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;						
+			&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+			&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;img src=&#34;./img/persona.jpg&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;Foto persona&#34;&gt;
+		&lt;/div&gt;
+		`;
+	}
+	// Rest of component&#39;s code
+}
+
+customElements.define(‘ficha-persona&#39;, FichaPersona)
+</code></pre>
+<p>El componente completo quedaría tal que:</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;; 
+
+class FichaPersona extends LitElement {
+
+	static get properties() {		
+		return {			
+			name: {type: String},			
+			yearsInCompany: {type: Number},			
+			photo: {type: Object}			
+		};
+	}			  	
+
+	render() {
+		return html`
+			&lt;div&gt;
+				&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+				&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34;&gt;&lt;/input&gt;
+				&lt;br /&gt;						
+				&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+				&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34;&gt;&lt;/input&gt;
+				&lt;br /&gt;			
+				&lt;img src=&#34;./img/persona.jpg&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;Foto persona&#34;&gt;			
+			&lt;/div&gt;
+		`;
+	}
+}
+customElements.define(‘ficha-persona&#39;, FichaPersona) &#34;`
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
