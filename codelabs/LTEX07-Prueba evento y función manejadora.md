@@ -1,3 +1,16 @@
+summary: Prueba evento y función manejadora
+id: LTEX07
+categories: LitElement
+tags: front
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# LTEX07 - Prueba evento y función manejadora
+<!-- ------------------------ -->
+## Overview 
+Duration: 15
+
 ### LTEX07 - Prueba evento y función manejadora - 15 min
 
 Podemos capturar eventos lanzados por las interacciones del 

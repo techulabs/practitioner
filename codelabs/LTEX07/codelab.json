@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-05T22:32:51+02:00",
+  "id": "LTEX07",
+  "duration": 15,
+  "title": "LTEX07 - Prueba evento y función manejadora",
+  "authors": "TechU",
+  "summary": "Prueba evento y función manejadora",
+  "source": ".\\LTEX07-Prueba evento y función manejadora.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX07"
+}
