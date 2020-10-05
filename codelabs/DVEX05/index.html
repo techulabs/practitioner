@@ -31,17 +31,17 @@
         <h2 is-upgraded>DVEX05 - Docker: Building container images</h2>  
         <p>En este codelab veremos los pasos para construir y lanzar un <strong>contenedor Docker.</strong> En concreto, el contenedor lanzará una página web HTML mediante Nginx, un servidor web alto rendimiento.  Las imágenes de Docker se crean basándose en un <strong>Dockerfile</strong>. Un Dockerfile define todos los pasos necesarios para crear una imagen de Docker con su aplicación configurada y lista para ejecutarse como contenedor. La imagen en sí contiene todo, desde el sistema operativo hasta las dependencias y la configuración necesaria para ejecutar su aplicación.  </p>
 <ol type="1">
-<li>Comprobar la versión de Docker:   <code>docker -v</code></li>
-<li>Listar las imágenes locales:  <code>docker images</code></li>
-<li>Crea el archivo <strong>Dockerfile</strong> ubicado en la carpeta raíz del proyecto:  <code>dockerfile<br>FROM nginx:1.11-alpine<br>COPY index.html /usr/share/nginx/html/index.html<br>EXPOSE 80<br>CMD [&#34;nginx&#34;, &#34;-g&#34;, &#34;daemon off;&#34;]<br></code></li>
-<li>A partir del Dockerfile creado en el paso anterior vamos a construir la <strong>imagen</strong><em>my-nginx-image</em> con la etiqueta versión ‘latest&#39;:  <code>docker build -t my-nginx-image:latest .</code></li>
-<li>Comprobamos ahora que la imagen se ha creado en local:  <code>docker images</code></li>
-<li>Ahora ya podemos lanzar un contenedor a partir de la imagen creada en el paso 3:  <code>docker run -d -p 80:80 my-nginx-image:latest</code></li>
-<li>Listar contenedores en ejecución:  <code>docker ps</code></li>
-<li>Si estamos usando una terminal bash podremos comprobar la ejecución del servido web con el comando curl:  <code>curl -i http://docker</code></li>
-<li>Detenemos el contenedor:  <code>docker stop &lt;container_id&gt;</code></li>
-<li>Lo podemos relanzar con:  <code>docker start &lt;container_id&gt;</code></li>
-<li>Eliminar la imagen:  <code>docker rmi &lt;image_id&gt;</code></li>
+<li>Comprobar la versión de Docker:   <pre><code>docker -v</code></pre></li>
+<li>Listar las imágenes locales:  <pre><code>docker images</code></pre></li>
+<li>Crea el archivo <strong>Dockerfile</strong> ubicado en la carpeta raíz del proyecto:  <pre><code>dockerfile<br>FROM nginx:1.11-alpine<br>COPY index.html /usr/share/nginx/html/index.html<br>EXPOSE 80<br>CMD [&#34;nginx&#34;, &#34;-g&#34;, &#34;daemon off;&#34;]<br></code></pre></li>
+<li>A partir del Dockerfile creado en el paso anterior vamos a construir la <strong>imagen</strong><em>my-nginx-image</em> con la etiqueta versión ‘latest&#39;:  <pre><code>docker build -t my-nginx-image:latest .</code></pre></li>
+<li>Comprobamos ahora que la imagen se ha creado en local:  <pre><code>docker images</code></pre></li>
+<li>Ahora ya podemos lanzar un contenedor a partir de la imagen creada en el paso 3:  <pre><code>docker run -d -p 80:80 my-nginx-image:latest</code></pre></li>
+<li>Listar contenedores en ejecución:  <pre><code>docker ps</code></pre></li>
+<li>Si estamos usando una terminal bash podremos comprobar la ejecución del servido web con el comando curl:  <pre><code>curl -i http://docker</code></pre></li>
+<li>Detenemos el contenedor:  <pre><code>docker stop &lt;container_id&gt;</code></pre></li>
+<li>Lo podemos relanzar con:  <pre><code>docker start &lt;container_id&gt;</code></pre></li>
+<li>Eliminar la imagen:  <pre><code>docker rmi &lt;image_id&gt;</code></pre></li>
 </ol>
 <p>HERRAMIENTA ONLINE DOCKER</p>
 <a target="_blank" href="https://www.katacoda.com/courses/docker/2">Docker Online</a>  
