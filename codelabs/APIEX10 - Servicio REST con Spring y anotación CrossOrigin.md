@@ -1,6 +1,6 @@
 summary: Servicio REST con Spring y anotación @CrossOrigin
 id: APIEX10
-categories: api
+categories: API
 tags: back
 status: Published 
 authors: TechU

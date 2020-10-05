@@ -1,6 +1,6 @@
 summary: POST (con y sin parámetros)
 id: APIEX06
-categories: DevOps
+categories: API
 tags: back
 status: Published 
 authors: TechU

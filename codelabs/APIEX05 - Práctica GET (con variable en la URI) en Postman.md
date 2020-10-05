@@ -1,6 +1,6 @@
 summary: Práctica GET (con variable en la URI) en Postman
 id: APIEX05
-categories: DevOps
+categories: API
 tags: back
 status: Published 
 authors: TechU

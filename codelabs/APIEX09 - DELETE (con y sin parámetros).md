@@ -1,6 +1,6 @@
 summary: DELETE (con y sin parámetros)
 id: APIEX09
-categories: DevOps
+categories: API
 tags: back
 status: Published 
 authors: TechU

@@ -1,6 +1,6 @@
 summary: PUT (con y sin parámetros)
 id: APIEX07
-categories: DevOps
+categories: API
 tags: back
 status: Published 
 authors: TechU
