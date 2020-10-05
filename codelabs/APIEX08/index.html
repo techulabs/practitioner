@@ -125,7 +125,7 @@ public class HelloWorldController {
   }
 }</code></pre>
   <p>Como podemos observar, previamente debemos hacer una petición al endpoint <strong>/tokenget</strong> para que nos devuelva un token JWT a partir del parámetro ‘nombre&#39; que recibe. Y despúes se llama al método <strong>generateToken()</strong> con el string &#34;admin&#34; y el parámetro ‘name&#39; para generar el token desde la clase que debemos añadir en el siguiente paso.</p></li>
-    <li><p>3/ La clase <strong>JWTBuilder</strong>.  </p>
+    <li><p>La clase <strong>JWTBuilder</strong>.  </p>
     <pre><code>
 package com.techu.security.jwt.components;
     
@@ -225,14 +225,14 @@ public class JWTBuilder {
 }
 </code></pre>
     <p>Utilizamos el método <em>generateToken()</em> para construir el token que, como veremos en el siguiente paso, usaremos para autorizar las peticiones a los recursos protegidos.  </p></li>
-    <li><p>4/ Para hacer el mapeo de las propiedades <em>jwtIssuer</em>, <em>jwtExpiry</em> y <em>jwtSecret</em> anotadas con <strong>@Value</strong>, tenemos que añadir las siguientes propiedades al archivo de properties <strong>application.properties</strong>:  </p></li>
+    <li><p>Para hacer el mapeo de las propiedades <em>jwtIssuer</em>, <em>jwtExpiry</em> y <em>jwtSecret</em> anotadas con <strong>@Value</strong>, tenemos que añadir las siguientes propiedades al archivo de properties <strong>application.properties</strong>:  </p></li>
     <code>
 server.port = 80<br>
 jwt.issuer = techu<br>
 jwt.secret = shhhhh<br>
 jwt.expiry = 10
     </code></li>
-      <li><p>5/ Ahora, añadiremos la clase <em>AuthHandler</em> que validará si el token es correcto. </p>
+      <li><p>Ahora, añadiremos la clase <em>AuthHandler</em> que validará si el token es correcto. </p>
         <pre><code>
 package com.techu.security.jwt.components;
         
@@ -272,7 +272,7 @@ throws Exception{
   return Flow.CONTINUE;
   }
 }</code></pre></li>
-      <li><p>6/ Por último hacer la petición al endpoint <em>/hello</em> pasándole el token JWT en la cabecera HTTP <strong>Authorization</strong>. Y comprueba que tienes autorización y recibes el mensaje <code>&#34;Hello from JWT demo...&#34;</code>.</p></li>
+      <li><p>Por último hacer la petición al endpoint <em>/hello</em> pasándole el token JWT en la cabecera HTTP <strong>Authorization</strong>. Y comprueba que tienes autorización y recibes el mensaje <code>&#34;Hello from JWT demo...&#34;</code>.</p></li>
 </ol>
 
 
