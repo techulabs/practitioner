@@ -1,4 +1,17 @@
-### LTEX05 - Data Binding en ficha persona - 25 min
+summary: Data Binding en ficha persona
+id: LTEX05
+categories: LitElement
+tags: front
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# LTEX05 - Data Binding en ficha persona
+<!-- ------------------------ -->
+## Overview 
+Duration: 25
+
+### LTEX05 - Data Binding en ficha persona
 
 Vamos a añadir un data binding básico a nuestro componente.
 

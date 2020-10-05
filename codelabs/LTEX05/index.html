@@ -1,0 +1,113 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>LTEX05 - Data Binding en ficha persona</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="LTEX05"
+                  title="LTEX05 - Data Binding en ficha persona"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="25">
+        <h2 is-upgraded>LTEX05 - Data Binding en ficha persona </h2>
+<p> Vamos a añadir un data binding básico a nuestro componente.  Añadimos los data binding en la plantilla:  ficha-persona.js  &#34;`javascript import { LitElement, html } from ‘lit-element&#39;;  class FichaPersona extends LitElement {    // Properties code up here	   render() { </p>
+<pre><code>return html`
+	&lt;div&gt;
+		&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+		&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34; value=&#34;${this.name}&#34;&gt;&lt;/input&gt;
+		&lt;br /&gt;						
+		&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+		&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34; value=&#34;${this.yearsInCompany}&#34;&gt;&lt;/input&gt;
+		&lt;br /&gt;			
+		&lt;img src=&#34;${this.photo.src}&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;${this.photo.alt}&#34;&gt;			
+	&lt;/div&gt;
+`;
+</code></pre>
+<p>}   // Rest of component&#39;s code }  customElements.define(‘ficha-persona&#39;, FichaPersona) &#34;`  E inicializaremos los valores de las propiedades en el constructor </p>
+<pre><code>(no olvidar llamar siempre a super() lo primero).
+</code></pre>
+<p> ficha-persona.js  &#34;`javascript // Properties up here  constructor() { </p>
+<pre><code>// Always calls super() first.
+super();
+
+this.name = &#34;Prueba Nombre&#34;;
+this.yearsInCompany = 12;
+this.photo = {
+	src: &#34;./img/persona.jpg&#34;,
+	alt: &#34;foto persona&#34;			
+};			
+</code></pre>
+<p>} </p>
+<pre><code></code></pre>
+<p>// Render and rest of code down here. &#34;`  Ahora, al cargar de nuevo, tendríamos que ver  </p>
+<pre><code>los valores en los inputs de texto.
+</code></pre>
+<p> El componente quedaría tal que:  ficha-persona.js  &#34;`javascript import { LitElement, html } from ‘lit-element&#39;;  class FichaPersona extends LitElement { </p>
+<pre><code>static get properties() {		
+	return {			
+		name: {type: String},			
+		yearsInCompany: {type: Number},			
+		photo: {type: Object}			
+	};
+}			  	
+
+constructor() {
+	// Always calls super() first.
+	super();
+	
+	this.name = &#34;Prueba Nombre&#34;;		
+	this.yearsInCompany = 12;
+	this.photo = {
+		src: &#34;./img/persona.jpg&#34;,
+		alt: &#34;foto persona&#34;			
+	};			
+}
+		
+render() {
+	return html`
+		&lt;div&gt;
+			&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+			&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34; value=&#34;${this.name}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;						
+			&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+			&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34; value=&#34;${this.yearsInCompany}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;img src=&#34;${this.photo.src}&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;${this.photo.alt}&#34;&gt;
+		&lt;/div&gt;
+	`;
+}
+</code></pre>
+<p>}  customElements.define(‘ficha-persona&#39;, FichaPersona) &#34;` </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
