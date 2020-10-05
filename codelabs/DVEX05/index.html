@@ -33,7 +33,7 @@
 <ol type="1">
 <li>Comprobar la versión de Docker:   <pre><code>docker -v</code></pre></li>
 <li>Listar las imágenes locales:  <pre><code>docker images</code></pre></li>
-<li>Crea el archivo <strong>Dockerfile</strong> ubicado en la carpeta raíz del proyecto:  <pre><code>dockerfile<br>FROM nginx:1.11-alpine<br>COPY index.html /usr/share/nginx/html/index.html<br>EXPOSE 80<br>CMD [&#34;nginx&#34;, &#34;-g&#34;, &#34;daemon off;&#34;]<br></code></pre></li>
+<li>Crea el archivo <strong>Dockerfile</strong> ubicado en la carpeta raíz del proyecto:  <pre><code>FROM nginx:1.11-alpine<br>COPY index.html /usr/share/nginx/html/index.html<br>EXPOSE 80<br>CMD [&#34;nginx&#34;, &#34;-g&#34;, &#34;daemon off;&#34;]<br></code></pre></li>
 <li>A partir del Dockerfile creado en el paso anterior vamos a construir la <strong>imagen</strong><em>my-nginx-image</em> con la etiqueta versión ‘latest&#39;:  <pre><code>docker build -t my-nginx-image:latest .</code></pre></li>
 <li>Comprobamos ahora que la imagen se ha creado en local:  <pre><code>docker images</code></pre></li>
 <li>Ahora ya podemos lanzar un contenedor a partir de la imagen creada en el paso 3:  <pre><code>docker run -d -p 80:80 my-nginx-image:latest</code></pre></li>
