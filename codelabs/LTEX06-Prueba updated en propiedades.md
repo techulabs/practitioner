@@ -1,4 +1,17 @@
-### LTEX06 - Prueba updated en propiedades - 10 min
+summary: Prueba updated en propiedades
+id: LTEX06
+categories: LitElement
+tags: front
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# LTEX06 - Prueba updated en propiedades
+<!-- ------------------------ -->
+## Overview 
+Duration: 10
+
+### LTEX06 - Prueba updated en propiedades
 
 Como parte del ciclo de vida de un componente Lit Element, podemos 
 	usar funciones que nos den información de interés 

@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-05T22:19:14+02:00",
+  "id": "LTEX06",
+  "duration": 10,
+  "title": "LTEX06 - Prueba updated en propiedades",
+  "authors": "TechU",
+  "summary": "Prueba updated en propiedades",
+  "source": ".\\LTEX06-Prueba updated en propiedades.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "litelement"
+  ],
+  "tags": [
+    "front"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "LTEX06"
+}
