@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-05T16:55:23+02:00",
+  "id": "CDEX01",
+  "duration": 60,
+  "title": "CDEX01 - Sentencias SQL - Oracle SQL Developer",
+  "authors": "TechU",
+  "summary": "Sentencias SQL - Oracle SQL Developer",
+  "source": ".\\CDEX01 - Sentencias SQL - Oracle SQL Developer.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "data"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "CDEX01"
+}

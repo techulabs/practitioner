@@ -1,3 +1,18 @@
+summary: Sentencias SQL - Oracle SQL Developer
+id: CDEX01
+categories: data
+tags: back
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# CDEX01 - Sentencias SQL - Oracle SQL Developer
+<!-- ------------------------ -->
+## Overview 
+Duration: 60
+
+### CDEX01 - Sentencias SQL - Oracle SQL Developer - 60 min
+
 **CDEX01 - Sentencias SQL - Oracle SQL Developer**
 
 Para esta práctica contaremos con un cliente (Oracle SQL Developer) de bases de datos relacional y nos conectaremos con los siguientes parámetros:  *localhost:1521*

@@ -1,0 +1,54 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>CDEX01 - Sentencias SQL - Oracle SQL Developer</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="CDEX01"
+                  title="CDEX01 - Sentencias SQL - Oracle SQL Developer"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="60">
+        <h2 is-upgraded>CDEX01 - Sentencias SQL - Oracle SQL Developer - 60 min </h2>
+<p><strong>CDEX01 - Sentencias SQL - Oracle SQL Developer</strong>  Para esta práctica contaremos con un cliente (Oracle SQL Developer) de bases de datos relacional y nos conectaremos con los siguientes parámetros:  <em>localhost:1521</em></p>
+<ol type="1">
+<li>Crearemos una tabla para probar diversas <strong>sentencias SQL</strong> relacionadas con acciones a nivel de tabla.  <code>sql<br>CREATE TABLE persona (<br>userid int PRIMARY KEY,<br>last_name varchar(255) NOT NULL,<br>first_name varchar(255),<br>age int<br>);<br></code></li>
+<li>Vamos a insertar un registro nuevo en la tabla ‘persona&#39; que acabamos de crear:  <code>sql<br>INSERT INTO persona (userid, last_name, age)<br>VALUES (100, &#39;Acosta&#39;, 38);</code><br>  Y comprobamos la insercción:  <code>sql<br>SELECT * FROM persona;</code> <br>  3/ Para probar una de las operaciones más comunes en bases de datos relacionales, <strong>JOIN</strong>, necesitamos crear otra tabla:  <code>sql<br>CREATE TABLE pedido (<br>   pedidoID int PRIMARY KEY,<br>   total int,<br>   userid int<br>);</code><br>  Insertamos tres pedidos hechos por la misma persona (userid=100):  <code>sql<br>INSERT INTO pedido (pedidoID, userid, total)<br>VALUES (1, 100, 1500);<br><br>INSERT INTO pedido (pedidoID, userid, total)<br>VALUES (2, 100, 500);<br><br>INSERT INTO pedido (pedidoID, userid, total)<br>VALUES (3, 100, 1000);</code><br>  4/ La siguiente setencia SQL devolverá todos los pedidos que tengan información del cliente en el campo ‘userid&#39;. Para ello, usaremos <strong>INNER JOIN</strong> con el que se seleccionan los registros que tienen valores coincidentes en ambas tablas:  <code>sql<br>SELECT pedido.pedidoID, persona.last_name<br>FROM pedido<br>INNER JOIN persona ON pedido.userid = persona.userid;</code><br>  REFERENCIAS:  </li>
+</ol>
+<ul>
+<li><a target="_blank" href="https://www.w3schools.com/sql/default.asp">Tutorial SQL</a> </li>
+<li><a target="_blank" href="https://docs.mongodb.com/manual/reference/sql-comparison/#terminology-and-concepts">MongoDB comparison</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
