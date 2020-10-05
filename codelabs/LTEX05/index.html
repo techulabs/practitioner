@@ -29,14 +29,15 @@
     
       <google-codelab-step label="Overview" duration="25">
         <h2 is-upgraded>LTEX05 - Data Binding en ficha persona </h2>
-<p> Vamos a añadir un data binding básico a nuestro componente.  Añadimos los data binding en la plantilla:  ficha-persona.js</p>
+<p> Vamos a añadir un data binding básico a nuestro componente.  Añadimos los data binding en la plantilla:</p>
+<p>ficha-persona.js</p>
 <pre><code>
-import { LitElement, html } from ‘lit-element&#39;;  
+import { LitElement, html } from ‘lit-element‘;  
 
 class FichaPersona extends LitElement {
 
 	// Properties code up here	   
-	render() { </p>
+	render() {
 		return html`
 			&lt;div&gt;
 				&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
@@ -78,7 +79,7 @@ constructor() {
 <pre><code>
 import { LitElement, html } from ‘lit-element&#39;;  
 
-class FichaPersona extends LitElement { </p>
+class FichaPersona extends LitElement {
 
 	static get properties() {		
 		return {			
