@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-05T16:43:48+02:00",
+  "id": "DVEX05",
+  "duration": 45,
+  "title": "DVEX04 - Docker: Building container images",
+  "authors": "TechU",
+  "summary": "Docker: Building container images",
+  "source": ".\\DVEX05 - Docker Building container images.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devops"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "DVEX05"
+}

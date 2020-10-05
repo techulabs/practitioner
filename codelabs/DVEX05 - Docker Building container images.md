@@ -1,3 +1,16 @@
+summary: Docker: Building container images
+id: DVEX05
+categories: DevOps
+tags: back
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# DVEX04 - Docker: Building container images
+<!-- ------------------------ -->
+## Overview 
+Duration: 45
+
 **DVEX05 - Docker: Building container images**
 
 En este codelab veremos los pasos para construir y lanzar un **contenedor Docker.** En concreto, el contenedor lanzará una página web HTML mediante Nginx, un servidor web alto rendimiento.
