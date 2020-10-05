@@ -1,3 +1,18 @@
+summary: Operaciones CRUD MongoDB
+id: CDEX02
+categories: data
+tags: back
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# CDEX02 - Operaciones CRUD MongoDB
+<!-- ------------------------ -->
+## Overview 
+Duration: 60
+
+### CDEX02 - Operaciones CRUD MongoDB - 60 min
+
 **CDEX02 - Operaciones CRUD MongoDB**
 
 Prueba los siguientes comandos en Robo 3T u otro cliente para conectarte a Mongo DB.
