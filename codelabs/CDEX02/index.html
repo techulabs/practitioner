@@ -32,7 +32,8 @@
 <p>Prueba los siguientes comandos en Robo 3T u otro cliente para conectarte a Mongo DB.  Parámetros de conexión &gt; localhost:27017  </p>
 <ol type="1">
 <li>Una vez conectados al servidor de Mongo DB con los parámetros de conexión anteriores, crear una base de datos en un cliente (Robo 3T por ejemplo) y así iremos probando desde cero los principales comandos y lenguaje de Mongo DB.  </li>
-<li>Ahora crearemos una colección &#34;producto&#34;:  <code>db.createCollection(&#34;producto&#34;)</code>  Las operaciones de creación o inserción agregan nuevos documentos a una colección. Si la colección no existe, las propia operación de inserción creará la colección.  </li>
+<li>Ahora crearemos una colección &#34;producto&#34;:  <pre><code>db.createCollection(&#34;producto&#34;)</code></pre>  
+  <p>Las operaciones de creación o inserción agregan nuevos documentos a una colección. Si la colección no existe, las propia operación de inserción creará la colección. </p> </li>
 <li>MongoDB proporciona los métodos <strong>insertOne()</strong> y insertMany() para insertar nuevos documentos en una colección. Vamos a insertar el primer documento en la colección &#34;producto&#34; creada previamente.  <pre><code>db.producto.insertOne({proId: &#34;001&#34;, status: &#34;pending&#34;,order: 2})</code></pre>  Si no creamos una clave primaria <strong>_id</strong> Mongo DB lo hará automáticamente por nosotros ;)  </li>
 <li>En este paso vamos a insertar varios documentos con <strong>insertMany()</strong>:  <pre><code>db.collection(&#39;producto&#39;).insertMany([<br> {<br>   proId: &#39;002&#39;,<br>   qty: 25,<br>   tags: [&#39;blank&#39;, &#39;red&#39;],<br>   size: { h: 14, w: 21, uom: &#39;cm&#39; }<br> },<br> {<br>   proId: &#39;003&#39;,<br>   qty: 85,<br>   tags: [&#39;gray&#39;],<br>   size: { h: 27.9, w: 35.5, uom: &#39;m&#39; }<br> },<br> {<br>   proId: &#39;004&#39;,<br>   qty: 25,<br>   tags: [&#39;gel&#39;, &#39;blue&#39;],<br>   size: { h: 19, w: 22.85, uom: &#39;cm&#39; }<br> }<br>])<br></code></li>
 <li>Vamos a actualizar la estructura de la colección añadiendo un campo fecha a todos los documentos. Para ello utilizaremos el operador <strong>$set</strong> junto con la operación <strong>update()</strong>:  <pre><code>db.products.update(<br>{ },<br>{ $set: {&#34;date&#34;: new Date() } }<br>)  <br></code></pre></li>
@@ -52,6 +53,7 @@
   <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
+  <script src="../../scripts/done.js"></script>
 
 </body>
 </html>
