@@ -38,85 +38,87 @@
   <p>Las operaciones de creación o inserción agregan nuevos documentos a una colección. Si la colección no existe, las propia operación de inserción creará la colección.  </p></li>
 <li><p>MongoDB proporciona los métodos <strong>insertOne()</strong> y insertMany() para insertar nuevos documentos en una colección. Vamos a insertar el primer documento en la colección &#34;producto&#34; creada previamente.</p>
     <pre><code>
-      db.producto.insertOne(
-        {
-          proId: &#34;001&#34;,
-          status: &#34;pending&#34;,
-          order: 2
-        })</code></pre>  
+db.producto.insertOne(
+{
+  proId: &#34;001&#34;,
+  status: &#34;pending&#34;,
+  order: 2
+})
+</code></pre>  
     <p>Si no creamos una clave primaria <strong>_id</strong> Mongo DB lo hará automáticamente por nosotros ;)</p></li>
 <li>En este paso vamos a insertar varios documentos con <strong>insertMany()</strong>:</p>
   <pre><code>
-    db.collection(&#39;producto&#39;).insertMany([
-      {
-        proId: &#39;002&#39;,
-        qty: 25,
-        tags: [&#39;blank&#39;, &#39;red&#39;],
-        size: { h: 14, w: 21, uom: &#39;cm&#39; }
-      },
-      {
-        proId: &#39;003&#39;,
-        qty: 85,
-        tags: [&#39;gray&#39;],
-        size: { h: 27.9, w: 35.5, uom: &#39;m&#39; }
-      },
-      {
-        proId: &#39;004&#39;,
-        qty: 25,
-        tags: [&#39;gel&#39;, &#39;blue&#39;],
-        size: { h: 19, w: 22.85, uom: &#39;cm&#39; }
-      }
-    ])
+db.collection(&#39;producto&#39;).insertMany([
+  {
+    proId: &#39;002&#39;,
+    qty: 25,
+    tags: [&#39;blank&#39;, &#39;red&#39;],
+    size: { h: 14, w: 21, uom: &#39;cm&#39; }
+  },
+  {
+    proId: &#39;003&#39;,
+    qty: 85,
+    tags: [&#39;gray&#39;],
+    size: { h: 27.9, w: 35.5, uom: &#39;m&#39; }
+  },
+  {
+    proId: &#39;004&#39;,
+    qty: 25,
+    tags: [&#39;gel&#39;, &#39;blue&#39;],
+    size: { h: 19, w: 22.85, uom: &#39;cm&#39; }
+  }
+])
     </code></pre>
   </li>
 <li><p>Vamos a actualizar la estructura de la colección añadiendo un campo fecha a todos los documentos. Para ello utilizaremos el operador <strong>$set</strong> junto con la operación <strong>update()</strong>: </p>
   <pre><code>
-    db.products.update(
-      { },
-      { $set: {&#34;date&#34;: new Date() } }
-    )
+db.products.update(
+  { },
+  { $set: {&#34;date&#34;: new Date() } }
+)
   </code></pre>
 </li>
 <li><p>Con la misma operación actualizamos todos los campos del documento con proId ‘003&#39;: </p>
   <pre><code>
-    db.products.update(
-      { proId: &#39;003&#39; },
-      { $set: 
-        {
-          qty: 500,
-          instock: true,
-          tags: [ &#34;coats&#34;, &#34;outerwear&#34;, &#34;clothing&#34; ],
-          size: { h: 19, w: 22.85, uom: &#39;cm&#39; },
-        }
-      }
-    )</code></pre>
+db.products.update(
+  { proId: &#39;003&#39; },
+  { $set: 
+    {
+      qty: 500,
+      instock: true,
+      tags: [ &#34;coats&#34;, &#34;outerwear&#34;, &#34;clothing&#34; ],
+      size: { h: 19, w: 22.85, uom: &#39;cm&#39; },
+    }
+  }
+)
+</code></pre>
   </li>
 <li><p>Para especificar un campo en un documento con un array embedido o en un array usaremos la notación punto (dot notation). </p>
    <pre><code>
-     db.products.update(
-       { proId: &#39;004&#39; },
-       { $set:
-        {
-          &#34;tags.0&#34;: &#34;rain gear&#34;,
-          &#34;size.w&#34;: 22
-        }
-      }
-    )
+db.products.update(
+  { proId: &#39;004&#39; },
+  { $set:
+    {
+      &#34;tags.0&#34;: &#34;rain gear&#34;,
+      &#34;size.w&#34;: 22
+    }
+  }
+)
   </code></pre></li>
 <li><p>En este paso vamos a utilizar el homólogo de la operación Select de SQL: <strong>find()</strong>, el cual nos permitirá hacer búsquedas y filtrar documentos.</p>
     <pre><code>
-      db.producto.find(
-        { qty:
-          { $lt : 50 }
-        }
-      )
+db.producto.find(
+  { qty:
+    { $lt : 50 }
+  }
+)
       </code></pre>
     </li>
 <li><p>Ahora con el operador $and filtramos por dos condiciones:</p>
   <pre><code>
-    db.producto.find({
-      $and: [{ qty: { $gt: 30 } }, { qty: { $lt: 100 } }]
-    });
+db.producto.find({
+  $and: [{ qty: { $gt: 30 } }, { qty: { $lt: 100 } }]
+});
   </code></pre>
   <p>REFERENCIAS: <a href="https://docs.mongodb.com/manual/crud/">CRUD MongoDB</a></p></li>
 </ol>
