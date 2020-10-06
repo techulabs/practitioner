@@ -68,19 +68,19 @@ Parámetros de conexión > localhost:27017
    ])
    ```
 
-5. Vamos a actualizar la estructura de la colección añadiendo un campo fecha a todos los documentos. Para ello utilizaremos el operador **$set** junto con la operación **update()**:
+5. Vamos a actualizar la estructura de la colección añadiendo un campo 'date' a todos los documentos. Para ello utilizaremos el operador **$set** junto con la operación **updateMany()**:
 
 ```javascript
-db.products.update(
+db.producto.updateMany(
    { },
    { $set: {"date": new Date() } }
  )  
 ```
 
-7. Con la misma operación actualizamos todos los campos del documento con proId '003':
+7. Para atualizar todos los campos del documento con proId '003' podemos usar la operación **update():**
 
 ```javascript
-db.products.update(
+db.producto.update(
    { proId: '003' },
    { $set: 
    		{
@@ -93,10 +93,10 @@ db.products.update(
  )     
 ```
 
-8. Para especificar un campo en un documento con un array embedido o en un array usaremos la notación punto (dot notation).
+8. Para especificar un campo en un documento con un array anidado en un array usaremos la notación punto (dot notation).
 
    ```
-   db.products.update(
+   db.producto.update(
       { proId: '004' },
       { $set:
          {
@@ -107,7 +107,7 @@ db.products.update(
    )
    ```
 
-9. En este paso vamos a utilizar el homólogo de la operación Select de SQL: **find()**, el cual nos permitirá hacer búsquedas y filtrar documentos.
+9. En este paso vamos a utilizar el homólogo de la operación *Select* de SQL: **find()**, el cual nos permitirá hacer búsquedas y filtrar documentos.
 
 ```
 db.producto.find(
@@ -117,7 +117,7 @@ db.producto.find(
 )
 ```
 
-9. Ahora con el operador $and filtramos por dos condiciones:
+9. Ahora con el operador **$and** filtramos por dos criterios:
 
 ```
 db.producto.find({

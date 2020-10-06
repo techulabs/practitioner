@@ -29,25 +29,24 @@
     
       <google-codelab-step label="Overview" duration="60">
         <h2 is-upgraded>CDEX02 - Operaciones CRUD MongoDB - 60 min </h2>
-<p>Prueba los siguientes comandos en Robo 3T u otro cliente para conectarte a Mongo DB.</p>
-<p>Parámetros de conexión &gt; localhost:27017  </p>
+<p><strong>CDEX02 - Operaciones CRUD MongoDB</strong>  Prueba los siguientes comandos en Robo 3T u otro cliente para conectarte a Mongo DB.  Parámetros de conexión &gt; localhost:27017  </p>
 <ol type="1">
 <li>Una vez conectados al servidor de Mongo DB con los parámetros de conexión anteriores, crear una base de datos en un cliente (Robo 3T por ejemplo) y así iremos probando desde cero los principales comandos y lenguaje de Mongo DB.  </li>
 <li>Ahora crearemos una colección &#34;producto&#34;:  
-  <pre><code>db.createCollection(&#34;producto&#34;)</code></pre> 
-  <p>Las operaciones de creación o inserción agregan nuevos documentos a una colección. Si la colección no existe, las propia operación de inserción creará la colección.  </p></li>
-<li><p>MongoDB proporciona los métodos <strong>insertOne()</strong> y insertMany() para insertar nuevos documentos en una colección. Vamos a insertar el primer documento en la colección &#34;producto&#34; creada previamente.</p>
-    <pre><code>
+  <pre><code>db.createCollection(&#34;producto&#34;)</code></pre>  
+<p>Las operaciones de creación o inserción agregan nuevos documentos a una colección. Si la colección no existe, las propia operación de inserción creará la colección.</p>  </li>
+<li>MongoDB proporciona los métodos <strong>insertOne()</strong> y insertMany() para insertar nuevos documentos en una colección. Vamos a insertar el primer documento en la colección &#34;producto&#34; creada previamente.  
+<pre><code>
 db.producto.insertOne(
-{
-  proId: &#34;001&#34;,
-  status: &#34;pending&#34;,
-  order: 2
-})
+  {
+    proId: &#34;001&#34;,
+    status: &#34;pending&#34;,
+    order: 2
+  })
 </code></pre>  
-    <p>Si no creamos una clave primaria <strong>_id</strong> Mongo DB lo hará automáticamente por nosotros ;)</p></li>
-<li>En este paso vamos a insertar varios documentos con <strong>insertMany()</strong>:</p>
-  <pre><code>
+<p>Si no creamos una clave primaria <strong>_id</strong> Mongo DB lo hará automáticamente por nosotros ;) </p> </li>
+<li>En este paso vamos a insertar varios documentos con <strong>insertMany()</strong>:
+<pre><code>
 db.collection(&#39;producto&#39;).insertMany([
   {
     proId: &#39;002&#39;,
@@ -68,19 +67,17 @@ db.collection(&#39;producto&#39;).insertMany([
     size: { h: 19, w: 22.85, uom: &#39;cm&#39; }
   }
 ])
-    </code></pre>
-  </li>
-<li><p>Vamos a actualizar la estructura de la colección añadiendo un campo fecha a todos los documentos. Para ello utilizaremos el operador <strong>$set</strong> junto con la operación <strong>update()</strong>: </p>
-  <pre><code>
-db.products.update(
+</code></pre></li>
+<li>Vamos a actualizar la estructura de la colección añadiendo un campo ‘date‘ a todos los documentos. Para ello utilizaremos el operador <strong>$set</strong> junto con la operación <strong>updateMany()</strong>:  
+<pre><code>
+db.producto.updateMany(
   { },
   { $set: {&#34;date&#34;: new Date() } }
 )
-  </code></pre>
-</li>
-<li><p>Con la misma operación actualizamos todos los campos del documento con proId ‘003&#39;: </p>
-  <pre><code>
-db.products.update(
+</code></pre></li>
+<li>Para atualizar todos los campos del documento con proId ‘003&#39; podemos usar la operación <strong>update():</strong>
+<pre><code>
+db.producto.update(
   { proId: &#39;003&#39; },
   { $set: 
     {
@@ -91,11 +88,10 @@ db.products.update(
     }
   }
 )
-</code></pre>
-  </li>
-<li><p>Para especificar un campo en un documento con un array embedido o en un array usaremos la notación punto (dot notation). </p>
-   <pre><code>
-db.products.update(
+</code></pre></li>
+<li>Para especificar un campo en un documento con un array anidado en un array usaremos la notación punto (dot notation).
+<pre><code>
+db.producto.update(
   { proId: &#39;004&#39; },
   { $set:
     {
@@ -104,24 +100,25 @@ db.products.update(
     }
   }
 )
-  </code></pre></li>
-<li><p>En este paso vamos a utilizar el homólogo de la operación Select de SQL: <strong>find()</strong>, el cual nos permitirá hacer búsquedas y filtrar documentos.</p>
-    <pre><code>
+</code></pre></li>
+<li>En este paso vamos a utilizar el homólogo de la operación <em>Select</em> de SQL: <strong>find()</strong>, el cual nos permitirá hacer búsquedas y filtrar documentos.
+<pre><code>
 db.producto.find(
   { qty:
     { $lt : 50 }
   }
 )
-      </code></pre>
-    </li>
-<li><p>Ahora con el operador $and filtramos por dos condiciones:</p>
-  <pre><code>
+</code></pre></li>
+<li>Ahora con el operador <strong>$and</strong> filtramos por dos criterios: 
+<pre><code>
 db.producto.find({
-  $and: [{ qty: { $gt: 30 } }, { qty: { $lt: 100 } }]
+  $and: [{ qty: { $gt: 30 } }, { qty: { $lt: 100 } }
 });
-  </code></pre>
-  <p>REFERENCIAS: <a href="https://docs.mongodb.com/manual/crud/">CRUD MongoDB</a></p></li>
+</code></pre>
+</li>
 </ol>
+<p>REFERENCIAS:  <a target="_blank" href="https://docs.mongodb.com/manual/crud/">CRUD MongoDB</a></p>
+
 
 
       </google-codelab-step>
