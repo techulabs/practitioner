@@ -1,0 +1,238 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>LTEX08 - Propiedad personInfo</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="LTEX08"
+                  title="LTEX08 - Propiedad personInfo"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="45">
+        <h2 is-upgraded>LTEX08 - Propiedad personInfo </h2>
+<p> En este ejercicio vamos a añadir una propiedad, cuyo valor mostraremos en la plantilla, con la particularidad de que el valor lo calcularemos en base al valor de otra 
+propiedad del componente.</p>
+
+<p>Este valor se calculará inicialmente en el constructor del componente y, además, cada vez que se varíe el valor de la propiedad en base a la cual se calcula, habrá que calcular el valor de nuevo. Esto lo haremos usando eventos y la función updated, del ciclo de vida de LitElement.</p>
+<p>Comenzamos añadiendo la propiedad personInfo al componente.</p>
+<p>ficha-persona.js</p>
+<pre><code>
+static get properties() {
+	return {			
+		name: {type: String},			
+		yearsInCompany: {type: Number},			
+		personInfo: {type: String},
+		photo: {type: Object}			
+	};
+}
+</code></pre>
+<p>Calcularemos su valor en una función, puesto que haremos este proceso en el momento de cargar el componente y cuando cambie el valor de la propiedad en base a la cual sabremos el valor de personInfo. De esta forma, podremos reutilizar el código para calcular el valor.</p>
+<p>ficha-persona.js</p>
+<pre><code>
+updatePersonInfo() {
+
+	console.log(&#34;updatePersonInfo&#34;);
+	console.log(&#34;yearsInCompany vale &#34; + this.yearsInCompany);
+
+	if (this.yearsInCompany &gt;= 7) {
+		this.personInfo = &#34;lead&#34;;
+	} else if (this.yearsInCompany &gt;= 5) {
+		this.personInfo = &#34;senior&#34;;
+	} else if (this.yearsInCompany &gt;= 3) {
+		this.personInfo = &#34;team&#34;;
+	} else {
+		this.personInfo = &#34;junior&#34;;
+	}
+}
+</code></pre>
+<p>Llamaremos a esta función en el constructor.</p>
+<p>ficha-persona.js</p>
+<pre><code>
+constructor() { 
+	// Always calls super() first.
+	super();
+	
+	this.name = &#34;Prueba Nombre&#34;;		
+	this.yearsInCompany = 12;
+	this.photo = {
+		src: &#34;./img/persona.jpg&#34;,
+		alt: &#34;foto persona&#34;			
+	};			
+
+	this.updatePersonInfo();
+}
+</code></pre>
+<p>Y mostraremos el valor de la propiedad en la plantilla (deshabilitando la edición):</p>
+<p>ficha-persona.js</p>
+<pre><code>
+render() {
+	return html`
+		&lt;div&gt;
+			&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+			&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34; value=&#34;${this.name}&#34; @input=&#34;${this.updateName}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;						
+			&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+			&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34; value=&#34;${this.yearsInCompany}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;input type=&#34;text&#34; name=&#34;personInfo&#34; value=&#34;${this.personInfo}&#34; disabled&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;img src=&#34;${this.photo.src}&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;${this.photo.alt}&#34;&gt;
+		&lt;/div&gt;
+	`;
+}
+</code></pre>
+<p>Cada vez que se cambie el valor de yearsInCompany, lo recogeremos en un evento y actualizaremos el valor de la propiedad en la función manejadora.</p>
+<p>ficha-persona.js</p>
+<pre><code>
+render() {
+	return html`
+		&lt;div&gt;
+			&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+			&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34; value=&#34;${this.name}&#34; @input=&#34;${this.updateName}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;						
+			&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+			&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34; value=&#34;${this.yearsInCompany}&#34; @input=&#34;${this.updateyearsInCompany}&#34;&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;input type=&#34;text&#34; name=&#34;personInfo&#34; value=&#34;${this.personInfo}&#34; disabled&gt;&lt;/input&gt;
+			&lt;br /&gt;			
+			&lt;img src=&#34;${this.photo.src}&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;${this.photo.alt}&#34;&gt;
+		&lt;/div&gt;
+	`;
+}
+</code></pre>
+<p>Actualizamos el valor de la propiedad en la función manejadora.</p>
+<p>ficha-persona.js</p>
+<pre><code>updateyearsInCompany(e) {
+	console.log(&#34;updateyearsInCompany&#34;);
+	this.yearsInCompany = e.target.value;
+}
+</code></pre>
+<p>Ahora, cuando detectemos en la función updated que ha variado el valor de la propiedad yearsInCompany, llamamos a la función para actualizar el valor de personInfo.</p>
+<p>ficha-persona.js
+<pre><code>
+updated(changedProperties) {
+	if (changedProperties.has(&#34;name&#34;)) {
+		console.log(&#34;Propiedad name cambiada valor anterior era &#34; + changedProperties.get(&#34;name&#34;) + &#34; nuevo es &#34; + this.name);
+	}
+	
+	if (changedProperties.has(&#34;yearsInCompany&#34;)) {
+		console.log(&#34;Propiedad yearsInCompany cambiada valor anterior era &#34; + changedProperties.get(&#34;yearsInCompany&#34;) + &#34; nuevo es &#34; + this.yearsInCompany);
+		this.updatePersonInfo();
+	}
+}
+</code></pre>
+<p>El código completo del componente sería:</p>
+<p>ficha-persona.js</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;;  
+
+class FichaPersona extends LitElement {
+
+	static get properties() {		
+		return {			
+			name: {type: String},			
+			yearsInCompany: {type: Number},			
+			personInfo: {type: String},
+			photo: {type: Object}			
+		};
+	}			  	
+
+	constructor() {
+		// Always calls super() first.
+		super();
+	
+		this.name = &#34;Prueba Nombre&#34;;		
+		this.yearsInCompany = 12;
+		this.photo = {
+			src: &#34;./img/persona.jpg&#34;,
+			alt: &#34;foto persona&#34;			
+		};			
+	
+		this.updatePersonInfo();
+	}
+		
+	render() {
+		return html`
+			&lt;div&gt;
+				&lt;label for=&#34;fname&#34;&gt;Nombre Completo&lt;/label&gt;
+				&lt;input type=&#34;text&#34; id=&#34;fname&#34; name=&#34;fname&#34; value=&#34;${this.name}&#34; @input=&#34;${this.updateName}&#34;&gt;&lt;/input&gt;
+				&lt;br /&gt;						
+				&lt;label for=&#34;yearsInCompany&#34;&gt;Años en la empresa&lt;/label&gt;
+				&lt;input type=&#34;text&#34; name=&#34;yearsInCompany&#34; value=&#34;${this.yearsInCompany}&#34; @input=&#34;${this.updateyearsInCompany}&#34;&gt;&lt;/input&gt;
+				&lt;br /&gt;			
+				&lt;input type=&#34;text&#34; name=&#34;personInfo&#34; value=&#34;${this.personInfo}&#34; disabled&gt;&lt;/input&gt;
+				&lt;br /&gt;			
+				&lt;img src=&#34;${this.photo.src}&#34; height=&#34;200&#34; width=&#34;200&#34; alt=&#34;${this.photo.alt}&#34;&gt;
+			&lt;/div&gt;
+		`;
+	}
+	
+	updated(changedProperties) {	   
+		if (changedProperties.has(&#34;name&#34;)) {
+			console.log(&#34;Propiedad name cambiada valor anterior era &#34; + changedProperties.get(&#34;name&#34;) + &#34; nuevo es &#34; + this.name);
+		}
+	
+		if (changedProperties.has(&#34;yearsInCompany&#34;)) {
+			console.log(&#34;Propiedad yearsInCompany cambiada valor anterior era &#34; + changedProperties.get(&#34;yearsInCompany&#34;) + &#34; nuevo es &#34; + this.yearsInCompany);
+			this.updatePersonInfo();
+		}
+	}
+
+	updateName(e) {
+		console.log(&#34;updateName&#34;);
+		this.name = e.target.value;	  
+	}
+
+	updateyearsInCompany(e) {
+		console.log(&#34;updateyearsInCompany&#34;);
+		this.yearsInCompany = e.target.value;
+	}
+
+	updatePersonInfo() {
+		console.log(&#34;updatePersonInfo&#34;);
+		console.log(&#34;yearsInCompany vale &#34; + this.yearsInCompany);
+
+		if (this.yearsInCompany &gt;= 7) {
+			this.personInfo = &#34;lead&#34;;
+		} else if (this.yearsInCompany &gt;= 5) {
+			this.personInfo = &#34;senior&#34;;
+		} else if (this.yearsInCompany &gt;= 3) {
+			this.personInfo = &#34;team&#34;;
+		} else {
+			this.personInfo = &#34;junior&#34;;
+		}
+	}
+}
+customElements.define(‘ficha-persona&#39;, FichaPersona)
+</code></pre>
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

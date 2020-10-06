@@ -11,7 +11,7 @@ Feedback Link: http://bbva-techuniversity.appspot.com/
 ## Overview 
 Duration: 15
 
-### LTEX07 - Prueba evento y función manejadora - 15 min
+### LTEX07 - Prueba evento y función manejadora
 
 Podemos capturar eventos lanzados por las interacciones del 
 usuario con la página y nuestros componentes.

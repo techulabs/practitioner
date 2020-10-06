@@ -1,4 +1,17 @@
-### LTEX08 - Propiedad personInfo - 45 min
+summary: Propiedad personInfo
+id: LTEX08
+categories: LitElement
+tags: front
+status: Published 
+authors: TechU
+Feedback Link: http://bbva-techuniversity.appspot.com/
+
+# LTEX08 - Propiedad personInfo
+<!-- ------------------------ -->
+## Overview 
+Duration: 45
+
+### LTEX08 - Propiedad personInfo
 
 En este ejercicio vamos a añadir una propiedad, cuyo valor mostraremos en la plantilla, 
 	con la particularidad de que el valor lo calcularemos en base al valor de otra 
