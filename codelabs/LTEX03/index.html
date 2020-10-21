@@ -29,15 +29,64 @@
     
       <google-codelab-step label="Overview" duration="40">
         <h2 is-upgraded>LTEX03 - Creación del primer componente Hola Mundo - 40 min </h2>
-<p> Desde nuestro directorio de proyectos del curso, entramos en  </p>
-<pre><code>el directorio de nuestra app.
+<p> Desde nuestro directorio de proyectos del curso, entramos en el directorio de nuestra app.</p>
+<pre><code>cd base-litelement</code></pre>
+<p>Y vamos al directorio con el componente creado automáticamente.</p>
+<pre><code>cd src</code></pre>
+<p>Ahí crearemos un directorio nuevo para nuestro componente</p>
+<pre><code>mkdir hola-mundo</code></pre>
+<p>Entramos al directorio</p>
+<pre><code>cd hola-mundo</code></pre>
+<p>Y creamos el archivo del componente</p>
+<pre><code>touch hola-mundo.js</code></pre>
+<p>El código del componente será:  </p>
+<p>hola-mundo.js</p>
+<pre><code>
+import { LitElement, html } from ‘lit-element&#39;;  
+class HolaMundo extends LitElement {   
+  render() { 
+    return html`
+      &lt;div&gt;Hola Mundo!&lt;/div&gt;
+  `;
+  } 
+}  
+customElements.define(‘hola-mundo&#39;, HolaMundo) 
 </code></pre>
-<p><code><br>cd base-litelement</code><br>  Y vamos al directorio con el componente creado automáticamente.  <br><code>cd src</code> <br>  Ahí crearemos un directorio nuevo para nuestro componente  <br><code>mkdir hola-mundo</code> <br>  Entramos al directorio  <br><code>cd hola-mundo</code><br>  Y creamos el archivo del componente  <br><code>touch hola-mundo.js</code><br>  El código del componente será:  hola-mundo.js  &#34;`javascript import { LitElement, html } from ‘lit-element&#39;;  class HolaMundo extends LitElement {   render() { </p>
-<pre><code>return html`
-	&lt;div&gt;Hola Mundo!&lt;/div&gt;
-`;
-</code></pre>
-<p>} }  customElements.define(‘hola-mundo&#39;, HolaMundo) <br><br><code>En el directorio principal de la app, veremos un archivo index.html. Ese <br>será el archivo que se cargue cuando lancemos nuestra app y ahí será <br>donde añadiremos nuestro componente.<br><br>in</code>dex.html<br><br>html &lt;!doctype html&gt;       &lt;/p&gt;  &lt;pre&gt;&lt;code&gt;html, body {   margin: 0;   padding: 0;   font-family: sans-serif;   background-color: #ededed; } &lt;/code&gt;&lt;/pre&gt;  &lt;p&gt;base-litelement<br><br><code>Ahora en la consola ponemos:</code><br><br> npm run start  &#34;`  Lo que iniciará un servidor de pruebas y lanzará el navegador, en el que veremos  nuestra app y el componente hola-mundo.</p>
+<p>En el directorio principal de la app, veremos un archivo index.html. Ese será el archivo que se cargue cuando lancemos nuestra app y ahí será donde añadiremos nuestro componente.</p>
+<p>index.html</p>
+<pre><code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /&gt;
+  &lt;meta name="Description" content="Put your description here."&gt;
+  &lt;base href="/"&gt;
+
+  &lt;style&gt;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  &lt;/style&gt;
+  &lt;title>base-litelement&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;script type="module" src="./src/hola-mundo/hola-mundo.js"></script>
+
+&lt;body&gt;
+  &lt;hola-mundo&gt;&lt;/hola-mundo&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora en la consola ponemos:&lt;/p&gt;
+<pre><code>npm run start</code></pre>
+<p>Lo que iniciará un servidor de pruebas y lanzará el navegador, en el que veremos nuestra app y el componente hola-mundo.</p>
 
 
       </google-codelab-step>
