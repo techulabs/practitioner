@@ -27,21 +27,101 @@
                   environment="web"
                   feedback-link="http://bbva-techuniversity.appspot.com/">
     
-      <google-codelab-step label="Overview" duration="100">
+      <google-codelab-step label="Overview" duration="10">
         <h2 is-upgraded>BACK01 - API REST con integración de métodos GET, POST, PUT, DELETE y PATCH y control de respuestas HTTP - 100 min </h2>
-<p><strong>BACK01</strong> - <strong>API REST con integración de métodos GET, POST, PUT, DELETE y PATCH y control de respuestas HTTP.</strong>  El siguiente codelab integra todas las operaciones HTTP implementadas anteriormente y veremos como manejar la respuesta HTTP de los servicios  mediante <strong>ResponseEntity</strong>.  En ciertas circunstancias se necesita enviar respuestas HTTP desde nuestra aplicación backend hacia la aplicación cliente. Spring posee muchas formas para manejar esto, en este caso usaremos <em>ResponseEntity</em> una clase de Spring para manejar el cuerpo y estatus de estas respuestas.  El código fuente completo lo puedes obtener desde el siguiente repositorio Bitbucket:  https://bitbucket.org/llabor/backend-apirest-productos/src/master/  </p>
-<ol type="1">
-<li>Vamos a centrarnos en la clase <em>ProductoController</em> que es en donde vamos a incluir el manejo de las respuestas HTTP.  Primero necesitamos importar la clase <em>ResponseEntity</em>:  <code>import org.springframework.http.ResponseEntity;</code></li>
-<li>Empezaremos con el servicio que ya tenemos hecho para enviar un producto por su ID, y lo modificaremos para que devuelva el código HTTP 404 si no existe ese producto. En caso contrario, enviaremos el producto solicitado. Para ello lo que haremos es sustituir el tipo que devuelve el método getProductoId por ResponseEntity:  <code>java<br>@GetMapping(&#34;/productos/{id}&#34;)<br>public ResponseEntity getProductoId(@PathVariable int id) {<br>ProductoModel pr = productService.getProducto(id);<br>if (pr == null) {<br>   return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);<br>}<br>   return ResponseEntity.ok(pr);<br>}<br></code></li>
-<li>Procederemos ahora a hacer lo suyo con el resto de servicios y empezaremos con el método POST por ejemplo:  <code>java<br>@PostMapping(&#34;/productos&#34;)<br>public ResponseEntity&lt;String&gt; addProducto(@RequestBody ProductoModel productoModel) {<br>productService.addProducto(productoModel);<br>return new ResponseEntity&lt;&gt;(&#34;Product created successfully!&#34;, HttpStatus.CREATED);<br>}</code><br>  En este caso, enviaremos como respuesta la confirmación de la creación del recurso mediante el código HTTP 201 (HttpStatus.CREATED).  </li>
-<li>Para la operación PUT enviaremos un 200 OK (HttpStatus.OK) si el producto a actualizar existe y un 404 Not Found en caso contrario.  <code>java<br>@PutMapping(&#34;/productos/{id}&#34;)<br>public ResponseEntity updateProducto(@PathVariable int id,<br>       @RequestBody ProductoModel productToUpdate) {<br>ProductoModel pr = productService.getProducto(id);<br>if (pr == null) {<br> return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);<br>}<br>productService.updateProducto(id-1, productToUpdate);<br>return new ResponseEntity&lt;&gt;(&#34;Producto actualizado correctamente.&#34;, HttpStatus.OK); // Buenas prácticas dicen que mejor enviar 204 No Content<br>}<br></code></li>
-<li>En el método DELETE enviaremos el estado 200 genérico para respuestas exitosas o si queremos afinar un poco más el código 204 No Content (HttpStatus.NO_CONTENT):  <code>java<br>DeleteMapping(&#34;/productos/{id}&#34;)<br>public ResponseEntity deleteProducto(@PathVariable Integer id) {<br>ProductoModel pr = productService.getProducto(id);<br>if(pr == null) {<br> return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);<br>}<br>productService.removeProducto(id - 1);<br>return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT); // status code 204-No Content<br>}<br></code></li>
-<li>PATCH  <code>java<br>@PatchMapping(&#34;/productos/{id}&#34;)<br>public ResponseEntity patchPrecioProducto(<br> @RequestBody ProductoPrecioOnly productoPrecioOnly,                                @PathVariable int id){<br> ProductoModel pr = productService.getProducto(id);<br> if (pr == null) {<br>   return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);<br>  }<br>  pr.setPrecio(productoPrecioOnly.getPrecio());<br>  productService.updateProducto(id-1, pr);<br>  return new ResponseEntity&lt;&gt;(pr, HttpStatus.OK);<br>}<br></code></li>
-<li>GET subrecurso  <code>java<br>@GetMapping(&#34;/productos/{id}/users&#34;)<br>public ResponseEntity getProductIdUsers(@PathVariable int id){<br>ProductoModel pr = productService.getProducto(id);<br>if (pr == null) {<br> return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);<br>}<br>if (pr.getUsers()!=null)<br> return ResponseEntity.ok(pr.getUsers());<br>else<br> return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);<br>}</code><br>  REFERENCIAS:  https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html  https://www.baeldung.com/spring-response-entity</li>
-</ol>
-
-
-      </google-codelab-step>
+<p>El siguiente Codelab integra todas las operaciones HTTP implementadas anteriormente y veremos como manejar la respuesta HTTP de los servicios mediante <strong>ResponseEntity</strong>. En ciertas circunstancias se necesita enviar respuestas HTTP desde nuestra aplicación backend hacia la aplicación cliente. Spring posee muchas formas para manejar esto, en este caso usaremos <em>ResponseEntity</em> una clase de Spring para manejar el cuerpo y estatus de estas respuestas.  El código fuente completo lo puedes obtener desde el siguiente repositorio <a href="https://bitbucket.org/llabor/backend-apirest-productos/src/master/">Bitbucket</a>  </p>
+<p>Vamos a centrarnos en la clase <em>ProductoController</em> que es en donde vamos a incluir el manejo de las respuestas HTTP.  Primero necesitamos importar la clase <em>ResponseEntity</em>:  
+<pre><code>import org.springframework.http.ResponseEntity;</code></pre>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="15">
+<p>Empezaremos con el servicio que ya tenemos hecho para enviar un producto por su ID, y lo modificaremos para que devuelva el código HTTP 404 si no existe ese producto. En caso contrario, enviaremos el producto solicitado. Para ello lo que haremos es sustituir el tipo que devuelve el método getProductoId por ResponseEntity:  
+<pre><code>
+@GetMapping(&#34;/productos/{id}&#34;)
+public ResponseEntity getProductoId(@PathVariable int id) {
+  ProductoModel pr = productService.getProducto(id);
+    if (pr == null) {
+      return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);
+    }
+    return ResponseEntity.ok(pr);
+  }
+</code></p>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="20">
+<p>Procederemos ahora a hacer lo suyo con el resto de servicios y empezaremos con el método POST por ejemplo:
+<pre><code>
+@PostMapping(&#34;/productos&#34;)
+public ResponseEntity&lt;String&gt; addProducto(@RequestBody ProductoModel productoModel) {
+  productService.addProducto(productoModel);
+  return new ResponseEntity&lt;&gt;(&#34;Product created successfully!&#34;, HttpStatus.CREATED);
+}
+</code><br>  
+<p>En este caso, enviaremos como respuesta la confirmación de la creación del recurso mediante el código HTTP 201 (HttpStatus.CREATED).</p>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="20">
+Para la operación PUT enviaremos un 200 OK (HttpStatus.OK) si el producto a actualizar existe y un 404 Not Found en caso contrario.
+<pre><code>
+@PutMapping(&#34;/productos/{id}&#34;)
+public ResponseEntity updateProducto(@PathVariable int id,
+        @RequestBody ProductoModel productToUpdate) {
+  ProductoModel pr = productService.getProducto(id);
+  if (pr == null) {
+    return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);
+  }
+  productService.updateProducto(id-1, productToUpdate);
+  return new ResponseEntity&lt;&gt;(&#34;Producto actualizado correctamente.&#34;, HttpStatus.OK); // Buenas prácticas dicen que mejor enviar 204 No Content
+  }
+</code></p>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="20">
+<p>En el método DELETE enviaremos el estado 200 genérico para respuestas exitosas o si queremos afinar un poco más el código 204 No Content (HttpStatus.NO_CONTENT):  
+<pre><code>
+DeleteMapping(&#34;/productos/{id}&#34;)
+public ResponseEntity deleteProducto(@PathVariable Integer id) {
+  ProductoModel pr = productService.getProducto(id);
+  if(pr == null) {
+    return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);
+  }
+  productService.removeProducto(id - 1);
+  return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT); // status code 204-No Content
+}
+</code></pre>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="20">
+<p>PATCH
+<pre><code>
+@PatchMapping(&#34;/productos/{id}&#34;)
+public ResponseEntity patchPrecioProducto(
+  @RequestBody ProductoPrecioOnly productoPrecioOnly, @PathVariable int id){
+    ProductoModel pr = productService.getProducto(id);
+    if (pr == null) {
+      return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);
+    }
+    pr.setPrecio(productoPrecioOnly.getPrecio());
+    productService.updateProducto(id-1, pr);
+    return new ResponseEntity&lt;&gt;(pr, HttpStatus.OK);
+  }
+</code></pre>
+</google-codelab-step>
+<google-codelab-step label="Overview" duration="20">
+<p>GET subrecurso  
+<pre><code>
+@GetMapping(&#34;/productos/{id}/users&#34;)
+public ResponseEntity getProductIdUsers(@PathVariable int id){
+  ProductoModel pr = productService.getProducto(id);
+  if (pr == null) {
+    return new ResponseEntity&lt;&gt;(&#34;Producto no encontrado.&#34;, HttpStatus.NOT_FOUND);
+  }
+  if (pr.getUsers()!=null)
+    return ResponseEntity.ok(pr.getUsers());
+  else
+    return new ResponseEntity&lt;&gt;(HttpStatus.NO_CONTENT);
+  }
+</code></pre>
+<p>REFERENCIAS:<br>  
+  <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html">Spring Docs</a>
+  <a href="https://www.baeldung.com/spring-response-entity">Response Entity</a>
+</p>
+</google-codelab-step>
     
   </google-codelab>
 
