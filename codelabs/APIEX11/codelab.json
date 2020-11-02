@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-10-05T15:24:54+02:00",
+  "id": "APIEX11",
+  "duration": 60,
+  "title": "APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT",
+  "authors": "TechU",
+  "summary": "Seguridad: Autenticación API REST basada en tokens con Spring y JWT",
+  "source": ".\\APIEX11 - Seguridad Autenticación API REST basada en tokens con Spring y JWT.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX11"
+}

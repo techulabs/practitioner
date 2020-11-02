@@ -1,17 +1,17 @@
 summary: Seguridad: Autenticación API REST basada en tokens con Spring y JWT
-id: APIEX08
+id: APIEX11
 categories: API
 tags: back
 status: Published 
 authors: TechU
 Feedback Link: http://bbva-techuniversity.appspot.com/
 
-# APIEX08 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT
+# APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT
 <!-- ------------------------ -->
 ## Overview 
 Duration: 60
 
-**APIEX08 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT**
+**APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT**
 
 En este codelab veremos una manera sencilla de **autenticar** las peticiones a una API mediante **tokens**, para poder garantizar que los usuarios que consumen nuestros servicios tienen permisos para hacerlo y son quien dicen ser. 
 

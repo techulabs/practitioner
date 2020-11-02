@@ -1,17 +1,17 @@
 summary: Servicio REST con Spring y anotación @CrossOrigin
-id: APIEX10
+id: APIEX12
 categories: API
 tags: back
 status: Published 
 authors: TechU
 Feedback Link: http://bbva-techuniversity.appspot.com/
 
-# APIEX10 - Servicio REST con Spring y anotación @CrossOrigin
+# APIEX12 - Servicio REST con Spring y anotación @CrossOrigin
 <!-- ------------------------ -->
 ## Overview 
 Duration: 60
 
-**APIEX10 - Servicio REST con Spring y anotación @CrossOrigin**
+**APIEX12 - Servicio REST con Spring y anotación @CrossOrigin**
 
 Aquí vas a aprender paso a paso cómo solucionar el problema de Cross Origin Resource Sharing (CORS) que nos impide el acceso a un servicio REST.
 

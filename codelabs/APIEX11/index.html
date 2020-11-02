@@ -1,0 +1,290 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX11"
+                  title="APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="60">
+        <h2 is-upgraded>APIEX11 - Seguridad: Autenticación API REST basada en tokens con Spring y JWT</h2>
+        <p>En este codelab veremos una manera sencilla de <strong>autenticar</strong> las peticiones a una API mediante <strong>tokens</strong>, para poder garantizar que los usuarios que consumen nuestros servicios tienen permisos para hacerlo y son quien dicen ser.   </p>
+<ol type="1">
+<li>Crear un API REST con Spring Boot para proteger los recursos publicados en el API en el siguiente paso. El <em>pom.xml</em> deberá incluir las mismas dependencias que el siguiente:  </p>
+  <pre><code>
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+    &lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;<br>	xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br>	
+    &lt;parent&gt;		
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+      &lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+      &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.techu.security&lt;/groupId&gt;
+    &lt;artifactId&gt;jwt&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;jwt&lt;/name&gt;
+    &lt;description&gt;Spring Boot for create/handling jwt&lt;/description&gt;
+  &lt;properties&gt;
+    &lt;java.version&gt;15&lt;/java.version&gt;
+  &lt;/properties&gt;
+  
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.bitbucket.b_c&lt;/groupId&gt;
+      &lt;artifactId&gt;jose4j&lt;/artifactId&gt;
+      &lt;version&gt;0.6.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.kastkode&lt;/groupId&gt;
+      &lt;artifactId&gt;springsandwich&lt;/artifactId&gt;
+      &lt;version&gt;[1.0.2,)&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+      &lt;exclusions&gt;
+        &lt;exclusion&gt;
+          &lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
+          &lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
+        &lt;/exclusion&gt;
+      &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.jetbrains&lt;/groupId&gt;
+      &lt;artifactId&gt;annotations&lt;/artifactId&gt;
+      &lt;version&gt;RELEASE&lt;/version&gt;
+      &lt;scope&gt;compile&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/project&gt;</code></pre></li>
+<li><p>Ahora vamos a definir un controlador REST para responder a todas las peticiones del endpoint <strong>/apitechu/jwt/hello</strong>, que simplemente devuelva un mensaje de bienvenida a todos los clientes que tengan autorización para acceder al servicio.</p>
+  <p>El controlador <em>HelloWorldController</em> contendrá la lógica para obtener un <strong>token de acceso.</strong></p>
+  <pre><code>
+package com.techu.security.jwt.controller;
+  
+import com.kastkode.springsandwich.filter.annotation.Before;
+import com.kastkode.springsandwich.filter.annotation.BeforeElement;
+import com.techu.security.jwt.components.AuthHandler;
+import com.techu.security.jwt.components.JWTBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+  
+@RestController
+@RequestMapping(&#34;/apitechu/jwt&#34;)
+public class HelloWorldController {
+  @Autowired
+  JWTBuilder jwtBuilder;
+  
+  @GetMapping(&#34;/tokenget&#34;)
+  public String tokenget(@RequestParam(value=&#34;nombre&#34;, defaultValue=&#34;Tech U!&#34;) String name){
+    return jwtBuilder.generateToken(name,&#34;admin&#34;);
+  }
+  
+  @GetMapping(path=&#34;/hello&#34;,headers = {&#34;Authorization&#34;})
+  @Before(@BeforeElement(AuthHandler.class))
+  public String helloWorld(){
+    String s = &#34;Hello from JWT demo...&#34;;
+    return s;
+  }
+}</code></pre>
+  <p>Como podemos observar, previamente debemos hacer una petición al endpoint <strong>/tokenget</strong> para que nos devuelva un token JWT a partir del parámetro ‘nombre&#39; que recibe. Y despúes se llama al método <strong>generateToken()</strong> con el string &#34;admin&#34; y el parámetro ‘name&#39; para generar el token desde la clase que debemos añadir en el siguiente paso.</p></li>
+    <li><p>La clase <strong>JWTBuilder</strong>.  </p>
+    <pre><code>
+package com.techu.security.jwt.components;
+    
+import org.jose4j.jwa.AlgorithmConstraints;
+import org.jose4j.jwk.RsaJsonWebKey;
+import org.jose4j.jwk.RsaJwkGenerator;
+import org.jose4j.jws.AlgorithmIdentifiers;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.MalformedClaimException;
+import org.jose4j.jwt.consumer.ErrorCodes;
+import org.jose4j.jwt.consumer.InvalidJwtException;
+import org.jose4j.jwt.consumer.JwtConsumer;
+import org.jose4j.jwt.consumer.JwtConsumerBuilder;
+import org.jose4j.lang.JoseException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
+import javax.security.auth.message.AuthException;
+    
+@Component
+public class JWTBuilder {
+  @Value(&#34;${jwt.issuer}&#34;)
+  private String jwtIssuer;
+  @Value(&#34;${jwt.secret}&#34;)
+  private String jwtSecret;
+  @Value(&#34;${jwt.expiry}&#34;)
+  private Float jwtExpiry;
+  RsaJsonWebKey rsaJsonWebKey;
+      
+  public JWTBuilder(){}
+      
+  public String generateToken (String usersID,String roles){
+    try{
+      JwtClaims jwtClaims = new JwtClaims();
+      jwtClaims.setIssuer(jwtIssuer);
+      jwtClaims.setExpirationTimeMinutesInTheFuture(jwtExpiry);
+
+      jwtClaims.setAudience(&#34;ALL&#34;);
+      jwtClaims.setStringListClaim(&#34;groups&#34;,roles);
+      jwtClaims.setGeneratedJwtId();
+      jwtClaims.setIssuedAtToNow();
+      jwtClaims.setSubject(&#34;AUTHTOKEN&#34;);
+      jwtClaims.setClaim(&#34;userID&#34;, usersID);
+      JsonWebSignature jws = new JsonWebSignature();
+      jws.setPayload(jwtClaims.toJson());
+      jws.setKey(rsaJsonWebKey.getPrivateKey());
+      jws.setKeyIdHeaderValue(rsaJsonWebKey.getKeyId());
+      jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
+          
+      return jws.getCompactSerialization();
+    } catch (JoseException e){
+      e.printStackTrace();
+      return null;
+    }
+  }
+      
+  public JwtClaims generateParseToken(String token) throws Exception {
+    JwtConsumer jwtConsumer = new JwtConsumerBuilder()
+          .setRequireExpirationTime()
+          .setSkipSignatureVerification()
+          .setAllowedClockSkewInSeconds(60)
+          .setRequireSubject()
+          .setExpectedIssuer(jwtIssuer)
+          .setExpectedAudience(&#34;ALL&#34;)
+          .setExpectedSubject(&#34;AUTHTOKEN&#34;)
+          .setVerificationKey(rsaJsonWebKey.getKey())
+          .setJwsAlgorithmConstraints(new AlgorithmConstraints(AlgorithmConstraints.ConstraintType.WHITELIST, AlgorithmIdentifiers.RSA_USING_SHA256))
+          .build();
+    try {
+      JwtClaims jwtClaims = jwtConsumer.processToClaims(token);
+      return jwtClaims;
+    } catch (InvalidJwtException e) {
+      try {
+        if (e.hasExpired()) {
+          throw new Exception(&#34;JWT expired at &#34; + e.getJwtContext().getJwtClaims().getExpirationTime());
+        }
+        if (e.hasErrorCode(ErrorCodes.AUDIENCE_INVALID)) {
+          throw new AuthException(&#34;JWT had wrong audience: &#34; + e.getJwtContext().getJwtClaims().getAudience());
+        }
+        throw new AuthException(e.getMessage());
+      } catch (MalformedClaimException innerE) {
+        throw new AuthException(&#34;invalid Token&#34;);
+      }
+    }
+  }
+      
+  @PostConstruct
+  public void init(){
+    try{
+      rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
+      rsaJsonWebKey.setKeyId(jwtSecret);
+    } catch (JoseException e){
+      e.printStackTrace();
+    }
+  }
+}
+</code></pre>
+    <p>Utilizamos el método <em>generateToken()</em> para construir el token que, como veremos en el siguiente paso, usaremos para autorizar las peticiones a los recursos protegidos.  </p></li>
+    <li><p>Para hacer el mapeo de las propiedades <em>jwtIssuer</em>, <em>jwtExpiry</em> y <em>jwtSecret</em> anotadas con <strong>@Value</strong>, tenemos que añadir las siguientes propiedades al archivo de properties <strong>application.properties</strong>:  </p></li>
+    <code>
+server.port = 80<br>
+jwt.issuer = techu<br>
+jwt.secret = shhhhh<br>
+jwt.expiry = 10
+    </code></li>
+      <li><p>Ahora, añadiremos la clase <em>AuthHandler</em> que validará si el token es correcto. </p>
+        <pre><code>
+package com.techu.security.jwt.components;
+        
+import com.kastkode.springsandwich.filter.api.BeforeHandler;
+import com.kastkode.springsandwich.filter.api.Flow;
+import org.jetbrains.annotations.NotNull;
+import org.jose4j.jwt.JwtClaims;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
+        
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+        
+@Component
+public class AuthHandler implements BeforeHandler {
+  Logger logger = LoggerFactory.getLogger(AuthHandler.class);
+         
+@Autowired
+JWTBuilder jwtBuilder
+        
+@Override
+public Flow handle(@NotNull HttpServletRequest request, HttpServletResponse response, HandlerMethod handler, String[] flags)
+throws Exception{
+  logger.debug(request.getMethod() + &#34; request is executing on &#34; + request.getRequestURI());
+  String token = request.getHeader(&#34;Authorization&#34;);
+          
+  if (token == null) {
+    throw new RuntimeException(&#34;Auth token is required&#34;);
+  }
+          
+  JwtClaims claims = jwtBuilder.generateParseToken(token);
+  request.setAttribute(&#34;userId&#34;,claims.getClaimValue(&#34;userID&#34;).toString());
+  //check if the user is still valid
+  return Flow.CONTINUE;
+  }
+}</code></pre></li>
+      <li><p>Por último hacer la petición al endpoint <em>/hello</em> pasándole el token JWT en la cabecera HTTP <strong>Authorization</strong>. Y comprueba que tienes autorización y recibes el mensaje <code>&#34;Hello from JWT demo...&#34;</code>.</p></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+  <script src="../../scripts/done.js"></script>
+</body>
+</html>
