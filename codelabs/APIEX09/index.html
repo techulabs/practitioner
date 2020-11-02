@@ -64,13 +64,17 @@ public Producto patchProducto(@PathVariable long id,
 <pre><code>
 @PatchMapping(&#34;/productos/{id}&#34;)
 public ResponseEntity&lt;?&gt; patchGeneric(@RequestBody Map&lt;String, Object&gt; updates, 
-                                            @PathVariable long id) {
+                                          @PathVariable long id) {
   return dataService.save(id, updates);
   }
 </code></pre>
 </li>
 </ol>
-<p>Con esta solución podríamos actualizar el campo <em>descripcion</em> o el que queramos como sigue:  <code>java<br>Map&lt;String, Object&gt; updates = new HashMap&lt;&gt;();<br>updates.put(&#34;descripcion&#34;, &#34;Calle Gran Vía&#34;)</code></pre>
+<p>Con esta solución podríamos actualizar el campo <em>descripcion</em> o el que queramos como sigue:  
+<pre><code>
+Map&lt;String, Object&gt; updates = new HashMap&lt;&gt;();
+updates.put(&#34;descripcion&#34;, &#34;Calle Gran Vía&#34;)
+</code></pre>
 <p>REFERENCIAS:</p>
 <a target="_blank" href="https://www.baeldung.com/http-put-patch-difference-spring">PUT vs PATCH</a>
 
