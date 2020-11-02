@@ -54,11 +54,11 @@ public ResponseEntity&lt;String&gt; addProducto(@RequestBody ProductoModel produ
   productService.addProducto(productoModel);
   return new ResponseEntity&lt;&gt;(&#34;Product created successfully!&#34;, HttpStatus.CREATED);
 }
-</code><br>  
+</code></pre><br>  
 <p>En este caso, enviaremos como respuesta la confirmación de la creación del recurso mediante el código HTTP 201 (HttpStatus.CREATED).</p>
 </google-codelab-step>
 <google-codelab-step label="PUT" duration="20">
-Para la operación PUT enviaremos un 200 OK (HttpStatus.OK) si el producto a actualizar existe y un 404 Not Found en caso contrario.
+<p>Para la operación PUT enviaremos un 200 OK (HttpStatus.OK) si el producto a actualizar existe y un 404 Not Found en caso contrario.</p>
 <pre><code>
 @PutMapping(&#34;/productos/{id}&#34;)
 public ResponseEntity updateProducto(@PathVariable int id,
@@ -70,7 +70,7 @@ public ResponseEntity updateProducto(@PathVariable int id,
   productService.updateProducto(id-1, productToUpdate);
   return new ResponseEntity&lt;&gt;(&#34;Producto actualizado correctamente.&#34;, HttpStatus.OK); // Buenas prácticas dicen que mejor enviar 204 No Content
   }
-</code></p>
+</code></pre>
 </google-codelab-step>
 <google-codelab-step label="DELETE" duration="20">
 <p>En el método DELETE enviaremos el estado 200 genérico para respuestas exitosas o si queremos afinar un poco más el código 204 No Content (HttpStatus.NO_CONTENT):</p>  
