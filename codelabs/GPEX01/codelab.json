@@ -3,19 +3,19 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-09-30T16:18:36+02:00",
+  "updated": "2020-11-02T17:36:25+01:00",
   "id": "GPEX01",
-  "duration": 20,
-  "title": "GPEX01 - Comprobar la instalación de IntelliJ IDEA",
+  "duration": 30,
+  "title": "GPEX01 - Crear nuestro primer proyecto Maven con IntelliJ IDEA",
   "authors": "TechU",
-  "summary": "Comprobar la instalación de IntelliJ IDEA",
-  "source": ".\\GPEX01 - Comprobar la instalación de IntelliJ IDEA.md",
+  "summary": "Crear nuestro primer proyecto Maven con IntelliJ IDEA",
+  "source": ".\\GPEX01 - Crear nuestro primer proyecto Maven con IntelliJ IDEA.md",
   "theme": "",
   "status": [
     "published"
   ],
   "category": [
-    "devops"
+    "proyectos"
   ],
   "tags": [
     "back"

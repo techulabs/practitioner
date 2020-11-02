@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>GPEX01 - Comprobar la instalación de IntelliJ IDEA</title>
+  <title>GPEX01 - Crear nuestro primer proyecto Maven con IntelliJ IDEA</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,23 +23,26 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="GPEX01"
-                  title="GPEX01 - Comprobar la instalación de IntelliJ IDEA"
+                  title="GPEX01 - Crear nuestro primer proyecto Maven con IntelliJ IDEA"
                   environment="web"
                   feedback-link="http://bbva-techuniversity.appspot.com/">
     
-      <google-codelab-step label="Overview" duration="20">
-<h2 is-upgraded><strong>GPEX01</strong> - Comprobar la instalación de IntelliJ IDEA </h2>
-<p> En este codelab nos familiarizaremos con el entorno de trabajo de IntelliJ, un IDE especializado para desarrollo de aplicaciones empresariales basadas en Spring.  En el Menú File del IDE pulsar sobre la opción <strong>Settings...</strong>:  </p>
-<ul>
-<li>Appeareance &amp; Behavior </li>
-<li>Keymap </li>
-<li>Editor </li>
-<li>Plugins </li>
-<li>Version Control  </li>
+      <google-codelab-step label="Overview" duration="30">
+        <h4 is-upgraded><strong>GPEX01</strong> - Crear nuestro primer proyecto Maven con IntelliJ IDEA </h4>
+<ol type="1">
+<li>En la ventana principal del IDE ir al Menu <strong>File -&gt; New -&gt; Project...</strong></li>
+<li>Se abrirá el Asistente <strong>New Project</strong>.  </li>
+<li>Selecciona en el desplegable el Project SDK (JDK).  </li>
+<li>Selecciona <strong>Maven</strong> en el panel izquierdo y luego marca la opción <strong>Create from archetype</strong>.  </li>
+<li>Vamos a coger un arquetipo de ejemplo: <em>maven-arquetype-quickstart</em></li>
+<li>Ahora tenemos que insertar la información del proyecto (Artifact Coordinates)   <ul>
+<li><em>GroupId</em> : com.techuniversity </li>
+<li><em>ArtifactId</em> : demo-proyecto-maven </li>
+<li><em>Version</em>: 1.0.0  </li>
 </ul>
-<p>Explorar el Project Structure (Project settings, Sources, Paths, Dependencies...) Ctrl + Alt + Shift + S  <p>
-  <strong>Stop. Hitting. Ctrl+S.</strong> </p>
-<p>REFERENCIAS: <a href="https://www.jrebel.com/blog/intellij-idea-tutorial#setup">IntelliJ IDEA Setup</a></p>
+</li>
+<li>Abrir el archivo de configuración del proyecto <strong>pom.xml</strong> y observar su contenido.  (<strong>img1.png</strong>)    Referencias:  https://maven.apache.org/guides/introduction/introduction-to-archetypes.html  https://javaspringvaadin.wordpress.com/2018/05/22/mavenintellijidea/</li>
+</ol>
 
 
       </google-codelab-step>
@@ -52,5 +55,6 @@
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
   <script src="../../scripts/done.js"></script>
+
 </body>
 </html>
