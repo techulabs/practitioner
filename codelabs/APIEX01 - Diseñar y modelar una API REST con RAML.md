@@ -1,4 +1,4 @@
-summary: Explorar una API (RAML)
+summary: Diseñar y modelar una API REST con RAML
 id: APIEX01
 categories: API
 tags: back
@@ -6,12 +6,12 @@ status: Published
 authors: TechU
 Feedback Link: http://bbva-techuniversity.appspot.com/
 
-# APIEX01 - Explorar una API (RAML)
+# APIEX01 - Diseñar y modelar una API REST con RAML
 <!-- ------------------------ -->
 ## Overview 
-Duration: 30
+Duration: 110
 
-##### APIEX01 - Explorar una API (RAML)
+##### APIEX01 - Diseñar y modelar una API REST con RAML
 
 Vamos a crear un primer diseño en **RAML** (RESTful API Modeling Language) de una API básica BookMobile. 
 

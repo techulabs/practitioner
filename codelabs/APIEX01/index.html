@@ -23,13 +23,13 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="APIEX01"
-                  title="APIEX01 - Explorar una API (RAML)"
+                  title="APIEX01 - Diseñar y modelar una API REST con RAML"
                   environment="web"
                   feedback-link="http://bbva-techuniversity.appspot.com/">
     
       <google-codelab-step label="Overview" duration="10">
-        <h4 is-upgraded>APIEX01 - Explorar una API (RAML) </h4>
-<p> Vamos a crear un primer diseño en <strong>RAML</strong> (RESTful API Modeling Language) de una API básica BookMobile.   Supongamos que te encargas del diseño de una API RESTful para una puesta en marcha de BookMobile. Has elaborado un plan de negocios y un plan de escala. Entonces, comencemos escribiendo una especificación.  </p>
+        <h4 is-upgraded>APIEX01 - Diseñar y modelar una API REST con RAML</h4>
+<p> Vamos a crear un primer diseño en <strong>RAML</strong> (RESTful API Modeling Language) para la API REST que iremos desarrollando a lo largo del curso. Supongamos que eres el responsable del diseño de una API RESTful para un proyecto de Tech University. Has elaborado un plan de negocios y un plan de escala. Entonces, comencemos escribiendo una especificación </p>
 
       </google-codelab-step>
     
@@ -37,35 +37,50 @@
         <p> Las primeras líneas del fichero RAML (<strong>.raml</strong>) contendrán información básica. </p>
 <pre><code>%RAML 1.0
 --- 
-title: e-BookMobile API 
-baseUri: http://api.e-bookmobile.com/{version} 
-version: v1
+title: Tech U! Practitioner Backend API 
+baseUri: http://api.techu.com/{version} 
+version: v1.0.0
+mediaType: application/json
 </code></pre>
-<p>Todo lo que ingrese en la raíz (o en la parte superior) de la especificación se aplica al resto de su API. Esto te resultará muy útil más adelante a medida que descubras patrones en la forma en que construyes tu API. La baseURI que elija se utilizará con cada llamada realizada, así que asegúrese de que sea lo más limpia y concisa posible.  </p>
+<p>Todo lo que pongamos en la raíz (o en la parte superior) de la especificación se aplica al resto de tu API. Esto te resultará muy útil más adelante a medida que descubras patrones en la forma en que construyes tu API. La <strong>baseURI</strong> que elijas se utilizará con cada llamada realizada, así que asegúrese de que sea lo más <strong>limpia y concisa</strong> posible.  </p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Recursos" duration="15">
-        <p> Todo lo que insertemos en la raíz (o en la parte superior) de la especificación se aplica al resto de su API. Esto te resultará muy útil más adelante a medida que descubras patrones en la forma en que construyes tu API. La baseURI que elijas se utilizará con cada llamada realizada, así que asegurate de que sea lo más simple y concisa posible.</p>
+        <p> Como diseñador de API, es importante considerar cómo los consumidores  utilizarán tu API. Casos de uso: </p>
+        <ul>
+          <li>Los consumidores podrán obtener el listado de productos disponibles.</li>
+          <li>Se podrá obtener información detallada de cada producto: id, descripción y precio.</li>
+          <li>Se almacenará información de los usuarios de productos: userId y rol.</li>
+          <li>Cada producto posee información acerca de los usuarios que lo usan.</li>
+          <li>Se podrán crear, actualizar y borrar usuarios.</li>
+          <li>Incluiremos las operaciones básicas consultar, añadir y actualizar productos.</li>
+          <li>No se podrán eliminar productos.</li>
+          <li>Se podrán filtrar productos que no tengan clientes.</li>
+        </ul>
+        <p>Para hacer esto, define varias colecciones como sus recursos:</p>
         <pre><code>
+/products:
 /users:
-/authors:
-/books:
         </code></pre>
-        <p>Observa que todos estos recursos comienzan con una barra inclinada (/). En RAML, así es como se indica un recurso. Todos los métodos y parámetros anidados en estos recursos de nivel superior pertenecen a ese recurso y actúan sobre él. Ahora, dado que cada uno de estos recursos es una colección de objetos individuales (autores, libros y usuarios específicos), necesitaremos definir algunos sub-recursos para completar la colección.  Los recursos anidados son útiles cuando desea llamar a un subconjunto particular de su recurso para limitarlo. Por ejemplo:  </p>
+        <p>Observa que todos estos recursos comienzan con una barra inclinada (/). En RAML, así es como se indica un recurso. Todos los métodos y parámetros anidados en estos recursos de nivel superior pertenecen a ese recurso y actúan sobre él. Ahora, dado que cada uno de estos recursos es una colección de objetos individuales (productos y usuarios específicos), necesitaremos definir algunos <strong>sub-recursos</strong> para completar la colección.</p>
         <pre><code>
-/authors:
-  /{authorname}:
+/products:
+  /{id}:
+    /users:
+      get:
         </code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Métodos" duration="15">
-        <p> Aquí es donde se decide lo que quiere que el desarrollador pueda hacer con los recursos que ha puesto a disposición. Puedes añadir tantos métodos como desees a cada recurso de su API BookMobile, en cualquier nivel. Sin embargo, cada método HTTP solo se puede utilizar una vez por recurso.   En este ejemplo, queremos que los desarrolladores puedan trabajar a nivel de colección. Por ejemplo, sus consumidores de API pueden recuperar un libro de la colección (GET), agregar un libro (POST) o actualizar toda la biblioteca (PUT). No desea que puedan eliminar información al más alto nivel. Centrémonos en desarrollar el recurso / books.  Anida los métodos para permitir que los desarrolladores realicen estas acciones en sus recursos. Ten en cuenta que debe usar minúsculas para los métodos en su definición de API RAML: </p>
+        <p>Aquí es donde se decide lo que quiere que el desarrollador pueda hacer con los recursos que ha puesto a disposición. Puedes añadir tantos métodos como desees a cada recurso de su API , en cualquier nivel. Sin embargo, cada método HTTP solo se puede utilizar una vez por recurso. </p>
+        <p>En este ejemplo, queremos que los desarrolladores puedan trabajar a nivel de colección. Por ejemplo, sus consumidores de API pueden recuperar un producto de la colección (GET), agregar un producto (POST) o actualizar toda el catálogo de productos (PUT). No se desea eliminar productos.</p>
+        <p>Anida los métodos para permitir que los desarrolladores realicen estas acciones en sus recursos. Ten en cuenta que debe <strong>usar minúsculas para los métodos</strong> en su definición de API RAML.</p>
         <pre><code>
-/books:
+/products:
   get:
   post:
   put:
@@ -75,128 +90,145 @@ version: v1
       </google-codelab-step>
     
       <google-codelab-step label="URI Parameters" duration="20">
-        <p> Los recursos que definimos son colecciones de objetos relevantes más pequeños.  <em>bookTitle</em> es un parámetro de URI, denotado por llaves en RAML:  </p>
+        <p> Los recursos que definimos son colecciones de objetos relevantes más pequeños. En el ejemplo,  <em>id</em> es un parámetro de URI, denotado por llaves en RAML:</p>
         <pre><code>
-/books:
-  /{bookTitle}:
+/products:
+  /{id}:
         </code></pre>
-        <p>Entonces, para realizar una petición a este recurso anidado, la URI del libro de Mary Roach, Stiff se vería como <em>http: //api.e-bookmobile.com/v1/books/Stiff</em>  </p>
-        <p>Es hora de editar su especificación para reflejar las características granulares inherentes de los recursos:</p>
+        <p>Entonces, para realizar una petición a este recurso anidado, la URI del producto con id "12345" sería:</p>
+        <code>http://api.techu.com/v1/products/12345</code>
+        <p>A continuación, ampliaremos la lista de recursos, a partir de nuestro recurso de nivel superior:</p>
         <pre><code>
-/books:   
-  get:
-  put:
-  post:   
-    /{bookTitle}:
-      get:
-      put:
-      delete:
-/author:
-  get:
-/publisher:
-  get:
+/products:   
+  /{id}:
+  /descrip/{descrip}
+  
         </code></pre>
-
+<p>Aquí, las llaves {} alrededor de los nombres de las propiedades definen los parámetros de URI. Las líneas anteriores representan los recursos</p>
+<p><em>/products/{id}</em></p>
+<p><em>products/descrip/{descrip}</em></p>
+<p>Es hora de editar su especificación para reflejar las características granulares inherentes de los recursos:</p>
+<pre><code>
+/products:
+	get:
+	put:
+	post:
+	/{id}:
+		get:
+		put:
+	/descrip:
+		get:
+	/price:
+		get:
+/users:
+	get:
+	post:
+	/{user_id}:
+		get:
+		put:
+		delete:
+</code></pre>
+<p>Los métodos http cuelgan de cada recurso, subrecurso o URI Parameter.</p>
       </google-codelab-step>
     
-      <google-codelab-step label="Query parameters" duration="20">
-        <p> Ahora, vamos a especificar los parámetros de consulta que van a permitir filtrar una colección. Empieza añadiendo algunos parámetros en el método GET para libros.   
+      <google-codelab-step label="Request body" duration="20">
+        <p>A continuación, definiremos los cuerpos de las solicitudes que corresponden a cada solicitud POST:</p>
         <pre><code>
-/books:   
+/productos:
+  ...
+  post:
+    description: Create a new product
+    body:
+      application/json:
+        type: Producto
+        example: {"id":12355, "descrip":"Descripcion", "price":100.11 }
+    responses:
+      201:
+        body:
+          application/json:
+            type: Foo
+            example: {"id":12355, "descrip":"Descripcion", "price":100.11 
+}        </code></pre>
+</google-codelab-step>
+<google-codelab-step label="Query parameters" duration="25">
+        <p>Ahora, vamos a especificar los parámetros de consulta que van a permitir filtrar una colección. Empieza añadiendo algunos parámetros en el método GET para productos. </p>
+<pre><code>
+/products:
   get:
     queryParameters:
-      author:
-      publicationYear:
-      rating:
-      isbn:
+      descrip:
+      price:
   put:
   post:
-        </code></pre>
-        <p>Los query parameters también pueden ser algo que el servidor requiera para procesar la solicitud del consumidor de API, como un token de acceso. Es normal, que se necesite una autorización de seguridad para modificar una colección o un documento.</p>
-        <p>Anida el query parameter del token de acceso bajo el método PUT para un título específico: </p>
-<pre><code>
-/books:   
-  /{bookTitle}
-  get:
-    queryParameters:
-      author:
-      publicationYear:
-      rating:
-      isbn:
-  put:
-    queryParameters:
-      access_token:
 </code></pre>
-<p>Los recursos y métodos de una API suelen tener varios query parameters asociados. Cada parámetro de consulta puede tener cualquier número de atributos opcionales para definirlo mejor. Ahora, especificar los atributos para los query parameters que definimos anteriormente.</p>
+<p>Los querys parameters también pueden ser algo que el servidor requiera para procesar la solicitud del consumidor de API, como un token de acceso. Es normal, que se necesite una autorización de seguridad para modificar una colección o un documento.</p>
+<p>Anida el query parameter del token de acceso bajo el método PUT para un producto específico: </p>
 <pre><code>
-/books:   
-  /{bookTitle}
-  get:
-    queryParameters:
-      author:
-        displayName: Author
-        type: string
-        description: An author full name
-        example: Mary Roach
-        required: false
-      publicationYear:
-        displayName: Pub Year
-        type: number
-        description: The year released for the first time in the US
-        example: 1984
-        required: false
-      rating:
-        displayName: Rating
-        type: number
-        description: Average rating (1-5) submitted by users
-        example: 3.14
-        required: false
-      isbn:
-        displayName: ISBN
-        type: string
-        minLength: 10
-        example: 0321736079
-  put:
-    queryParameters:
-      access_token:
-        displayName: Access Token
-        type: string
-        description: Token giving you permission to make call
-        required: true
+/products:
+  /{id}
+    put:
+      queryParameters:
+        access_token:
+</code></pre>
+<p>Los recursos y métodos de una API suelen tener varios query parameters asociados. Cada parámetro de consulta puede tener cualquier número de atributos opcionales para definirlo mejor. Ahora, especificar los <strong>atributos para los query parameters</strong> que definimos anteriormente. </p>
+<pre><code>
+/products:
+	get:
+      queryParameters:
+        descrip:
+          displayName: Descripción
+          type: string
+          description: An product's brief description
+          example: Producto uno
+          required: false
+        price:
+          displayName: Precio
+          type: number
+          description: Cost of product
+          example: 10.10
+          required: false
+    /{id}
+    	put:
+    	  queryParameters:
+       		access_token:
+          	  displayName: Access Token
+          	  type: string
+          	  description: Token giving you permission to make call
+          	  required: true
 </code></pre>
 <p>Para realizar una llamada PUT, la URI deberá ser: </p>
-<pre><code>http: //api.e-bookmobile.com/books/Stiff? Access_token = ACCESS * TOKEN`</code></pre>
-
-
-      </google-codelab-step>
+<code>http://api.techu.com/products/{id}?access_token=ACCESS*TOKEN</p>
+</google-codelab-step>
     
       <google-codelab-step label="Responses" duration="20">
-        <p> Las respuestas deben contener uno más códigos de estado HTTP, y puede incluir descripciones, ejemplos o esquemas.  </p>
+        <p> Las respuestas deben contener uno más códigos de estado HTTP, y puede incluir descripciones, ejemplos o esquemas.</p>
         <pre><code>
-/books:   
-  /{bookTitle}:
+/products:
+  /{id}:
     get:
-      description: Retrieve a specific book title
+      description: Retrieve a specific product
       responses:
         200:
           body:
             application/json:
               example: |
                 {
-                  &#34;data&#34;: {
-                    &#34;id&#34;: &#34;SbBGk&#34;,
-                    &#34;title&#34;: &#34;Stiff: The Curious Lives of Human Cadavers&#34;,
-                    &#34;description&#34;: null,
-                    &#34;datetime&#34;: 1341533193,
-                    &#34;genre&#34;: &#34;science&#34;,
-                    &#34;author&#34;: &#34;Mary Roach&#34;,
-                    &#34;link&#34;: &#34;http://e-bookmobile.com/books/Stiff&#34;
+                  "data": {
+                    "id": "SbBGk",
+                    "description": null,
+                    "price": 134.15,
+                    "link": "http://api.techu.com/products/SbBGk"
                   },
-                  &#34;success&#34;: true,
-                  &#34;status&#34;: 200
+                  "success": true,
+                  "status": 200
                 }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Product not found"}
 </code></pre>
-<p>¡Enhorabuena! Acabas de completar la definición de un API en RAML. </p>
+<p>¡Enhorabuena! Acabas de completar la definición de tu API en RAML. </p>
 <p>REFERENCIAS:  </p>
 <ul>
 <li><a href="https://raml.org/developers/raml-100-tutorial#" target="_blank">RAML 100</a> </li>
