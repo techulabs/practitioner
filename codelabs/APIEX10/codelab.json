@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-11-02T21:36:25+01:00",
+  "id": "APIEX10",
+  "duration": 25,
+  "title": "APIEX10 - Diseñar e implementar sub-recursos",
+  "authors": "TechU",
+  "summary": "Diseñar e implementar sub-recursos",
+  "source": ".\\APIEX10 - Diseñar e implementar sub-recursos.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX10"
+}

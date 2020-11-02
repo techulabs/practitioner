@@ -1,0 +1,133 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX10 - Diseñar e implementar sub-recursos</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX10"
+                  title="APIEX10 - Diseñar e implementar sub-recursos"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="25">
+        <h2 is-updated="true">APIEX10 - Diseñar e implementar sub-recursos</h2>
+<p>Siguiendo las buenas prácticas de diseño de una API REST y de cara a representar las posibles relaciones entre los recursos/entidades podemos definir el endpoint como sigue:</p>
+<pre><code>GET /recurso/{id}/subrecurso</code></pre>
+<p>Este endpoint representa una relación uno (recurso) a muchos (subrecurso).  </p>
+<ol type="1">
+<li><p>Supongamos que en el modelo de datos de nuestro proyecto existe una relación entre <em>Producto</em> y <em>User</em> (uno a muchos) que represente los usuarios que consumen un determinado producto. Antes que nada, tenemos que añadir al modelo la clase <em>UserModel</em> (que será el subrecurso):  </p>
+<pre><code>
+package com.apirest.models;
+
+  public class UserModel {
+    
+    private String userId;
+    
+    public UserModel(){}
+    
+    public UserModel(String userId){
+      this.userId = userId;
+    }
+    
+    public String getUserId(){
+      return this.userId;
+    }
+  }
+</code></pre></li>
+<li><p>Ahora tenemos que añadir una propiedad (<em>users</em>) a la clase <em>ProductoModel</em> con la lista de usuarios del recurso productos, quedando la clase de la siguiente forma:  </p>
+<pre><code>
+package com.apirest.models;
+import java.util.List;
+import java.util.Objects;
+
+public class ProductoModel {
+  private long id;
+  private String descripcion;
+  private double precio;
+  private List&lt;UserModel&gt; users;
+  
+  public ProductoModel() {
+
+  }
+  
+  public ProductoModel(long id, String descripcion, double precio) {
+    this.id = id;
+    this.descripcion = descripcion;
+    this.precio = precio;
+  }
+  
+  public ProductoModel(long id, String descripcion, double precio, List&lt;UserModel&gt; users) {
+    this.id = id;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.users = users;
+  }
+  
+  public long getId() {
+    return id;
+  }
+  
+  public String getDescripcion() {
+    return descripcion;
+  }
+  
+  public double getPrecio() {
+    return precio;
+  }
+  
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+  
+  public void setPrecio(double precio) {
+    this.precio = precio;
+  }
+  
+  public List&lt;UserModel&gt; getUsers(){
+    return this.users;
+  }
+  
+  public void setUsers(List&lt;UserModel&gt; users) {
+    this.users = users;
+  }
+</code></pre></li>
+<li><p>Y por último, nos toca implementamar en <em>ProductoController</em> el servicio que enviará los usuarios de un determinado producto mediante su ID: </p>
+<pre><code>
+@GetMapping(&#34;/productos/{id}/users&#34;)
+public List&lt;UserModel&gt; getUsers(@PathVariable int id{
+  ProductoModel pr = productService.getProducto(id);
+  return pr.getUsers();
+}</code></pre></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
