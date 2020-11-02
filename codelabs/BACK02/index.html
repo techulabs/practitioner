@@ -41,7 +41,7 @@ spring.data.mongodb.port=27017
 #spring.data.mongodb.password=admin
 spring.data.mongodb.database=productos_db</code></pre>
 <p>Para simplificar el ejercicio se han comentado los parámetros de autentificación (precedidos por #) así que podremos conectarnos sin credenciales (solo para el ejemplo, no recomendado).</p>
-<p>1. La configuración del fichero <strong>pom.xml</strong> del proyecto es la siguiente:</li>
+<p>La configuración del fichero <strong>pom.xml</strong> del proyecto es la siguiente:</li>
 <pre><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt;
 &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
@@ -100,20 +100,21 @@ xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.o
 </p>
       </google-codelab-step>
 <google-codelab-step label="ProductoModel" duration="15">
-<p>2/ Ahora crearemos un POJO muy sencillo para representar un <strong>ProductoModel</strong> que será el que almacenemos en MongoDB y que asociaremos con el recurso <strong>productos</strong>
-<pre><code>package com.techu.apirest.model;  
-    import org.jetbrains.annotations.NotNull; 
-    import org.springframework.data.annotation.Id; 
-    import org.springframework.data.mongodb.core.mapping.Document;  
-    
-    @Document(collection=&#34;productos&#34;) public class ProductoModel {  </p>
+<p>Ahora crearemos un POJO muy sencillo para representar un <strong>ProductoModel</strong> que será el que almacenemos en MongoDB y que asociaremos con el recurso <strong>productos</strong>
+<pre><code>
+package com.techu.apirest.model;  
+import org.jetbrains.annotations.NotNull; 
+import org.springframework.data.annotation.Id; 
+import org.springframework.data.mongodb.core.mapping.Document;  
+   
+@Document(collection=&#34;productos&#34;) public class ProductoModel {  </p>
 @Id
 private String id;
 @NotNull
 private String descripcion;
 private Double precio;
 
-public ProductoModel() {}
+    public ProductoModel() {}
 
     public ProductoModel(String id, String descripcion, Double precio) {
         this.id = id;
@@ -148,11 +149,12 @@ public ProductoModel() {}
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="MongoRepository" duration="20">
-<p>3/ Ahora crearemos el <strong>interface MongoRepository</strong> del repositorio que permita realizar las operaciones CRUD sobre el objeto de la clase <strong>ProductoModel</strong></p>
-<pre><code>package com.techu.apirest.repository;  
-    import com.techu.apirest.model.ProductoModel; 
-    import org.springframework.data.mongodb.repository.MongoRepository; 
-    import org.springframework.stereotype.Repository;  
+<p>Ahora crearemos el <strong>interface MongoRepository</strong> del repositorio que permita realizar las operaciones CRUD sobre el objeto de la clase <strong>ProductoModel</strong></p>
+<pre><code>
+package com.techu.apirest.repository;  
+import com.techu.apirest.model.ProductoModel; 
+import org.springframework.data.mongodb.repository.MongoRepository; 
+import org.springframework.stereotype.Repository;  
 @Repository public interface ProductoRepository extends MongoRepository&lt;ProductoModel, String&gt; { } 
 </code></pre>
 <p>Este repositorio es una interfaz que permite realizar varias operaciones que involucran a los objetos de la clase `Producto`. Obtiene estas operaciones extendiendo `ProductoRepository` de `MongoRepository`.
@@ -160,15 +162,17 @@ public ProductoModel() {}
 </google-codelab-step>
 <google-codelab-step label="ProductoService" duration="30">
 <p>4/ Lo siguiente que haremos será implementar el servicio <strong>ProductoService</strong> que se conecte al repositorio de productos del paso anterior:</p>
-<pre><code>package com.techu.apirest.service;  
-    import com.techu.apirest.model.ProductoModel; 
-    import com.techu.apirest.repository.ProductoRepository; 
-    import org.springframework.beans.factory.annotation.Autowired; 
-    import org.springframework.stereotype.Service;  
-    import java.util.List; 
-    import java.util.Optional;  
+<pre><code>
+package com.techu.apirest.service;  
+import com.techu.apirest.model.ProductoModel; 
+import com.techu.apirest.repository.ProductoRepository; 
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;  
+import java.util.List; 
+import java.util.Optional;  
 
 @Service public class ProductoService {
+
     @Autowired
     ProductoRepository productoRepository;
 
@@ -196,13 +200,15 @@ public ProductoModel() {}
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="ProductoController" duration="20">
-<p>5/ A continuación la implementación del <strong>ProductoController</strong></p>
-<pre><code>package com.techu.apirest.controller;  
-    import com.techu.apirest.model.ProductoModel; 
-    import com.techu.apirest.service.ProductoService; 
-    import org.springframework.beans.factory.annotation.Autowired; 
-    import org.springframework.web.bind.annotation.*;  
-    import java.util.List; import java.util.Optional;  
+<p>A continuación la implementación del <strong>ProductoController</strong></p>
+<pre><code>
+package com.techu.apirest.controller;  
+import com.techu.apirest.model.ProductoModel; 
+import com.techu.apirest.service.ProductoService; 
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.web.bind.annotation.*;  
+import java.util.List; import java.util.Optional;  
+
 @RestController @RequestMapping(&#34;/apitechu/v2&#34;) 
 public class ProductoController {
     @Autowired
@@ -237,7 +243,7 @@ public class ProductoController {
 </code></pre>
 </google-codelab-step>
 <google-codelab-step label="Ejecución" duration="15">
-<p>6/ Por último ejecutar la aplicación y probar en postman las operaciones CRUD implementadas. Mediante un cliente MongoDB (Robo 3T por ejemplo) confirmar las pruebas en la base de datos productos_db:  
+<p>Por último ejecutar la aplicación y probar en postman las operaciones CRUD implementadas. Mediante un cliente MongoDB (Robo 3T por ejemplo) confirmar las pruebas en la base de datos productos_db:  
     <ul><li>server.port = 8081</li>
         <li>spring.data.mongodb.host=localhost</li>
         <li>spring.data.mongodb.port=27017</li>
