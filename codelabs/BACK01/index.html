@@ -33,7 +33,7 @@
 <p>Vamos a centrarnos en la clase <em>ProductoController</em> que es en donde vamos a incluir el manejo de las respuestas HTTP.  Primero necesitamos importar la clase <em>ResponseEntity</em>:  
 <pre><code>import org.springframework.http.ResponseEntity;</code></pre>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="15">
+<google-codelab-step label="GET" duration="15">
 <p>Empezaremos con el servicio que ya tenemos hecho para enviar un producto por su ID, y lo modificaremos para que devuelva el código HTTP 404 si no existe ese producto. En caso contrario, enviaremos el producto solicitado. Para ello lo que haremos es sustituir el tipo que devuelve el método getProductoId por ResponseEntity:  
 <pre><code>
 @GetMapping(&#34;/productos/{id}&#34;)
@@ -46,7 +46,7 @@ public ResponseEntity getProductoId(@PathVariable int id) {
   }
 </code></p>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="20">
+<google-codelab-step label="POST" duration="20">
 <p>Procederemos ahora a hacer lo suyo con el resto de servicios y empezaremos con el método POST por ejemplo:
 <pre><code>
 @PostMapping(&#34;/productos&#34;)
@@ -57,7 +57,7 @@ public ResponseEntity&lt;String&gt; addProducto(@RequestBody ProductoModel produ
 </code><br>  
 <p>En este caso, enviaremos como respuesta la confirmación de la creación del recurso mediante el código HTTP 201 (HttpStatus.CREATED).</p>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="20">
+<google-codelab-step label="PUT" duration="20">
 Para la operación PUT enviaremos un 200 OK (HttpStatus.OK) si el producto a actualizar existe y un 404 Not Found en caso contrario.
 <pre><code>
 @PutMapping(&#34;/productos/{id}&#34;)
@@ -72,7 +72,7 @@ public ResponseEntity updateProducto(@PathVariable int id,
   }
 </code></p>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="20">
+<google-codelab-step label="DELETE" duration="20">
 <p>En el método DELETE enviaremos el estado 200 genérico para respuestas exitosas o si queremos afinar un poco más el código 204 No Content (HttpStatus.NO_CONTENT):  
 <pre><code>
 DeleteMapping(&#34;/productos/{id}&#34;)
@@ -86,7 +86,7 @@ public ResponseEntity deleteProducto(@PathVariable Integer id) {
 }
 </code></pre>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="20">
+<google-codelab-step label="PATCH" duration="20">
 <p>PATCH
 <pre><code>
 @PatchMapping(&#34;/productos/{id}&#34;)
@@ -102,7 +102,7 @@ public ResponseEntity patchPrecioProducto(
   }
 </code></pre>
 </google-codelab-step>
-<google-codelab-step label="Overview" duration="20">
+<google-codelab-step label="GET subrecurso" duration="20">
 <p>GET subrecurso  
 <pre><code>
 @GetMapping(&#34;/productos/{id}/users&#34;)
