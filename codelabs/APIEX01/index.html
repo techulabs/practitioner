@@ -63,14 +63,14 @@ mediaType: application/json
         <pre><code>
 /products:
 /users:
-        </code></pre>
+</code></pre>
         <p>Observa que todos estos recursos comienzan con una barra inclinada (/). En RAML, así es como se indica un recurso. Todos los métodos y parámetros anidados en estos recursos de nivel superior pertenecen a ese recurso y actúan sobre él. Ahora, dado que cada uno de estos recursos es una colección de objetos individuales (productos y usuarios específicos), necesitaremos definir algunos <strong>sub-recursos</strong> para completar la colección.</p>
         <pre><code>
 /products:
   /{id}:
     /users:
       get:
-        </code></pre>
+</code></pre>
 
 
       </google-codelab-step>
@@ -102,7 +102,6 @@ mediaType: application/json
 /products:   
   /{id}:
   /descrip/{descrip}
-  
         </code></pre>
 <p>Aquí, las llaves {} alrededor de los nombres de las propiedades definen los parámetros de URI. Las líneas anteriores representan los recursos</p>
 <p><em>/products/{id}</em></p>
@@ -110,23 +109,23 @@ mediaType: application/json
 <p>Es hora de editar su especificación para reflejar las características granulares inherentes de los recursos:</p>
 <pre><code>
 /products:
-	get:
-	put:
-	post:
-	/{id}:
-		get:
-		put:
-	/descrip:
-		get:
-	/price:
-		get:
+  get:
+  put:
+  post:
+  /{id}:
+    get:
+    put:
+  /descrip:
+    get:
+  /price:
+    get:
 /users:
-	get:
-	post:
-	/{user_id}:
-		get:
-		put:
-		delete:
+  get:
+  post:
+  /{user_id}:
+    get:
+    put:
+    delete:
 </code></pre>
 <p>Los métodos http cuelgan de cada recurso, subrecurso o URI Parameter.</p>
       </google-codelab-step>
@@ -197,7 +196,7 @@ mediaType: application/json
           	  required: true
 </code></pre>
 <p>Para realizar una llamada PUT, la URI deberá ser: </p>
-<code>http://api.techu.com/products/{id}?access_token=ACCESS*TOKEN</p>
+<code>http://api.techu.com/products/{id}?access_token=ACCESS*TOKEN</code>
 </google-codelab-step>
     
       <google-codelab-step label="Responses" duration="20">
