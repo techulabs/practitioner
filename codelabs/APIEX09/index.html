@@ -1,0 +1,82 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>APIEX09 - PATCH</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="APIEX09"
+                  title="APIEX09 - PATCH"
+                  environment="web"
+                  feedback-link="http://bbva-techuniversity.appspot.com/">
+    
+      <google-codelab-step label="Overview" duration="25">
+        <h2 is-upgraded="true">APIEX09 - PATCH</h2>  
+<p>Ya hemos visto el método PUT para realizar una actualización total (todos o casi todos los campos) de un recurso.  Pero, ¿qué pasa cuándo el cliente necesita actualizar un único campo del recurso? Al enviar todo el objeto que representa el recurso a actualizar estaríamos consumiendo más ancho de banda del necesario y manejando más campos de la cuenta. Para estos casos tiene más sentido usar PATCH.  </p>
+<ol type="1">
+<li>Ahora, supongamos que queremos actualizar sólo el campo <em>precio</em> de la entidad Producto. Para ello podemos crear una clase para representar una actualización parcial  del campo <em>precio</em>:
+<pre><code>
+public class ProductoPrecioOnly {
+  private long id;
+  private double precio;
+  
+  public ProductoPrecioOnly() {}
+  
+  public ProductoPrecioOnly(double precio) {
+    this.precio = precio;
+  }
+  
+  public double getPrecio() {
+    return precio;
+  }
+  
+  public void setPrecio(double precio) {
+    this.precio = precio;
+  }
+}
+</code></pre></li>
+<li>A continuación, creamos el método <em>patchProducto</em> para enviar una actualización parcial de la siguiente forma:  
+<pre><code>
+@PatchMapping(&#34;/productos/{id}&#34;)
+public Producto patchProducto(@PathVariable long id, @RequestBody ProductoPrecioOnly proPrecio) {
+  return dataService.updateProducto(id, proPrecio);
+}</code></pre>
+<p>Con esta clase (DTO) más granular, estaríamos enviando solamente el campo que necesitamos actualizar sin la sobrecarga de enviar el objeto Producto completo.</p>  </li>
+<li>Y por último, en el caso de que necesitemos hacer lo anterior para muchos campos (actualización parcial) entonces podríamos usar una estructura de datos como Map de Java para implementar una solución genérica:  
+<pre><code>
+@PatchMapping(&#34;/productos/{id}&#34;)
+public ResponseEntity&lt;?&gt; patchGeneric(@RequestBody Map&lt;String, Object&gt; updates, @PathVariable long id) {
+  return dataService.save(id, updates);
+  }</code><br>  Con esta solución podríamos actualizar el campo <em>descripcion</em> o el que queramos como sigue:  <code>java<br>Map&lt;String, Object&gt; updates = new HashMap&lt;&gt;();<br>updates.put(&#34;descripcion&#34;, &#34;Calle Gran Vía&#34;)<br>   .</code>..<br>    REFERENCIAS:  https://www.baeldung.com/http-put-patch-difference-spring</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

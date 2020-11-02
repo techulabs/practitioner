@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-11-02T18:39:41+01:00",
+  "id": "APIEX09",
+  "duration": 25,
+  "title": "APIEX09 - PATCH",
+  "authors": "TechU",
+  "summary": "PATCH",
+  "source": ".\\APIEX09 - PATCH.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "APIEX09"
+}
