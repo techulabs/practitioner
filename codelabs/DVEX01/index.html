@@ -46,12 +46,17 @@
 
 </code></pre>
 <p>Y pulsamos el botón para crear el repositorio.   </p>
-<p>NOTA - En esta primera creación del repositorio no hemos añadido un archivo .gitignore pero, cuando trabajemos con nuestra app del curso, el repositorio que manejemos sí tendrá que tener un archivo .gitignore que indique, al menos (puede ser que según cada caso haya que añadir más), que queremos que Git ignore el directorio node_modules, que contiene las dependencias instaladas por npm.  El contenido del fichero sería: </p>
+<p>NOTA - En esta primera creación del repositorio no hemos añadido un archivo .gitignore pero, cuando trabajemos con nuestra app del curso, el repositorio que manejemos sí tendrá que tener un archivo .gitignore que indique, al menos (puede ser que según cada caso haya que añadir más), que queremos que Git ignore el directorio de dependencias o de construcción</p>
+<p>Si el proyecto es de tipo Node.js incluiremos la carpeta node_modules, que contiene las dependencias instaladas por npm.  El contenido del fichero sería: </p>
 <p>.gitignore</p>
 <pre><code>
 node_modules/
 </code></pre>
-
+<p>Si por el contrario estamos trabajando con un proyecto tipo Maven incluiremos la carpeta target, que contiene los ficheros Java compilados en ficheros .class.  El contenido del fichero sería: </p>
+<p>.gitignore</p>
+<pre><code>
+target/
+</code></pre>
 
       </google-codelab-step>
     
