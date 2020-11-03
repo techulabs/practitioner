@@ -35,8 +35,8 @@
     
       <google-codelab-step label="Root" duration="10">
         <p> Las primeras líneas del fichero RAML (<strong>.raml</strong>) contendrán información básica. </p>
-<pre><code>%RAML 1.0
---- 
+<pre><code>
+%RAML 1.0
 title: Tech U! Practitioner Backend API 
 baseUri: http://api.techu.com/{version} 
 version: v1.0.0
@@ -177,7 +177,7 @@ mediaType: application/json
         descrip:
           displayName: Descripción
           type: string
-          description: An product's brief description
+          description: An products brief description
           example: Producto uno
           required: false
         price:
@@ -186,14 +186,14 @@ mediaType: application/json
           description: Cost of product
           example: 10.10
           required: false
-    /{id}
-    	put:
-    	  queryParameters:
-       		access_token:
-          	  displayName: Access Token
-          	  type: string
-          	  description: Token giving you permission to make call
-          	  required: true
+  /{id}
+   	put:
+   	  queryParameters:
+         access_token:
+          displayName: Access Token
+          type: string
+          description: Token giving you permission to make call
+          required: true
 </code></pre>
 <p>Para realizar una llamada PUT, la URI deberá ser: </p>
 <code>http://api.techu.com/products/{id}?access_token=ACCESS*TOKEN</code>
