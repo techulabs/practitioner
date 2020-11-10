@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-11-10T16:09:27+01:00",
+  "id": "CL01",
+  "duration": 240,
+  "title": "CL01 - API con Oracle Database",
+  "authors": "TechU",
+  "summary": "API con Oracle Database",
+  "source": ".\\CL01 - API con Oracle.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "CL01"
+}

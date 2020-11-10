@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-11-10T16:13:54+01:00",
+  "id": "CL02",
+  "duration": 120,
+  "title": "CL02 - JWT avanzado",
+  "authors": "TechU",
+  "summary": "JWT avanzado",
+  "source": ".\\CL02 - JWT.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "CL02"
+}

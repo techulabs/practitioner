@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-11-10T16:15:27+01:00",
+  "id": "CL04",
+  "duration": 120,
+  "title": "CL04 - Cloud Computing",
+  "authors": "TechU",
+  "summary": "Cloud Computing",
+  "source": ".\\CL04 - Cloud.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "api"
+  ],
+  "tags": [
+    "back"
+  ],
+  "feedback": "http://bbva-techuniversity.appspot.com/",
+  "url": "CL04"
+}
