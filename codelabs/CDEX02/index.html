@@ -47,7 +47,7 @@ db.producto.insertOne(
 <p>Si no creamos una clave primaria <strong>_id</strong> Mongo DB lo hará automáticamente por nosotros ;) </p> </li>
 <li>En este paso vamos a insertar varios documentos con <strong>insertMany()</strong>:
 <pre><code>
-db.collection(&#39;producto&#39;).insertMany([
+db.producto.insertMany([
   {
     proId: &#39;002&#39;,
     qty: 25,
