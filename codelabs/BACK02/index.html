@@ -107,10 +107,11 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id; 
 import org.springframework.data.mongodb.core.mapping.Document;  
    
-@Document(collection=&#34;productos&#34;) public class ProductoModel {  </p>
+@Document(collection=&#34;productos&#34;) 
+public class ProductoModel {  </p>
 @Id
-private String id;
 @NotNull
+private String id;
 private String descripcion;
 private Double precio;
 
